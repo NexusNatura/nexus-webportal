@@ -1,10 +1,10 @@
-﻿import React, { useState } from "react";
+import React, { useState } from "react";
 import { Link } from "wouter";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { Search, BookOpen, Trophy, Clock, Star, PlayCircle } from "lucide-react";
+import { Search, BookOpen, Trophy, Clock, Star, PlayCircle, Puzzle } from "lucide-react";
 import { MOCK_COURSES } from "@/data/mockCourses";
 
 export default function AgentCommunity() {
@@ -29,6 +29,27 @@ export default function AgentCommunity() {
           <Badge variant="outline" className="text-sm py-1"><Star className="w-4 h-4 mr-1 text-primary" /> 2 Certs</Badge>
         </div>
       </div>
+
+      {/* Logic Puzzle Banner */}
+      <Card className="mb-8 bg-gradient-to-r from-primary/10 via-background to-secondary/20 border-primary/20 shadow-sm relative overflow-hidden group">
+        <div className="absolute right-0 top-0 w-64 h-full bg-gradient-to-l from-primary/10 to-transparent pointer-events-none"></div>
+        <CardContent className="p-6 flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
+          <div className="flex items-start gap-4">
+            <div className="p-3 bg-primary/20 rounded-xl">
+              <Puzzle className="w-8 h-8 text-primary" />
+            </div>
+            <div>
+              <h3 className="text-xl font-bold tracking-tight mb-1">Dagens Logikpussel</h3>
+              <p className="text-muted-foreground text-sm">Testa dina kunskaper och tjäna XP genom att bygga rätt arbetsflöde.</p>
+            </div>
+          </div>
+          <Link href="/agent-community/puzzle">
+            <Button className="shrink-0 font-bold shadow-sm transition-transform group-hover:scale-105">
+              Spela Nu
+            </Button>
+          </Link>
+        </CardContent>
+      </Card>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
         <Card className="md:col-span-1 bg-card/50 backdrop-blur border-primary/20 shadow-sm">

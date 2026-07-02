@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import AITransparencyBanner from "@/components/AITransparencyBanner";
+import BlogCarousel from "@/components/BlogCarousel";
 import { useState } from "react";
 import {
   ArrowRight,
@@ -68,6 +69,24 @@ const features = [
     desc: "Identifiera hur lokala företags avfallsströmmar kan bli varandras resurser. AI-driven analys av Skaraborg-regionens cirkulära potential.",
     cta: "Skanna flöden",
     icon: Recycle,
+  },
+  {
+    href: "/cirkulara-verktyg",
+    img: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=800&auto=format&fit=crop",
+    badge: "Kalkylator",
+    title: "Cirkulära Verktyg",
+    desc: "Beräkna Material Circularity Indicator (MCI) och se exakt hur mycket koldioxidutsläpp du kan spara genom att införa cirkulära produktionsmetoder.",
+    cta: "Räkna ut CO2e",
+    icon: Factory,
+  },
+  {
+    href: "/smarta-blanketter",
+    img: "https://images.unsplash.com/photo-1618044733300-9472054094ee?q=80&w=800&auto=format&fit=crop",
+    badge: "Auto-fill AI",
+    title: "Intelligenta Blanketter",
+    desc: "Sluta slösa tid på byråkrati. Vår AI läser av företagets data och fyller automatiskt i komplexa EU- och myndighetsblanketter åt dig.",
+    cta: "Testa Blanketter",
+    icon: ShieldCheck,
   },
 ];
 
@@ -292,6 +311,11 @@ export default function Home() {
             })}
           </div>
         </div>
+      </section>
+
+      {/* Blog Carousel Section */}
+      <section className="container mx-auto max-w-6xl relative z-10 -mt-12 mb-16">
+        <BlogCarousel />
       </section>
 
       {/* Features Section */}
