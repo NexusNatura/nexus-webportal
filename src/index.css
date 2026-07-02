@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 5% 96%; /* Apple Light Gray #F5F5F7 */
+    --foreground: 240 4% 12%; /* Apple Dark Gray Text #1D1D1F */
+    
+    --card: 0 0% 100%; /* Pure White */
+    --card-foreground: 240 4% 12%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 4% 12%;
+    
+    --primary: 210 100% 40%; /* Apple Blue #0066CC */
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 240 5% 92%; /* Slightly darker gray for secondary */
+    --secondary-foreground: 240 4% 12%;
+    
+    --muted: 240 5% 92%;
+    --muted-foreground: 240 4% 46%; /* Soft text #86868B */
+    
+    --accent: 210 100% 95%; /* Light blue accent */
+    --accent-foreground: 210 100% 40%;
+    
+    --destructive: 0 84% 60%; /* Apple Red */
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 240 6% 83%; /* Apple border #D2D2D7 */
+    --input: 240 6% 83%;
+    --ring: 210 100% 40%;
+    --radius: 1.25rem; /* Soft rounded corners */
+  }
+
+  .dark {
+    --background: 240 4% 10%; /* Apple Dark Mode #1C1C1E */
+    --foreground: 0 0% 98%; /* Soft white #F2F2F7 */
+    
+    --card: 240 4% 16%; /* Card dark #2C2C2E */
+    --card-foreground: 0 0% 98%;
+    
+    --popover: 240 4% 16%;
+    --popover-foreground: 0 0% 98%;
+    
+    --primary: 210 100% 55%; /* Brighter blue for dark mode #0A84FF */
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 240 4% 22%;
+    --secondary-foreground: 0 0% 98%;
+    
+    --muted: 240 4% 22%;
+    --muted-foreground: 240 5% 65%; /* #EBEBF5 opacity 60% */
+    
+    --accent: 210 100% 20%;
+    --accent-foreground: 210 100% 55%;
+    
+    --destructive: 0 84% 65%; /* Brighter red #FF453A */
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 240 4% 22%; /* #38383A */
+    --input: 240 4% 22%;
+    --ring: 210 100% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* Apple-like Glassmorphism Utilities */
+.glass-panel {
+  @apply bg-card/70 backdrop-blur-xl border border-white/20 shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:bg-card/60 dark:border-white/10 dark:shadow-[0_8px_30px_rgb(0,0,0,0.12)];
+}
+
+.glass-nav {
+  @apply bg-background/80 backdrop-blur-xl border-b border-border/50;
+}
+
+/* Typography tweaks */
+h1, h2, h3, h4, h5, h6 {
+  @apply tracking-tight;
+}
