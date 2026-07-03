@@ -1,6 +1,7 @@
-﻿import React, { useState } from "react";
+import React, { useState } from "react";
+import { Link } from "wouter";
 import { toast } from "sonner";
-import { FileText, Plus, CheckCircle2, Leaf, Recycle, Globe, Download, ArrowRight, ScanLine } from "lucide-react";
+import { FileText, Plus, CheckCircle2, Leaf, Recycle, Globe, Download, ArrowRight, ScanLine, PieChart } from "lucide-react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,15 +18,15 @@ function CreateDPPForm() {
 
   const fields = [
     { key: "name", label: "Produktnamn", placeholder: "t.ex. Silverring Pantolin" },
-    { key: "brand", label: "Varum�rke / Tillverkare", placeholder: "t.ex. Pantolin Smycken AB" },
+    { key: "brand", label: "Varumärke / Tillverkare", placeholder: "t.ex. Pantolin Smycken AB" },
     { key: "category", label: "Produktkategori (ESPR)", placeholder: "t.ex. Smycken / Textilier / Elektronik" },
-    { key: "materials", label: "Material (kommaseparerat)", placeholder: "t.ex. Sterling silver 925, �tervunnet guld" },
+    { key: "materials", label: "Material (kommaseparerat)", placeholder: "t.ex. Sterling silver 925, återvunnet guld" },
     { key: "co2", label: "CO2-avtryck (kg CO2e/enhet)", placeholder: "t.ex. 2.3" },
-    { key: "recycled", label: "�tervunnet material (%)", placeholder: "t.ex. 94" },
+    { key: "recycled", label: "Återvunnet material (%)", placeholder: "t.ex. 94" },
   ];
 
   const handleGenerate = async () => {
-    if (!form.name || !form.brand) { toast.error("Fyll i minst Produktnamn och Varum�rke."); return; }
+    if (!form.name || !form.brand) { toast.error("Fyll i minst Produktnamn och Varumärke."); return; }
     setLoading(true);
     try {
       const id = `DPP-${new Date().getFullYear()}-${String(Math.floor(Math.random() * 900) + 100)}`;
@@ -45,7 +46,7 @@ function CreateDPPForm() {
         body: JSON.stringify(payload)
       });
 
-      const analysis = "AI-analys baserad p� materialet visar h�g potential f�r cirkul�ritet. Motsvarar ESPR 2026-direktiven.";
+      const analysis = "AI-analys baserad på materialet visar hög potential för cirkuläritet. Motsvarar ESPR 2026-direktiven.";
       const jsonLD = JSON.stringify({ "@context": "https://schema.org/", "@type": "Product", "identifier": id, "name": form.name }, null, 2);
       
       // Simulate delay for AI generation feel
@@ -60,7 +61,7 @@ function CreateDPPForm() {
       });
       toast.success(`DPP ${id} genererat med AI-analys!`);
     } catch {
-      toast.error("Kunde inte generera DPP. F�rs�k igen.");
+      toast.error("Kunde inte generera DPP. Försök igen.");
     } finally {
       setLoading(false);
     }
@@ -89,7 +90,7 @@ function CreateDPPForm() {
         </CardHeader>
         <CardContent className="pt-6 space-y-6">
           <div className="grid grid-cols-2 gap-4">
-            {[{ label: "CO2-avtryck", value: generated.co2, icon: Leaf }, { label: "�tervunnet", value: generated.recycled, icon: Recycle }].map(({ label, value, icon: Icon }) => (
+            {[{ label: "CO2-avtryck", value: generated.co2, icon: Leaf }, { label: "Återvunnet", value: generated.recycled, icon: Recycle }].map(({ label, value, icon: Icon }) => (
               <div key={label} className="bg-background rounded-lg p-4 text-center border shadow-sm">
                 <Icon className="w-6 h-6 mx-auto mb-2 text-primary" />
                 <div className="text-xl font-bold text-foreground">{value}</div>
@@ -135,12 +136,31 @@ function CreateDPPForm() {
   return (
     <Card className="max-w-2xl mx-auto border-border/50 bg-card/50 backdrop-blur shadow-sm animate-in fade-in duration-500">
       <CardHeader>
-        <CardTitle className="text-2xl">Digitalt Produktpass (DPP)</CardTitle>
-        <CardDescription>
-          Fyll i grundinformationen nedan. Nexus-OS MINT-k�rna kommer att generera ett kryptografiskt s�kerst�llt och EU ESPR-kompatibelt DPP i JSON-LD-format, vilket automatiskt hashas till ledgern.
-        </CardDescription>
+        <div className="flex items-center justify-between">
+          <div>
+            <CardTitle className="text-2xl">Digitalt Produktpass (DPP)</CardTitle>
+            <CardDescription className="mt-1 max-w-md">
+              Generera ett EU-kompatibelt Digitalt Produktpass enligt ESPR-kraven.
+            </CardDescription>
+          </div>
+          <Link href="/cirs">
+            <Button variant="outline" size="sm" className="hidden md:flex gap-2 border-primary/20 text-primary hover:bg-primary/5">
+              <PieChart className="w-4 h-4" /> CIRS-Analys
+            </Button>
+          </Link>
+        </div>
       </CardHeader>
       <CardContent className="space-y-4">
+        <div className="bg-muted/30 p-4 rounded-xl border border-border/50 mb-6 flex gap-4 items-start">
+          <div className="bg-background p-2 rounded-lg text-primary shadow-sm mt-0.5">
+            <ScanLine className="w-5 h-5" />
+          </div>
+          <div>
+            <p className="text-sm font-medium text-foreground">Sälj din miljödata som en resurs</p>
+            <p className="text-xs text-muted-foreground mt-1">Ett komplett produktpass gör att du kan exportera din data till storföretag som behöver rapportera Scope 3-utsläpp. Har du inte gjort en LCA? <Link href="/cirs" className="text-primary hover:underline">Gör CIRS-testet</Link> först.</p>
+          </div>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {fields.map((field) => (
             <div key={field.key} className={field.key === "materials" ? "md:col-span-2" : ""}>
@@ -163,7 +183,7 @@ function CreateDPPForm() {
           {loading ? (
             <><span className="animate-spin w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full inline-block" /> Genererar via Nexus-OS...</>
           ) : (
-            <><FileText className="w-5 h-5" /> Skapa Pass (MINT) <ArrowRight className="w-5 h-5 ml-auto" /></>
+            <><FileText className="w-5 h-5" /> Skapa Pass (JSON-LD) <ArrowRight className="w-5 h-5 ml-auto" /></>
           )}
         </Button>
       </CardContent>
@@ -189,10 +209,10 @@ export default function ProductPassport() {
               </Badge>
             </div>
             <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-foreground">
-              Digital Product Passports
+              Digitala Produktpass
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              S�kra, sp�rbara och standardiserade digitala pass f�r n�sta generations cirkul�ra ekonomi.
+              Säkra, spårbara och standardiserade digitala pass för nästa generations cirkulära ekonomi. Sälj din compliance som en konkurrensfördel.
             </p>
           </div>
         </div>
@@ -204,5 +224,3 @@ export default function ProductPassport() {
     </div>
   );
 }
-
-
