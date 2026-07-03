@@ -1,7 +1,7 @@
 ﻿/**
- * TENDER DISCOVERY â€“ Synergi 1: InkÃ¶rsport
+ * TENDER DISCOVERY – Synergi 1: Inkörsport
  * Design: Nordic Sustainability Intelligence
- * - MÃ¶rkgrÃ¶n sidebar, varm sand-bakgrund, koppar-accenter
+ * - Mörkgrön sidebar, varm sand-bakgrund, koppar-accenter
  * - Fraunces (display) + DM Sans (body)
  * - Gratis bidragsmatchning som hook â†’ konverterar till DPP + Data
  */
@@ -27,104 +27,104 @@ import {
 const GRANT_DATABASE = [
   {
     id: 1,
-    name: "Vinnova â€“ Innovativa Startups",
+    name: "Vinnova – Innovativa Startups",
     amount: "300 000 SEK",
-    deadline: "LÃ¶pande",
+    deadline: "Löpande",
     match: 96,
     category: "Innovation",
     tags: ["Startup", "AI", "Digitalisering"],
-    description: "FÃ¶r tidiga bolag med innovativ produkt eller tjÃ¤nst. Perfekt fÃ¶r Nexus-OS-fasen.",
+    description: "För tidiga bolag med innovativ produkt eller tjänst. Perfekt för Nexus-OS-fasen.",
     url: "https://www.vinnova.se",
-    effort: "LÃ¥g",
+    effort: "Låg",
     color: "emerald"
   },
   {
     id: 2,
-    name: "Almi â€“ Verifieringsmedel",
-    amount: "50 000â€“250 000 SEK",
-    deadline: "LÃ¶pande",
+    name: "Almi – Verifieringsmedel",
+    amount: "50 000–250 000 SEK",
+    deadline: "Löpande",
     match: 94,
     category: "Verifiering",
     tags: ["SMF", "Prototyp", "Marknad"],
-    description: "FÃ¶r att verifiera affÃ¤rsidÃ© och teknik. KrÃ¤ver en konkret pilotkund (t.ex. Pantolin).",
+    description: "För att verifiera affärsidÃ© och teknik. Kräver en konkret pilotkund (t.ex. Pantolin).",
     url: "https://www.almi.se",
-    effort: "LÃ¥g",
+    effort: "Låg",
     color: "blue"
   },
   {
     id: 3,
-    name: "Klimatklivet â€“ InvesteringsstÃ¶d",
+    name: "Klimatklivet – Investeringsstöd",
     amount: "Upp till 70% av investeringen",
     deadline: "Kvartalvis",
     match: 89,
     category: "Klimat",
-    tags: ["HÃ¥llbarhet", "COâ‚‚", "Investering"],
-    description: "FÃ¶r investeringar som minskar utslÃ¤pp. Pantolin-pilotens 89% COâ‚‚-reduktion Ã¤r ett starkt case.",
+    tags: ["Hållbarhet", "COâ‚‚", "Investering"],
+    description: "För investeringar som minskar utsläpp. Pantolin-pilotens 89% COâ‚‚-reduktion är ett starkt case.",
     url: "https://www.naturvardsverket.se/klimatklivet",
     effort: "Medel",
     color: "green"
   },
   {
     id: 4,
-    name: "Horizon Europe â€“ Cluster 4",
+    name: "Horizon Europe – Cluster 4",
     amount: "Upp till 6 MEUR",
     deadline: "2026-09-15",
     match: 82,
     category: "EU FoU",
-    tags: ["DPP", "CirkulÃ¤r ekonomi", "Konsortium"],
-    description: "FoU-konsortium fÃ¶r digital produktpassinfrastruktur. KrÃ¤ver 3+ EU-partners.",
+    tags: ["DPP", "Cirkulär ekonomi", "Konsortium"],
+    description: "FoU-konsortium för digital produktpassinfrastruktur. Kräver 3+ EU-partners.",
     url: "https://ec.europa.eu/info/funding-tenders/opportunities",
-    effort: "HÃ¶g",
+    effort: "Hög",
     color: "purple"
   },
   {
     id: 5,
-    name: "Region VÃ¤stra GÃ¶taland â€“ TillvÃ¤xtmedel",
-    amount: "100 000â€“500 000 SEK",
+    name: "Region Västra Götaland – Tillväxtmedel",
+    amount: "100 000–500 000 SEK",
     deadline: "2026-06-01",
     match: 91,
     category: "Regional",
-    tags: ["Skaraborg", "Lokal", "TillvÃ¤xt"],
-    description: "Regionalt stÃ¶d fÃ¶r fÃ¶retag i VÃ¤stra GÃ¶taland. Lokal fÃ¶rankring i Skaraborg Ã¤r en stark fÃ¶rdel.",
+    tags: ["Skaraborg", "Lokal", "Tillväxt"],
+    description: "Regionalt stöd för företag i Västra Götaland. Lokal förankring i Skaraborg är en stark fördel.",
     url: "https://www.vgregion.se",
     effort: "Medel",
     color: "amber"
   },
   {
     id: 6,
-    name: "Erasmus+ KA220 â€“ Kompetensutveckling",
+    name: "Erasmus+ KA220 – Kompetensutveckling",
     amount: "Upp till 400 000 EUR",
     deadline: "2027-03-05",
     match: 78,
     category: "EU Utbildning",
     tags: ["Utbildning", "Partnerskap", "ESPR"],
-    description: "Utbildningspartnerskap kring DPP och cirkulÃ¤r ekonomi. Paula Pantolin som partner stÃ¤rker ansÃ¶kan.",
+    description: "Utbildningspartnerskap kring DPP och cirkulär ekonomi. Paula Pantolin som partner stärker ansökan.",
     url: "https://erasmus-plus.ec.europa.eu",
-    effort: "HÃ¶g",
+    effort: "Hög",
     color: "rose"
   },
   {
     id: 7,
     name: "Almi Invest GreenTech",
-    amount: "5â€“30 MSEK",
-    deadline: "LÃ¶pande",
+    amount: "5–30 MSEK",
+    deadline: "Löpande",
     match: 75,
     category: "Riskkapital",
     tags: ["GreenTech", "Scale-up", "Investering"],
-    description: "Riskkapital fÃ¶r grÃ¶n tech-bolag. Relevant nÃ¤r MVP Ã¤r klar och du har betalande kunder.",
+    description: "Riskkapital för grön tech-bolag. Relevant när MVP är klar och du har betalande kunder.",
     url: "https://www.almiinvest.se",
-    effort: "HÃ¶g",
+    effort: "Hög",
     color: "teal"
   },
   {
     id: 8,
-    name: "Vinnova â€“ Digitala Produktpass",
-    amount: "2â€“10 MSEK",
+    name: "Vinnova – Digitala Produktpass",
+    amount: "2–10 MSEK",
     deadline: "Bevaka vinnova.se",
     match: 98,
     category: "DPP",
     tags: ["DPP", "ESPR", "Digitalisering"],
-    description: "Kommande utlysning specifikt fÃ¶r DPP-infrastruktur. Nexus-OS Ã¤r byggd fÃ¶r denna utlysning.",
+    description: "Kommande utlysning specifikt för DPP-infrastruktur. Nexus-OS är byggd för denna utlysning.",
     url: "https://www.vinnova.se",
     effort: "Medel",
     color: "emerald"
@@ -134,27 +134,27 @@ const GRANT_DATABASE = [
 const INDUSTRIES = [
   "Tillverkning & Hantverk",
   "Textil & Mode",
-  "Metall & StÃ¥l",
+  "Metall & Stål",
   "Elektronik",
   "Bygg & Fastighet",
   "Livsmedel & Jordbruk",
   "Transport & Logistik",
-  "TjÃ¤nster & Konsult",
+  "Tjänster & Konsult",
   "Annan bransch"
 ];
 
 const COMPANY_SIZES = [
-  "1â€“5 anstÃ¤llda",
-  "6â€“20 anstÃ¤llda",
-  "21â€“50 anstÃ¤llda",
-  "51â€“200 anstÃ¤llda",
-  "200+ anstÃ¤llda"
+  "1–5 anställda",
+  "6–20 anställda",
+  "21–50 anställda",
+  "51–200 anställda",
+  "200+ anställda"
 ];
 
 const effortColor: Record<string, string> = {
-  "LÃ¥g": "text-emerald-600 bg-emerald-50 border-emerald-200",
+  "Låg": "text-emerald-600 bg-emerald-50 border-emerald-200",
   "Medel": "text-amber-600 bg-amber-50 border-amber-200",
-  "HÃ¶g": "text-rose-600 bg-rose-50 border-rose-200"
+  "Hög": "text-rose-600 bg-rose-50 border-rose-200"
 };
 
 export default function TenderDiscovery() {
@@ -171,19 +171,19 @@ export default function TenderDiscovery() {
 
   const handleScan = async () => {
     if (!industry || !size) {
-      toast.error("Fyll i bransch och fÃ¶retagsstorlek fÃ¶r att starta skanningen.");
+      toast.error("Fyll i bransch och företagsstorlek för att starta skanningen.");
       return;
     }
     setIsScanning(true);
     setAiAnalysis(null);
     try {
-      const companyDesc = `Bransch: ${industry}. Storlek: ${size}${region ? `. Region: ${region}` : ""}${focus ? `. FokusomrÃ¥de: ${focus}` : ""}. Vi sÃ¶ker EU-finansiering fÃ¶r hÃ¥llbarhetsomstÃ¤llning.`;
+      const companyDesc = `Bransch: ${industry}. Storlek: ${size}${region ? `. Region: ${region}` : ""}${focus ? `. Fokusområde: ${focus}` : ""}. Vi söker EU-finansiering för hållbarhetsomställning.`;
       const result = await matchCompany.mutateAsync({ companyDescription: companyDesc, industry, size });
       setAiAnalysis(result.analysis);
       const sorted = [...GRANT_DATABASE].sort((a, b) => b.match - a.match);
       setResults(sorted);
       setStep("results");
-      toast.success("Grant-Gamma har analyserat ditt fÃ¶retag!");
+      toast.success("Grant-Gamma har analyserat ditt företag!");
     } catch {
       const sorted = [...GRANT_DATABASE].sort((a, b) => b.match - a.match);
       setResults(sorted);
@@ -208,18 +208,18 @@ export default function TenderDiscovery() {
           <div className="container py-14 relative z-10">
             <div className="flex items-center gap-2 mb-4">
               <Badge className="bg-[var(--copper)] text-white border-0 text-xs font-medium tracking-wide">
-                GRATIS INKÃ–RSPORT
+                GRATIS INKÖRSPORT
               </Badge>
               <Badge variant="outline" className="border-white/30 text-white/70 text-xs">
                 Steg 1 av 3 i Nexus-OS
               </Badge>
             </div>
             <h1 className="font-display text-4xl md:text-5xl font-bold mb-4 leading-tight">
-              Hitta rÃ¤tt bidrag<br />
-              <span className="text-[var(--copper-light)]">pÃ¥ 60 sekunder</span>
+              Hitta rätt bidrag<br />
+              <span className="text-[var(--copper-light)]">på 60 sekunder</span>
             </h1>
             <p className="text-white/75 text-lg max-w-xl mb-8 leading-relaxed">
-              Fyll i din fÃ¶retagsprofil â€“ vÃ¥r AI matchar dig mot 8 finansieringsprogram och
+              Fyll i din företagsprofil – vår AI matchar dig mot 8 finansieringsprogram och
               genererar ett personaliserat handlingsprogram. Helt gratis.
             </p>
             <div className="flex flex-wrap gap-6 text-sm text-white/60">
@@ -239,11 +239,11 @@ export default function TenderDiscovery() {
               </span>
               <ChevronRight className="w-4 h-4 text-white/40 flex-shrink-0" />
               <span className="flex items-center gap-1.5 px-3 py-1 rounded-full border border-white/20 whitespace-nowrap">
-                <Recycle className="w-3 h-3" /> 2. Skapa DPP (299 kr/mÃ¥n)
+                <Recycle className="w-3 h-3" /> 2. Skapa DPP (299 kr/mån)
               </span>
               <ChevronRight className="w-4 h-4 text-white/40 flex-shrink-0" />
               <span className="flex items-center gap-1.5 px-3 py-1 rounded-full border border-white/20 whitespace-nowrap">
-                <TrendingUp className="w-3 h-3" /> 3. SÃ¤lj LCA-data (Revenue share)
+                <TrendingUp className="w-3 h-3" /> 3. Sälj LCA-data (Revenue share)
               </span>
             </div>
           </div>
@@ -255,10 +255,10 @@ export default function TenderDiscovery() {
               <Card className="border-[var(--sand-border)] shadow-lg bg-white">
                 <CardHeader className="pb-4">
                   <CardTitle className="font-display text-2xl text-[var(--forest-deep)]">
-                    Din fÃ¶retagsprofil
+                    Din företagsprofil
                   </CardTitle>
                   <p className="text-sm text-[var(--text-muted)]">
-                    Ju mer du fyller i, desto trÃ¤ffsÃ¤krare matchning.
+                    Ju mer du fyller i, desto träffsäkrare matchning.
                   </p>
                 </CardHeader>
                 <CardContent className="space-y-5">
@@ -267,7 +267,7 @@ export default function TenderDiscovery() {
                       <Label className="text-[var(--forest-deep)] font-medium">Bransch *</Label>
                       <Select onValueChange={setIndustry}>
                         <SelectTrigger className="border-[var(--sand-border)]">
-                          <SelectValue placeholder="VÃ¤lj bransch..." />
+                          <SelectValue placeholder="Välj bransch..." />
                         </SelectTrigger>
                         <SelectContent>
                           {INDUSTRIES.map(i => (
@@ -277,10 +277,10 @@ export default function TenderDiscovery() {
                       </Select>
                     </div>
                     <div className="space-y-1.5">
-                      <Label className="text-[var(--forest-deep)] font-medium">Antal anstÃ¤llda *</Label>
+                      <Label className="text-[var(--forest-deep)] font-medium">Antal anställda *</Label>
                       <Select onValueChange={setSize}>
                         <SelectTrigger className="border-[var(--sand-border)]">
-                          <SelectValue placeholder="VÃ¤lj storlek..." />
+                          <SelectValue placeholder="Välj storlek..." />
                         </SelectTrigger>
                         <SelectContent>
                           {COMPANY_SIZES.map(s => (
@@ -294,7 +294,7 @@ export default function TenderDiscovery() {
                   <div className="space-y-1.5">
                     <Label className="text-[var(--forest-deep)] font-medium">Region</Label>
                     <Input
-                      placeholder="t.ex. Skaraborg, VÃ¤stra GÃ¶taland"
+                      placeholder="t.ex. Skaraborg, Västra Götaland"
                       value={region}
                       onChange={e => setRegion(e.target.value)}
                       className="border-[var(--sand-border)]"
@@ -302,9 +302,9 @@ export default function TenderDiscovery() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <Label className="text-[var(--forest-deep)] font-medium">Vad vill du uppnÃ¥?</Label>
+                    <Label className="text-[var(--forest-deep)] font-medium">Vad vill du uppnå?</Label>
                     <Input
-                      placeholder="t.ex. minska COâ‚‚, skapa DPP, sÃ¶ka EU-bidrag, digitalisera..."
+                      placeholder="t.ex. minska COâ‚‚, skapa DPP, söka EU-bidrag, digitalisera..."
                       value={focus}
                       onChange={e => setFocus(e.target.value)}
                       className="border-[var(--sand-border)]"
@@ -333,7 +333,7 @@ export default function TenderDiscovery() {
                   </Button>
 
                   <p className="text-xs text-center text-[var(--text-muted)]">
-                    Ingen registrering krÃ¤vs. Dina uppgifter sparas inte.
+                    Ingen registrering krävs. Dina uppgifter sparas inte.
                   </p>
                 </CardContent>
               </Card>
@@ -341,7 +341,7 @@ export default function TenderDiscovery() {
               {/* Social proof */}
               <div className="mt-8 grid grid-cols-3 gap-4 text-center">
                 {[
-                  { icon: Euro, label: "Totalt tillgÃ¤ngligt", value: "~20 MSEK" },
+                  { icon: Euro, label: "Totalt tillgängligt", value: "~20 MSEK" },
                   { icon: Clock, label: "Genomsnittlig svarstid", value: "60 sek" },
                   { icon: Star, label: "Matchningsprecision", value: "94%" }
                 ].map(({ icon: Icon, label, value }) => (
@@ -362,7 +362,7 @@ export default function TenderDiscovery() {
                     {results.length} bidrag matchade din profil
                   </h2>
                   <p className="text-[var(--text-muted)] text-sm mt-1">
-                    Totalt tillgÃ¤ngligt finansiering: <strong className="text-[var(--forest-deep)]">{totalAmount}</strong> Â· Bransch: <strong>{industry}</strong>
+                    Totalt tillgängligt finansiering: <strong className="text-[var(--forest-deep)]">{totalAmount}</strong> Â· Bransch: <strong>{industry}</strong>
                   </p>
                 </div>
                 <Button
@@ -370,7 +370,7 @@ export default function TenderDiscovery() {
                   onClick={() => setStep("form")}
                   className="border-[var(--sand-border)] text-[var(--forest-deep)]"
                 >
-                  Ã„ndra profil
+                  Ändra profil
                 </Button>
               </div>
 
@@ -379,7 +379,7 @@ export default function TenderDiscovery() {
                 <div className="mb-6 border border-[var(--forest-mid)] rounded-xl bg-[var(--forest-deep)] overflow-hidden">
                   <div className="flex items-center gap-2 px-4 py-3 border-b border-[var(--forest-mid)]">
                     <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                    <span className="text-emerald-300 text-sm font-mono">Grant-Gamma â€“ Personaliserad analys</span>
+                    <span className="text-emerald-300 text-sm font-mono">Grant-Gamma – Personaliserad analys</span>
                   </div>
                   <div className="p-4 text-sm text-white/80 leading-relaxed">
                     <Streamdown>{aiAnalysis}</Streamdown>
@@ -466,14 +466,14 @@ export default function TenderDiscovery() {
                   style={{ backgroundImage: "radial-gradient(circle at 80% 50%, #b87333 0%, transparent 50%)" }} />
                 <div className="relative z-10 flex flex-col md:flex-row md:items-center gap-6">
                   <div className="flex-1">
-                    <Badge className="bg-[var(--copper)] text-white border-0 text-xs mb-3">NÃ„STA STEG</Badge>
+                    <Badge className="bg-[var(--copper)] text-white border-0 text-xs mb-3">NÄSTA STEG</Badge>
                     <h3 className="font-display text-2xl font-bold mb-2">
                       Skapa ditt Digitala Produktpass
                     </h3>
                     <p className="text-white/75 text-sm leading-relaxed max-w-lg">
-                      MÃ¥nga av dessa bidrag krÃ¤ver att du kan bevisa din hÃ¥llbarhet med ett DPP.
-                      Med Nexus-OS skapar du ett EU-kompatibelt produktpass pÃ¥ 15 minuter â€“
-                      och fÃ¶rvandlar compliance-kostnaden till en ny intÃ¤ktskÃ¤lla.
+                      Många av dessa bidrag kräver att du kan bevisa din hållbarhet med ett DPP.
+                      Med Nexus-OS skapar du ett EU-kompatibelt produktpass på 15 minuter –
+                      och förvandlar compliance-kostnaden till en ny intäktskälla.
                     </p>
                   </div>
                   <div className="flex flex-col gap-3">
@@ -482,7 +482,7 @@ export default function TenderDiscovery() {
                       onClick={() => { window.location.href = "/produktpass"; }}
                     >
                       <Recycle className="w-4 h-4 mr-2" />
-                      Skapa DPP â€“ 299 kr/mÃ¥n
+                      Skapa DPP – 299 kr/mån
                     </Button>
                     <Button
                       variant="outline"

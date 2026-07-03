@@ -3,7 +3,7 @@
  * Design: Nordic Sustainability Intelligence
  * - Deep forest green sidebar, warm sand background, copper accents
  * - Fraunces display + DM Sans body
- * - This page communicates trust, accountability and verifiable ethics to EU/Vinnova/NaturvÃ¥rdsverket
+ * - This page communicates trust, accountability and verifiable ethics to EU/Vinnova/Naturvårdsverket
  */
 
 import { useState } from "react";
@@ -42,25 +42,25 @@ const pillars = [
     color: "text-emerald-700",
     bg: "bg-emerald-50",
     border: "border-emerald-200",
-    title: "Verifierbar Ã„rlighet",
+    title: "Verifierbar Ärlighet",
     subtitle: "Truthfulness Layer",
     summary:
-      "Nexus-OS hjÃ¤lper aldrig ett fÃ¶retag att framstÃ¥ som nÃ¥got det inte Ã¤r. Varje pÃ¥stÃ¥ende mÃ¥ste kunna styrkas med data.",
+      "Nexus-OS hjälper aldrig ett företag att framstå som något det inte är. Varje påstående måste kunna styrkas med data.",
     mechanisms: [
       {
         name: "Sanningsfilter (WA-07)",
-        desc: "Alla AI-genererade dokument passerar ett obligatoriskt sanningsfilter. OpÃ¥visade pÃ¥stÃ¥enden markeras 'KrÃ¤ver verifiering' och kan inte exporteras utan bekrÃ¤ftelse.",
+        desc: "Alla AI-genererade dokument passerar ett obligatoriskt sanningsfilter. Opåvisade påståenden markeras 'Kräver verifiering' och kan inte exporteras utan bekräftelse.",
       },
       {
-        name: "KÃ¤llhÃ¤nvisningskrav",
-        desc: "Alla LCA-vÃ¤rden och hÃ¥llbarhetspÃ¥stÃ¥enden i ett DPP mÃ¥ste ha en kopplad datakÃ¤lla. Saknas kÃ¤llan blockeras exporten automatiskt.",
+        name: "Källhänvisningskrav",
+        desc: "Alla LCA-värden och hållbarhetspåståenden i ett DPP måste ha en kopplad datakälla. Saknas källan blockeras exporten automatiskt.",
       },
       {
         name: "Greenwashing-detektor",
-        desc: "AI-modul jÃ¤mfÃ¶r pÃ¥stÃ¥enden mot branschgenomsnitt. Avvikelse >2 standardavvikelser genererar varning och krÃ¤ver ytterligare dokumentation.",
+        desc: "AI-modul jämför påståenden mot branschgenomsnitt. Avvikelse >2 standardavvikelser genererar varning och kräver ytterligare dokumentation.",
       },
     ],
-    kpi: { label: "DPP med 100% kÃ¤llhÃ¤nvisning", target: "â‰¥ 95%", current: "97.3%", status: "ok" },
+    kpi: { label: "DPP med 100% källhänvisning", target: "â‰¥ 95%", current: "97.3%", status: "ok" },
   },
   {
     id: "transparency",
@@ -71,22 +71,22 @@ const pillars = [
     title: "Radikal Transparens",
     subtitle: "Transparency Layer",
     summary:
-      "Alla beslut som systemet fattar ska vara fÃ¶rklarbara fÃ¶r en icke-teknisk anvÃ¤ndare. Inga svarta lÃ¥dor.",
+      "Alla beslut som systemet fattar ska vara förklarbara för en icke-teknisk användare. Inga svarta lådor.",
     mechanisms: [
       {
-        name: "Ã–ppen algoritm-logg",
-        desc: "Varje bidragsmatchning genererar en 'FÃ¶rklaringsrapport' i klartext: vilka kriterier matchade, vilka matchade inte, och varfÃ¶r.",
+        name: "Öppen algoritm-logg",
+        desc: "Varje bidragsmatchning genererar en 'Förklaringsrapport' i klartext: vilka kriterier matchade, vilka matchade inte, och varför.",
       },
       {
-        name: "OfÃ¶rÃ¤nderlig revisionslogg",
-        desc: "Alla Ã¤ndringar i ett DPP loggas med tidsstÃ¤mpel, anvÃ¤ndar-ID och Ã¤ndringens natur. Loggen kan exporteras av fÃ¶retaget nÃ¤r som helst.",
+        name: "Oföränderlig revisionslogg",
+        desc: "Alla ändringar i ett DPP loggas med tidsstämpel, användar-ID och ändringens natur. Loggen kan exporteras av företaget när som helst.",
       },
       {
         name: "Intressekonflikt-deklaration",
-        desc: "Alla partnerskap med bidragsgivare eller konsulter deklareras explicit pÃ¥ plattformen och i relevanta rekommendationer.",
+        desc: "Alla partnerskap med bidragsgivare eller konsulter deklareras explicit på plattformen och i relevanta rekommendationer.",
       },
     ],
-    kpi: { label: "Matchningar med fÃ¶rklaringsrapport", target: "100%", current: "100%", status: "ok" },
+    kpi: { label: "Matchningar med förklaringsrapport", target: "100%", current: "100%", status: "ok" },
   },
   {
     id: "inclusion",
@@ -94,25 +94,25 @@ const pillars = [
     color: "text-amber-700",
     bg: "bg-amber-50",
     border: "border-amber-200",
-    title: "Demokratisk TillgÃ¤nglighet",
+    title: "Demokratisk Tillgänglighet",
     subtitle: "Inclusion Layer",
     summary:
-      "OmstÃ¤llningen ska vara mÃ¶jlig fÃ¶r alla â€“ inte bara de som redan har resurser, teknikvana eller rÃ¤tt kontakter.",
+      "Omställningen ska vara möjlig för alla – inte bara de som redan har resurser, teknikvana eller rätt kontakter.",
     mechanisms: [
       {
-        name: "Gratis grundnivÃ¥ (strukturell garanti)",
-        desc: "Gratisplanen Ã¤r inte ett marknadsfÃ¶ringsknep. Den Ã¤r en strukturell garanti fÃ¶r att mikrofÃ¶retag och hantverkare aldrig utestÃ¤ngs pÃ¥ grund av ekonomi.",
+        name: "Gratis grundnivå (strukturell garanti)",
+        desc: "Gratisplanen är inte ett marknadsföringsknep. Den är en strukturell garanti för att mikroföretag och hantverkare aldrig utestängs på grund av ekonomi.",
       },
       {
-        name: "LÃ¤ttlÃ¤st-lÃ¤ge",
-        desc: "Alla juridiska och tekniska termer har en 'FÃ¶rklara enkelt'-knapp med lÃ¤ttlÃ¤st svenska, anpassad fÃ¶r lÃ¤sare utan juridisk bakgrund.",
+        name: "Lättläst-läge",
+        desc: "Alla juridiska och tekniska termer har en 'Förklara enkelt'-knapp med lättläst svenska, anpassad för läsare utan juridisk bakgrund.",
       },
       {
-        name: "Geografisk jÃ¤mlikhet",
-        desc: "Bidragsdatabasen inkluderar explicit regionala stÃ¶d (TillvÃ¤xtverket, Region VG, Skaraborg) fÃ¶r att glesbygdsfÃ¶retag inte missgynnas.",
+        name: "Geografisk jämlikhet",
+        desc: "Bidragsdatabasen inkluderar explicit regionala stöd (Tillväxtverket, Region VG, Skaraborg) för att glesbygdsföretag inte missgynnas.",
       },
     ],
-    kpi: { label: "Aktiva anvÃ¤ndare pÃ¥ gratisplan", target: "â‰¥ 40%", current: "43.1%", status: "ok" },
+    kpi: { label: "Aktiva användare på gratisplan", target: "â‰¥ 40%", current: "43.1%", status: "ok" },
   },
   {
     id: "ai-governance",
@@ -123,19 +123,19 @@ const pillars = [
     title: "Etisk AI-styrning",
     subtitle: "AI Governance Layer",
     summary:
-      "AI-systemet fÃ¶ljer EU:s sju krav pÃ¥ pÃ¥litlig AI (HLEG) och EU AI Act. Inga autonoma beslut utan mÃ¤nsklig kontroll.",
+      "AI-systemet följer EU:s sju krav på pålitlig AI (HLEG) och EU AI Act. Inga autonoma beslut utan mänsklig kontroll.",
     mechanisms: [
       {
         name: "Human-in-the-Loop (HITL)",
-        desc: "Ingen ansÃ¶kan skickas, inget DPP exporteras och inga data sÃ¤ljs utan explicit mÃ¤nsklig bekrÃ¤ftelse. AI fÃ¶rbereder â€“ mÃ¤nniskan beslutar.",
+        desc: "Ingen ansökan skickas, inget DPP exporteras och inga data säljs utan explicit mänsklig bekräftelse. AI förbereder – människan beslutar.",
       },
       {
         name: "Bias-audit kvartalsvis",
-        desc: "Automatisk analys av om AI-matchningen systematiskt missgynnar specifika grupper (bransch, geografi, kÃ¶n). Resultaten publiceras offentligt.",
+        desc: "Automatisk analys av om AI-matchningen systematiskt missgynnar specifika grupper (bransch, geografi, kön). Resultaten publiceras offentligt.",
       },
       {
-        name: "FÃ¶rklarbar AI (XAI)",
-        desc: "Inga 'svarta lÃ¥dan'-modeller fÃ¶r kritiska beslut. Alla rekommendationer baseras pÃ¥ regelbaserade system eller fÃ¶rklarbara ML-modeller.",
+        name: "Förklarbar AI (XAI)",
+        desc: "Inga 'svarta lådan'-modeller för kritiska beslut. Alla rekommendationer baseras på regelbaserade system eller förklarbara ML-modeller.",
       },
     ],
     kpi: { label: "AI-rekommendationer med XAI-rapport", target: "100%", current: "100%", status: "ok" },
@@ -149,22 +149,22 @@ const pillars = [
     title: "Strukturell Ansvarsskyldighet",
     subtitle: "Accountability Layer",
     summary:
-      "Nexus-OS ska kunna hÃ¥llas ansvarigt â€“ inte bara lova att vara ansvarigt. Oberoende granskning, Ã¶ppen kÃ¤llkod, klagomÃ¥lsmekanism.",
+      "Nexus-OS ska kunna hållas ansvarigt – inte bara lova att vara ansvarigt. Oberoende granskning, öppen källkod, klagomålsmekanism.",
     mechanisms: [
       {
-        name: "Oberoende EtikrÃ¥d",
-        desc: "Tre ledamÃ¶ter: civilsamhÃ¤lle, akademi och SMF-representant. MÃ¶ts kvartalsvis. Publicerar offentlig granskning.",
+        name: "Oberoende Etikråd",
+        desc: "Tre ledamöter: civilsamhälle, akademi och SMF-representant. Möts kvartalsvis. Publicerar offentlig granskning.",
       },
       {
-        name: "Ã–ppen kÃ¤llkod fÃ¶r kÃ¤rnalgoritmer",
-        desc: "Bidragsmatchningsalgoritmen och greenwashing-detektorn publiceras pÃ¥ GitHub fÃ¶r granskning av vem som helst.",
+        name: "Öppen källkod för kärnalgoritmer",
+        desc: "Bidragsmatchningsalgoritmen och greenwashing-detektorn publiceras på GitHub för granskning av vem som helst.",
       },
       {
-        name: "KlagomÃ¥lsmekanism",
-        desc: "Alla kan anmÃ¤la missbruk eller diskriminering. Svar inom 10 arbetsdagar. Anonymiserade klagomÃ¥l publiceras kvartalsvis.",
+        name: "Klagomålsmekanism",
+        desc: "Alla kan anmäla missbruk eller diskriminering. Svar inom 10 arbetsdagar. Anonymiserade klagomål publiceras kvartalsvis.",
       },
     ],
-    kpi: { label: "EtikrÃ¥dets rapporter publicerade i tid", target: "100%", current: "Planerat Q3 2026", status: "planned" },
+    kpi: { label: "Etikrådets rapporter publicerade i tid", target: "100%", current: "Planerat Q3 2026", status: "planned" },
   },
 ];
 
@@ -174,23 +174,23 @@ const wa07Classes = [
     color: "text-blue-700 bg-blue-50 border-blue-200",
     icon: CheckCircle2,
     iconColor: "text-blue-500",
-    trigger: "DatakÃ¤lla saknas men pÃ¥stÃ¥ende Ã¤r rimligt",
-    action: "Markera i dokument, fortsÃ¤tt",
+    trigger: "Datakälla saknas men påstående är rimligt",
+    action: "Markera i dokument, fortsätt",
   },
   {
     level: "WARN",
     color: "text-amber-700 bg-amber-50 border-amber-200",
     icon: AlertTriangle,
     iconColor: "text-amber-500",
-    trigger: "PÃ¥stÃ¥ende avviker >1 std frÃ¥n branschnorm",
-    action: "KrÃ¤v bekrÃ¤ftelse frÃ¥n anvÃ¤ndaren",
+    trigger: "Påstående avviker >1 std från branschnorm",
+    action: "Kräv bekräftelse från användaren",
   },
   {
     level: "BLOCK",
     color: "text-red-700 bg-red-50 border-red-200",
     icon: XCircle,
     iconColor: "text-red-500",
-    trigger: "PÃ¥stÃ¥ende avviker >2 std, eller data saknas helt",
+    trigger: "Påstående avviker >2 std, eller data saknas helt",
     action: "Blockera export tills data laddas upp",
   },
   {
@@ -198,24 +198,24 @@ const wa07Classes = [
     color: "text-purple-700 bg-purple-50 border-purple-200",
     icon: Lock,
     iconColor: "text-purple-500",
-    trigger: "Tredje granskning begÃ¤rd, eller klagomÃ¥l inkommet",
-    action: "Frys konto, notifiera EtikrÃ¥det",
+    trigger: "Tredje granskning begärd, eller klagomål inkommet",
+    action: "Frys konto, notifiera Etikrådet",
   },
 ];
 
 const commitments = [
-  "Varje bidragsansÃ¶kan Ã¤r baserad pÃ¥ verifierbara uppgifter som det sÃ¶kande fÃ¶retaget har bekrÃ¤ftat och tagit ansvar fÃ¶r.",
-  "Nexus-OS hjÃ¤lper aldrig ett fÃ¶retag att dÃ¶lja, fÃ¶rvrÃ¤nga eller Ã¶verdriva sin hÃ¥llbarhetsprestanda.",
-  "Alla AI-rekommendationer Ã¤r fÃ¶rklarbara och dokumenterade, och kan granskas av finansiÃ¤ren pÃ¥ begÃ¤ran.",
-  "Plattformen Ã¤r tillgÃ¤nglig fÃ¶r alla fÃ¶retag oavsett storlek, geografi eller teknisk kompetens.",
-  "Nexus-OS rapporterar misstÃ¤nkt missbruk till relevant myndighet utan drÃ¶jsmÃ¥l.",
-  "EtikrÃ¥dets kvartalsvisa granskning Ã¤r offentlig och tillgÃ¤nglig fÃ¶r alla finansiÃ¤rer.",
+  "Varje bidragsansökan är baserad på verifierbara uppgifter som det sökande företaget har bekräftat och tagit ansvar för.",
+  "Nexus-OS hjälper aldrig ett företag att dölja, förvränga eller överdriva sin hållbarhetsprestanda.",
+  "Alla AI-rekommendationer är förklarbara och dokumenterade, och kan granskas av finansiären på begäran.",
+  "Plattformen är tillgänglig för alla företag oavsett storlek, geografi eller teknisk kompetens.",
+  "Nexus-OS rapporterar misstänkt missbruk till relevant myndighet utan dröjsmål.",
+  "Etikrådets kvartalsvisa granskning är offentlig och tillgänglig för alla finansiärer.",
 ];
 
 const roadmap = [
-  { phase: "Fas 1 â€“ Q2 2026", items: ["WA-07 Integrity Gate i NexusCore v5.1", "Greenwashing-detektor (regelbaserad)", "HITL-bekrÃ¤ftelsedialog i webbappen"], status: "active" },
-  { phase: "Fas 2 â€“ Q3 2026", items: ["Oberoende EtikrÃ¥d inrÃ¤ttat", "Ã–ppen kÃ¤llkod fÃ¶r kÃ¤rnalgoritmer", "Kvartalsvisa transparensrapporter"], status: "planned" },
-  { phase: "Fas 3 â€“ Q1 2027", items: ["EU AI Act-registrering (hÃ¶g-risk DPP-modul)", "WCAG 2.1 AA-certifiering", "FlersprÃ¥kigt stÃ¶d (EN, AR)"], status: "future" },
+  { phase: "Fas 1 – Q2 2026", items: ["WA-07 Integrity Gate i NexusCore v5.1", "Greenwashing-detektor (regelbaserad)", "HITL-bekräftelsedialog i webbappen"], status: "active" },
+  { phase: "Fas 2 – Q3 2026", items: ["Oberoende Etikråd inrättat", "Öppen källkod för kärnalgoritmer", "Kvartalsvisa transparensrapporter"], status: "planned" },
+  { phase: "Fas 3 – Q1 2027", items: ["EU AI Act-registrering (hög-risk DPP-modul)", "WCAG 2.1 AA-certifiering", "Flerspråkigt stöd (EN, AR)"], status: "future" },
 ];
 
 // --- Sub-components ---
@@ -258,7 +258,7 @@ function PillarCard({ pillar }: { pillar: typeof pillars[0] }) {
         </div>
         <div className="text-right shrink-0">
           <div className={`text-sm font-bold ${pillar.color}`}>{pillar.kpi.current}</div>
-          <div className="text-xs text-muted-foreground">MÃ¥l: {pillar.kpi.target}</div>
+          <div className="text-xs text-muted-foreground">Mål: {pillar.kpi.target}</div>
         </div>
         {pillar.kpi.status === "ok" && <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />}
         {pillar.kpi.status === "planned" && <RefreshCw className="w-4 h-4 text-amber-500 shrink-0" />}
@@ -291,13 +291,13 @@ function PillarCard({ pillar }: { pillar: typeof pillars[0] }) {
 export default function Integrity() {
   const handleDownload = () => {
     toast.success("Integrity Framework PDF laddas ner...", {
-      description: "NIF-2026-001 â€“ Nexus-OS Integrity Framework v1.0",
+      description: "NIF-2026-001 – Nexus-OS Integrity Framework v1.0",
     });
   };
 
   const handleComplaint = () => {
-    toast.info("KlagomÃ¥lsformulÃ¤r", {
-      description: "Ã–ppnar sÃ¤kert klagomÃ¥lsformulÃ¤r. Alla Ã¤renden besvaras inom 10 arbetsdagar.",
+    toast.info("Klagomålsformulär", {
+      description: "Öppnar säkert klagomålsformulär. Alla ärenden besvaras inom 10 arbetsdagar.",
     });
   };
 
@@ -319,8 +319,8 @@ export default function Integrity() {
               Nexus-OS Integrity Framework
             </h1>
             <p className="text-lg text-white/80 leading-relaxed mb-6">
-              En verifierbar garanti fÃ¶r EU, Vinnova och NaturvÃ¥rdsverket att Nexus-OS Ã¤r etiskt,
-              transparent, demokratiskt och inkluderande â€“ med senior meta-kvalitet i varje funktion.
+              En verifierbar garanti för EU, Vinnova och Naturvårdsverket att Nexus-OS är etiskt,
+              transparent, demokratiskt och inkluderande – med senior meta-kvalitet i varje funktion.
             </p>
             <div className="flex flex-wrap gap-3">
               <Button
@@ -336,7 +336,7 @@ export default function Integrity() {
                 onClick={() => window.open("https://github.com", "_blank")}
               >
                 <ExternalLink className="w-4 h-4 mr-2" />
-                Ã–ppen kÃ¤llkod pÃ¥ GitHub
+                Öppen källkod på GitHub
               </Button>
             </div>
           </motion.div>
@@ -350,8 +350,8 @@ export default function Integrity() {
             {[
               { icon: CheckCircle2, color: "text-emerald-500", label: "WA-07 Integrity Gate", status: "Aktiv" },
               { icon: Eye, color: "text-blue-500", label: "Transparensrapport", status: "Q2 2026" },
-              { icon: Users, color: "text-amber-500", label: "EtikrÃ¥d", status: "Planerat Q3 2026" },
-              { icon: Globe, color: "text-violet-500", label: "EU AI Act-status", status: "BegrÃ¤nsad risk" },
+              { icon: Users, color: "text-amber-500", label: "Etikråd", status: "Planerat Q3 2026" },
+              { icon: Globe, color: "text-violet-500", label: "EU AI Act-status", status: "Begränsad risk" },
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-2">
                 <item.icon className={`w-4 h-4 ${item.color}`} />
@@ -374,14 +374,14 @@ export default function Integrity() {
             className="max-w-2xl mb-8"
           >
             <h2 className="text-2xl font-bold mb-3" style={{ fontFamily: "Fraunces, serif" }}>
-              VarfÃ¶r en garanti behÃ¶vs
+              Varför en garanti behövs
             </h2>
             <p className="text-muted-foreground leading-relaxed">
-              Nexus-OS Ã¤r en <strong>betrodd mellanhand</strong> mellan lokala fÃ¶retag och offentliga
-              finansiÃ¤rer. Den rollen medfÃ¶r ett ansvar som gÃ¥r lÃ¤ngre Ã¤n teknisk korrekthet.
-              EU-kommissionen, Vinnova och NaturvÃ¥rdsverket beviljar skattemedel baserade pÃ¥ fÃ¶rtroende.
-              Nexus-OS Integrity Framework Ã¤r det strukturerade svar vi ger pÃ¥ det fÃ¶rtroendet â€“
-              inte ett lÃ¶fte, utan ett <strong>verifierbart system</strong>.
+              Nexus-OS är en <strong>betrodd mellanhand</strong> mellan lokala företag och offentliga
+              finansiärer. Den rollen medför ett ansvar som går längre än teknisk korrekthet.
+              EU-kommissionen, Vinnova och Naturvårdsverket beviljar skattemedel baserade på förtroende.
+              Nexus-OS Integrity Framework är det strukturerade svar vi ger på det förtroendet –
+              inte ett löfte, utan ett <strong>verifierbart system</strong>.
             </p>
           </motion.div>
 
@@ -389,22 +389,22 @@ export default function Integrity() {
           <div className="grid md:grid-cols-3 gap-4">
             {[
               {
-                dir: "UppstrÃ¶msrisker",
+                dir: "Uppströmsrisker",
                 icon: "â†‘",
                 color: "border-red-200 bg-red-50",
-                items: ["Greenwashing â€“ fÃ¶retag Ã¶verdrivet sin hÃ¥llbarhet", "KapacitetsÃ¶verskattning â€“ saknar fÃ¶rmÃ¥ga att genomfÃ¶ra", "Dataintegritet â€“ felaktig LCA-data i juridiska DPP"],
+                items: ["Greenwashing – företag överdrivet sin hållbarhet", "Kapacitetsöverskattning – saknar förmåga att genomföra", "Dataintegritet – felaktig LCA-data i juridiska DPP"],
               },
               {
-                dir: "NedstrÃ¶msrisker",
+                dir: "Nedströmsrisker",
                 icon: "â†“",
                 color: "border-amber-200 bg-amber-50",
-                items: ["InlÃ¥sningseffekt â€“ beroendefÃ¶rhÃ¥llande till plattformen", "Exkludering â€“ bara tillgÃ¤nglig fÃ¶r vÃ¤lresurserade", "AI-partiskhet â€“ systematiska rekommendationsfel"],
+                items: ["Inlåsningseffekt – beroendeförhållande till plattformen", "Exkludering – bara tillgänglig för välresurserade", "AI-partiskhet – systematiska rekommendationsfel"],
               },
               {
                 dir: "Sidorisker",
                 icon: "â†”",
                 color: "border-blue-200 bg-blue-50",
-                items: ["GDPR â€“ affÃ¤rshemligheter i uppladdad data", "Algoritmisk diskriminering â€“ glesbygd, kÃ¶n, bakgrund", "Missbruk av EU-mÃ¤rkning utan rÃ¤tt till det"],
+                items: ["GDPR – affärshemligheter i uppladdad data", "Algoritmisk diskriminering – glesbygd, kön, bakgrund", "Missbruk av EU-märkning utan rätt till det"],
               },
             ].map((risk, i) => (
               <motion.div
@@ -422,7 +422,7 @@ export default function Integrity() {
                 <ul className="space-y-2">
                   {risk.items.map((item, j) => (
                     <li key={j} className="text-xs text-muted-foreground flex items-start gap-2">
-                      <span className="text-red-400 mt-0.5">â€¢</span>
+                      <span className="text-red-400 mt-0.5">”¢</span>
                       {item}
                     </li>
                   ))}
@@ -443,7 +443,7 @@ export default function Integrity() {
             <h2 className="text-2xl font-bold mb-2" style={{ fontFamily: "Fraunces, serif" }}>
               De fem pelarna
             </h2>
-            <p className="text-muted-foreground">Klicka pÃ¥ varje pelare fÃ¶r att se de konkreta mekanismerna.</p>
+            <p className="text-muted-foreground">Klicka på varje pelare för att se de konkreta mekanismerna.</p>
           </motion.div>
           <div className="space-y-4">
             {pillars.map((pillar) => (
@@ -464,38 +464,38 @@ export default function Integrity() {
               WA-07 Integrity Gate
             </h2>
             <p className="text-muted-foreground max-w-2xl">
-              Den tekniska kÃ¤rnan i NIF. En obligatorisk grindvakt som kÃ¶rs fÃ¶r alla kritiska
-              operationer â€“ uppstrÃ¶ms, nedstrÃ¶ms och med mÃ¤nsklig bekrÃ¤ftelse i mitten.
+              Den tekniska kärnan i NIF. En obligatorisk grindvakt som körs för alla kritiska
+              operationer – uppströms, nedströms och med mänsklig bekräftelse i mitten.
             </p>
           </motion.div>
 
           {/* Flow diagram */}
           <div className="bg-[#1a3a2a] rounded-xl p-6 mb-6 font-mono text-sm text-white/80 overflow-x-auto">
-            <pre className="whitespace-pre">{`AnvÃ¤ndarens begÃ¤ran
+            <pre className="whitespace-pre">{`Användarens begäran
         â”‚
         â–¼
 â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚  WA-07 Pre-Check    â”‚  â† UppstrÃ¶msanalys: data komplett? kÃ¤llhÃ¤nvisningar? rimliga pÃ¥stÃ¥enden?
+â”‚  WA-07 Pre-Check    â”‚  â† Uppströmsanalys: data komplett? källhänvisningar? rimliga påståenden?
 â””â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-         â”‚ GodkÃ¤nd
+         â”‚ Godkänd
          â–¼
 â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚  AI-generering      â”‚  â† Skapar dokument / DPP / ansÃ¶kan
+â”‚  AI-generering      â”‚  â† Skapar dokument / DPP / ansökan
 â””â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
          â”‚
          â–¼
 â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚  WA-07 Post-Check   â”‚  â† NedstrÃ¶msanalys: flaggade pÃ¥stÃ¥enden? obligatoriska fÃ¤lt? datakonsistens?
+â”‚  WA-07 Post-Check   â”‚  â† Nedströmsanalys: flaggade påståenden? obligatoriska fält? datakonsistens?
 â””â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-         â”‚ GodkÃ¤nd
+         â”‚ Godkänd
          â–¼
 â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚  HITL BekrÃ¤ftelse   â”‚  â† AnvÃ¤ndaren lÃ¤ser sammanfattning och bekrÃ¤ftar aktivt
+â”‚  HITL Bekräftelse   â”‚  â† Användaren läser sammanfattning och bekräftar aktivt
 â””â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
-         â”‚ BekrÃ¤ftad
+         â”‚ Bekräftad
          â–¼
 â”Œâ”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”
-â”‚  Revisionslogg      â”‚  â† TidsstÃ¤mpel Â· AnvÃ¤ndar-ID Â· Dokumenthash Â· WA-07-status
+â”‚  Revisionslogg      â”‚  â† Tidsstämpel Â· Användar-ID Â· Dokumenthash Â· WA-07-status
 â””â”€â”€â”€â”€â”€â”€â”€â”€â”¬â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”˜
          â”‚
          â–¼
@@ -521,7 +521,7 @@ export default function Integrity() {
                   </div>
                   <p className="text-xs font-medium mb-1">Trigger:</p>
                   <p className="text-xs text-muted-foreground mb-3">{cls.trigger}</p>
-                  <p className="text-xs font-medium mb-1">Ã…tgÃ¤rd:</p>
+                  <p className="text-xs font-medium mb-1">Åtgärd:</p>
                   <p className="text-xs text-muted-foreground">{cls.action}</p>
                 </motion.div>
               );
@@ -540,11 +540,11 @@ export default function Integrity() {
             <div className="flex items-center gap-3 mb-6">
               <FileText className="w-6 h-6 text-[#c8a96e]" />
               <h2 className="text-xl font-bold" style={{ fontFamily: "Fraunces, serif" }}>
-                Garantibrev till FinansiÃ¤rer
+                Garantibrev till Finansiärer
               </h2>
             </div>
             <p className="text-white/70 mb-6 text-sm">
-              Nexus-OS Ã¥tar sig fÃ¶ljande gentemot EU-kommissionen, Vinnova, NaturvÃ¥rdsverket och Ã¶vriga finansiÃ¤rer:
+              Nexus-OS åtar sig följande gentemot EU-kommissionen, Vinnova, Naturvårdsverket och övriga finansiärer:
             </p>
             <div className="space-y-3">
               {commitments.map((c, i) => (
@@ -577,7 +577,7 @@ export default function Integrity() {
             <h2 className="text-2xl font-bold mb-2" style={{ fontFamily: "Fraunces, serif" }}>
               Implementeringsplan
             </h2>
-            <p className="text-muted-foreground">Stegvis implementering fÃ¶r att sÃ¤kerstÃ¤lla kvalitet i varje fas.</p>
+            <p className="text-muted-foreground">Stegvis implementering för att säkerställa kvalitet i varje fas.</p>
           </motion.div>
           <div className="grid md:grid-cols-3 gap-6">
             {roadmap.map((phase, i) => (
@@ -607,7 +607,7 @@ export default function Integrity() {
                         : "border-muted text-muted-foreground"
                     }
                   >
-                    {phase.status === "active" ? "PÃ¥gÃ¥r" : phase.status === "planned" ? "Planerat" : "Framtid"}
+                    {phase.status === "active" ? "Pågår" : phase.status === "planned" ? "Planerat" : "Framtid"}
                   </Badge>
                 </div>
                 <ul className="space-y-2">
@@ -642,10 +642,10 @@ export default function Integrity() {
                 <Heart className="w-5 h-5 text-rose-600" />
               </div>
               <div>
-                <h3 className="font-semibold mb-1">KlagomÃ¥lsmekanism</h3>
+                <h3 className="font-semibold mb-1">Klagomålsmekanism</h3>
                 <p className="text-sm text-muted-foreground max-w-lg">
-                  Har du sett nÃ¥got som inte stÃ¤mmer? MisstÃ¤nker du missbruk, felaktig data eller
-                  diskriminering? Alla kan anmÃ¤la â€“ anonymt om du Ã¶nskar. Svar garanteras inom
+                  Har du sett något som inte stämmer? Misstänker du missbruk, felaktig data eller
+                  diskriminering? Alla kan anmäla – anonymt om du önskar. Svar garanteras inom
                   10 arbetsdagar.
                 </p>
               </div>
@@ -655,7 +655,7 @@ export default function Integrity() {
               variant="outline"
               className="shrink-0"
             >
-              AnmÃ¤l ett Ã¤rende
+              Anmäl ett ärende
             </Button>
           </motion.div>
         </section>

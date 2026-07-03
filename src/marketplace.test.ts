@@ -1,7 +1,7 @@
 ﻿/**
  * marketplace.test.ts
  * Vitest tests for the marketplace tRPC router.
- * Uses in-memory mocking â€“ no real DB or Stripe calls.
+ * Uses in-memory mocking – no real DB or Stripe calls.
  */
 
 import { describe, expect, it, vi, beforeEach } from "vitest";
@@ -14,8 +14,8 @@ const mockListings = [
   {
     id: 1,
     sellerId: 99,
-    title: "LCA-data â€“ Silverring",
-    description: "FullstÃ¤ndig LCA-analys",
+    title: "LCA-data – Silverring",
+    description: "Fullständig LCA-analys",
     category: "Smycken",
     priceOre: 45000,
     sellerSharePct: 70,
@@ -31,7 +31,7 @@ const mockListings = [
   {
     id: 2,
     sellerId: 99,
-    title: "LCA-data â€“ StÃ¥lbalk",
+    title: "LCA-data – Stålbalk",
     description: "Industriell LCA",
     category: "Metall",
     priceOre: 120000,
@@ -118,7 +118,7 @@ function makeCtx(user: AuthenticatedUser | null = makeUser()): TrpcContext {
 
 // â”€â”€ Input validation tests (no DB needed) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-describe("marketplace â€“ input validation", () => {
+describe("marketplace – input validation", () => {
   it("createListing rejects empty title", async () => {
     const { appRouter } = await import("./routers");
     const caller = appRouter.createCaller(makeCtx());
@@ -183,7 +183,7 @@ describe("marketplace â€“ input validation", () => {
 
 // â”€â”€ Auth guard tests â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-describe("marketplace â€“ auth guards", () => {
+describe("marketplace – auth guards", () => {
   it("createListing requires authentication", async () => {
     const { appRouter } = await import("./routers");
     const caller = appRouter.createCaller(makeCtx(null));
@@ -255,7 +255,7 @@ describe("marketplace.submitRequest", () => {
     const result = await caller.marketplace.submitRequest({
       name: "Erik Svensson",
       email: "erik@volvo.com",
-      listingTitle: "LCA-data â€“ StÃ¥lbalk",
+      listingTitle: "LCA-data – Stålbalk",
     });
     expect(result).toEqual({ success: true });
   });

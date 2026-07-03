@@ -1,6 +1,6 @@
 ﻿/**
- * pricing.ts â€“ tRPC router fÃ¶r Nexus-OS prenumerationsplaner
- * Hanterar SMF-plan (995 SEK/mÃ¥n) via Stripe Checkout
+ * pricing.ts – tRPC router för Nexus-OS prenumerationsplaner
+ * Hanterar SMF-plan (995 SEK/mån) via Stripe Checkout
  */
 import { TRPCError } from "@trpc/server";
 import { eq, and, desc } from "drizzle-orm";
@@ -11,9 +11,9 @@ import { userSubscriptions } from "../../drizzle/schema";
 import { getStripe } from "../_core/stripe";
 import { notifyOwner } from "../_core/notification";
 
-/** SMF-plan: 995 SEK/mÃ¥n = 99500 Ã¶re */
+/** SMF-plan: 995 SEK/mån = 99500 öre */
 const SMF_PRICE_ORE = 99500;
-/** Enterprise: 1499 SEK/mÃ¥n = 149900 Ã¶re */
+/** Enterprise: 1499 SEK/mån = 149900 öre */
 const ENTERPRISE_PRICE_ORE = 149900;
 
 export const pricingRouter = router({
@@ -72,8 +72,8 @@ export const pricingRouter = router({
       const planLabel = input.plan === "smf" ? "SMF-plan" : "Enterprise-plan";
       const planDesc =
         input.plan === "smf"
-          ? "ObegrÃ¤nsad bidragsmatchning, 10 DPP/mÃ¥n, LCA-analys, EU AI Act-rapporter"
-          : "ObegrÃ¤nsade DPP, API-Ã¥tkomst, Datamarknadsplats, Dedikerad onboarding";
+          ? "Obegränsad bidragsmatchning, 10 DPP/mån, LCA-analys, EU AI Act-rapporter"
+          : "Obegränsade DPP, API-åtkomst, Datamarknadsplats, Dedikerad onboarding";
 
       // Create a pending subscription record
       const [inserted] = await db
@@ -135,7 +135,7 @@ export const pricingRouter = router({
     )
     .mutation(async ({ input, ctx }) => {
       if (ctx.user.role !== "admin") {
-        throw new TRPCError({ code: "FORBIDDEN", message: "Endast administratÃ¶rer kan aktivera prenumerationer manuellt." });
+        throw new TRPCError({ code: "FORBIDDEN", message: "Endast administratörer kan aktivera prenumerationer manuellt." });
       }
       const db = await getDb();
       if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "DB unavailable." });

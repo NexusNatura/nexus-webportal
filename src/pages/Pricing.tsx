@@ -1,5 +1,5 @@
 ﻿/**
- * Pricing.tsx â€” Nexus-OS PrissÃ¤ttning
+ * Pricing.tsx — Nexus-OS Prissättning
  * Design: Nordic Sustainability Intelligence
  * - Dark forest green (#1a3a2a) sidebar, warm sand (#f5f0e8) background, copper (#b87333) accents
  * - Fraunces (display) + DM Sans (body)
@@ -37,9 +37,9 @@ const plans = [
   {
     id: "gratis",
     name: "Gratis",
-    tagline: "Kom igÃ¥ng utan kostnad",
+    tagline: "Kom igång utan kostnad",
     price: "0",
-    period: "fÃ¶r alltid",
+    period: "för alltid",
     color: "oklch(0.40 0.04 155)",
     bg: "oklch(0.97 0.005 155)",
     border: "oklch(0.88 0.01 155)",
@@ -51,39 +51,39 @@ const plans = [
     cta: "Starta gratis",
     href: "/hitta-bidrag",
     highlights: [
-      "3 bidragsmatchningar/mÃ¥n",
-      "1 DPP-utkast/mÃ¥n",
-      "GrundlÃ¤ggande LCA-rapport",
+      "3 bidragsmatchningar/mån",
+      "1 DPP-utkast/mån",
+      "Grundläggande LCA-rapport",
     ],
   },
   {
     id: "smf",
     name: "SMF",
-    tagline: "FÃ¶r lokala fÃ¶retag i omstÃ¤llning",
+    tagline: "För lokala företag i omställning",
     price: "299",
-    period: "per mÃ¥nad",
+    period: "per månad",
     color: "oklch(0.28 0.08 155)",
     bg: "oklch(0.28 0.08 155)",
     border: "oklch(0.28 0.08 155)",
     buttonVariant: "default" as const,
     buttonStyle: { background: "oklch(0.28 0.08 155)", color: "white" },
-    badge: "Mest populÃ¤r",
+    badge: "Mest populär",
     icon: Building2,
-    target: "SMF med 1â€“50 anstÃ¤llda",
-    cta: "VÃ¤lj SMF-plan",
+    target: "SMF med 1–50 anställda",
+    cta: "Välj SMF-plan",
     href: "/om-oss",
     highlights: [
-      "ObegrÃ¤nsad bidragsmatchning",
-      "10 DPP/mÃ¥n med full JSON-LD",
+      "Obegränsad bidragsmatchning",
+      "10 DPP/mån med full JSON-LD",
       "LCA-analys + COâ‚‚-rapport",
     ],
   },
   {
     id: "enterprise",
     name: "Enterprise",
-    tagline: "Full kraft fÃ¶r industri & kommuner",
+    tagline: "Full kraft för industri & kommuner",
     price: "1 499",
-    period: "per mÃ¥nad",
+    period: "per månad",
     color: "oklch(0.62 0.12 55)",
     bg: "oklch(0.97 0.005 155)",
     border: "oklch(0.62 0.12 55 / 0.40)",
@@ -92,11 +92,11 @@ const plans = [
     badge: "Kontakta oss",
     icon: Factory,
     target: "Industri, kommuner & konsortier",
-    cta: "Kontakta fÃ¶r offert",
+    cta: "Kontakta för offert",
     href: "/om-oss",
     highlights: [
-      "ObegrÃ¤nsade DPP + API-Ã¥tkomst",
-      "Datamarknadsplats: sÃ¤lj LCA-data",
+      "Obegränsade DPP + API-åtkomst",
+      "Datamarknadsplats: sälj LCA-data",
       "Dedikerad onboarding & SLA",
     ],
   },
@@ -116,38 +116,38 @@ interface Feature {
 }
 
 const features: Feature[] = [
-  // BidragssÃ¶kning
-  { category: "BidragssÃ¶kning", name: "Bidragsmatchning (AI)", gratis: "3/mÃ¥n", smf: "ObegrÃ¤nsad", enterprise: "ObegrÃ¤nsad" },
-  { category: "BidragssÃ¶kning", name: "Antal EU-program i databasen", gratis: "30+", smf: "100+", enterprise: "150+" },
-  { category: "BidragssÃ¶kning", name: "Automatiska ansÃ¶kningsutkast", gratis: false, smf: true, enterprise: true },
-  { category: "BidragssÃ¶kning", name: "Vinnova & Almi-integration", gratis: false, smf: true, enterprise: true },
-  { category: "BidragssÃ¶kning", name: "Erasmus+ KA220-generator", gratis: false, smf: true, enterprise: true },
-  { category: "BidragssÃ¶kning", name: "Bevakningsnotiser (nya utlysningar)", gratis: false, smf: true, enterprise: true },
+  // Bidragssökning
+  { category: "Bidragssökning", name: "Bidragsmatchning (AI)", gratis: "3/mån", smf: "Obegränsad", enterprise: "Obegränsad" },
+  { category: "Bidragssökning", name: "Antal EU-program i databasen", gratis: "30+", smf: "100+", enterprise: "150+" },
+  { category: "Bidragssökning", name: "Automatiska ansökningsutkast", gratis: false, smf: true, enterprise: true },
+  { category: "Bidragssökning", name: "Vinnova & Almi-integration", gratis: false, smf: true, enterprise: true },
+  { category: "Bidragssökning", name: "Erasmus+ KA220-generator", gratis: false, smf: true, enterprise: true },
+  { category: "Bidragssökning", name: "Bevakningsnotiser (nya utlysningar)", gratis: false, smf: true, enterprise: true },
 
   // Digitalt Produktpass
-  { category: "Digitalt Produktpass (DPP)", name: "DPP-generering", gratis: "1/mÃ¥n", smf: "10/mÃ¥n", enterprise: "ObegrÃ¤nsad" },
+  { category: "Digitalt Produktpass (DPP)", name: "DPP-generering", gratis: "1/mån", smf: "10/mån", enterprise: "Obegränsad" },
   { category: "Digitalt Produktpass (DPP)", name: "EU-kompatibel JSON-LD", gratis: false, smf: true, enterprise: true },
-  { category: "Digitalt Produktpass (DPP)", name: "QR-kod & delningslÃ¤nk", gratis: false, smf: true, enterprise: true },
+  { category: "Digitalt Produktpass (DPP)", name: "QR-kod & delningslänk", gratis: false, smf: true, enterprise: true },
   { category: "Digitalt Produktpass (DPP)", name: "Blockchain-verifiering", gratis: false, smf: false, enterprise: true },
-  { category: "Digitalt Produktpass (DPP)", name: "API-Ã¥tkomst (REST)", gratis: false, smf: false, enterprise: true },
+  { category: "Digitalt Produktpass (DPP)", name: "API-åtkomst (REST)", gratis: false, smf: false, enterprise: true },
   { category: "Digitalt Produktpass (DPP)", name: "Bulk-import (CSV/Excel)", gratis: false, smf: false, enterprise: true },
 
-  // LCA & HÃ¥llbarhet
-  { category: "LCA & HÃ¥llbarhet", name: "GrundlÃ¤ggande LCA-rapport", gratis: true, smf: true, enterprise: true },
-  { category: "LCA & HÃ¥llbarhet", name: "COâ‚‚-avtryck per produkt", gratis: "Estimat", smf: "Verifierat", enterprise: "Certifierat" },
-  { category: "LCA & HÃ¥llbarhet", name: "MaterialflÃ¶desanalys", gratis: false, smf: true, enterprise: true },
-  { category: "LCA & HÃ¥llbarhet", name: "Industriell symbios-scan", gratis: false, smf: true, enterprise: true },
-  { category: "LCA & HÃ¥llbarhet", name: "DPIA (GDPR-konsekvensbedÃ¶mning)", gratis: false, smf: true, enterprise: true },
+  // LCA & Hållbarhet
+  { category: "LCA & Hållbarhet", name: "Grundläggande LCA-rapport", gratis: true, smf: true, enterprise: true },
+  { category: "LCA & Hållbarhet", name: "COâ‚‚-avtryck per produkt", gratis: "Estimat", smf: "Verifierat", enterprise: "Certifierat" },
+  { category: "LCA & Hållbarhet", name: "Materialflödesanalys", gratis: false, smf: true, enterprise: true },
+  { category: "LCA & Hållbarhet", name: "Industriell symbios-scan", gratis: false, smf: true, enterprise: true },
+  { category: "LCA & Hållbarhet", name: "DPIA (GDPR-konsekvensbedömning)", gratis: false, smf: true, enterprise: true },
 
   // Datamarknaden
-  { category: "Datamarknaden", name: "KÃ¶p LCA-data frÃ¥n andra", gratis: false, smf: false, enterprise: true },
-  { category: "Datamarknaden", name: "SÃ¤lj din LCA-data (70% intÃ¤kt)", gratis: false, smf: false, enterprise: true },
+  { category: "Datamarknaden", name: "Köp LCA-data från andra", gratis: false, smf: false, enterprise: true },
+  { category: "Datamarknaden", name: "Sälj din LCA-data (70% intäkt)", gratis: false, smf: false, enterprise: true },
   { category: "Datamarknaden", name: "Producentansvar-rapporter", gratis: false, smf: false, enterprise: true },
 
   // Utbildning
-  { category: "Circular Excellence", name: "TillgÃ¥ng till gratis introduktionskurs", gratis: true, smf: true, enterprise: true },
-  { category: "Circular Excellence", name: "FullstÃ¤ndiga kurser (ESPR, AI Act)", gratis: false, smf: "Rabatt 20%", enterprise: "Inkluderat" },
-  { category: "Circular Excellence", name: "Certifieringsprov", gratis: false, smf: "KÃ¶p separat", enterprise: "Inkluderat" },
+  { category: "Circular Excellence", name: "Tillgång till gratis introduktionskurs", gratis: true, smf: true, enterprise: true },
+  { category: "Circular Excellence", name: "Fullständiga kurser (ESPR, AI Act)", gratis: false, smf: "Rabatt 20%", enterprise: "Inkluderat" },
+  { category: "Circular Excellence", name: "Certifieringsprov", gratis: false, smf: "Köp separat", enterprise: "Inkluderat" },
 
   // Support & SLA
   { category: "Support & SLA", name: "Community-support", gratis: true, smf: true, enterprise: true },
@@ -161,28 +161,28 @@ const features: Feature[] = [
 
 const faqs = [
   {
-    q: "Vad ingÃ¥r i gratisplanen?",
-    a: "Gratisplanen ger dig 3 bidragsmatchningar och 1 DPP-utkast per mÃ¥nad, plus tillgÃ¥ng till NexusCore PowerShell-modulen och introduktionskursen. Det Ã¤r mer Ã¤n tillrÃ¤ckligt fÃ¶r att utvÃ¤rdera om plattformen passar ditt fÃ¶retag.",
+    q: "Vad ingår i gratisplanen?",
+    a: "Gratisplanen ger dig 3 bidragsmatchningar och 1 DPP-utkast per månad, plus tillgång till NexusCore PowerShell-modulen och introduktionskursen. Det är mer än tillräckligt för att utvärdera om plattformen passar ditt företag.",
   },
   {
-    q: "Kan jag uppgradera nÃ¤r som helst?",
-    a: "Ja, du kan uppgradera eller nedgradera din plan nÃ¤r som helst. Uppgradering trÃ¤der i kraft omedelbart. Nedgradering trÃ¤der i kraft vid nÃ¤sta faktureringsperiod.",
+    q: "Kan jag uppgradera när som helst?",
+    a: "Ja, du kan uppgradera eller nedgradera din plan när som helst. Uppgradering träder i kraft omedelbart. Nedgradering träder i kraft vid nästa faktureringsperiod.",
   },
   {
-    q: "Vad Ã¤r skillnaden mellan SMF och Enterprise fÃ¶r DPP?",
-    a: "SMF-planen ger 10 DPP per mÃ¥nad med full JSON-LD och QR-kod. Enterprise-planen Ã¤r obegrÃ¤nsad och lÃ¤gger till blockchain-verifiering, API-Ã¥tkomst och bulk-import â€“ nÃ¶dvÃ¤ndigt fÃ¶r fÃ¶retag med mÃ¥nga produkter eller som vill integrera DPP i sina egna system.",
+    q: "Vad är skillnaden mellan SMF och Enterprise för DPP?",
+    a: "SMF-planen ger 10 DPP per månad med full JSON-LD och QR-kod. Enterprise-planen är obegränsad och lägger till blockchain-verifiering, API-åtkomst och bulk-import – nödvändigt för företag med många produkter eller som vill integrera DPP i sina egna system.",
   },
   {
-    q: "Hur fungerar datamarknaden fÃ¶r Enterprise-kunder?",
-    a: "Enterprise-kunder kan lista sin LCA-data pÃ¥ datamarknaden och sÃ¤lja den till producenter och Ã¥tervinnare. Nexus-OS tar 30% av transaktionsvÃ¤rdet â€“ du behÃ¥ller 70%. All data Ã¤r anonymiserad och GDPR-kompatibel.",
+    q: "Hur fungerar datamarknaden för Enterprise-kunder?",
+    a: "Enterprise-kunder kan lista sin LCA-data på datamarknaden och sälja den till producenter och återvinnare. Nexus-OS tar 30% av transaktionsvärdet – du behåller 70%. All data är anonymiserad och GDPR-kompatibel.",
   },
   {
-    q: "Ã„r EU-kompatibiliteten garanterad?",
-    a: "Alla DPP som genereras pÃ¥ SMF- och Enterprise-planen fÃ¶ljer ESPR-fÃ¶rordningens tekniska specifikationer (EU 2024/1781) och anvÃ¤nder JSON-LD-formatet som EU-kommissionen krÃ¤ver. Vi uppdaterar mallen automatiskt nÃ¤r regelverket Ã¤ndras.",
+    q: "Är EU-kompatibiliteten garanterad?",
+    a: "Alla DPP som genereras på SMF- och Enterprise-planen följer ESPR-förordningens tekniska specifikationer (EU 2024/1781) och använder JSON-LD-formatet som EU-kommissionen kräver. Vi uppdaterar mallen automatiskt när regelverket ändras.",
   },
   {
-    q: "Kan jag anvÃ¤nda plattformen utan att kÃ¶pa en plan?",
-    a: "Ja. Gratisplanen Ã¤r permanent gratis â€“ inget kreditkort krÃ¤vs. NexusCore PowerShell-modulen Ã¤r alltid gratis att ladda ner och anvÃ¤nda lokalt.",
+    q: "Kan jag använda plattformen utan att köpa en plan?",
+    a: "Ja. Gratisplanen är permanent gratis – inget kreditkort krävs. NexusCore PowerShell-modulen är alltid gratis att ladda ner och använda lokalt.",
   },
 ];
 
@@ -234,11 +234,11 @@ export default function Pricing() {
     const params = new URLSearchParams(window.location.search);
     if (params.get("subscription_success") === "1") {
       const plan = params.get("plan") ?? "smf";
-      toast.success(`âœ… Grattis! Din ${plan.toUpperCase()}-prenumeration Ã¤r nu aktiv.`, { duration: 8000 });
+      toast.success(`âœ… Grattis! Din ${plan.toUpperCase()}-prenumeration är nu aktiv.`, { duration: 8000 });
       // Clean URL
       window.history.replaceState({}, "", "/prissattning");
     } else if (params.get("subscription_cancelled") === "1") {
-      toast.info("Betalningen avbrÃ¶ts. Du kan fÃ¶rsÃ¶ka igen nÃ¤r du Ã¤r redo.");
+      toast.info("Betalningen avbröts. Du kan försöka igen när du är redo.");
       window.history.replaceState({}, "", "/prissattning");
     }
   }, [location]);
@@ -250,7 +250,7 @@ export default function Pricing() {
       }
     },
     onError: (err) => {
-      toast.error(err.message ?? "Kunde inte starta betalningen. FÃ¶rsÃ¶k igen.");
+      toast.error(err.message ?? "Kunde inte starta betalningen. Försök igen.");
     },
   });
 
@@ -260,15 +260,15 @@ export default function Pricing() {
     if (planId === "gratis") return; // Link handles it
     if (planId === "enterprise") {
       notifyOwnerMutation.mutate({
-        title: "Enterprise-fÃ¶rfrÃ¥gan frÃ¥n prissidan",
-        content: `En anvÃ¤ndare Ã¤r intresserad av Enterprise-planen.\nAnvÃ¤ndare: ${user?.name ?? user?.email ?? "Ej inloggad"}\nTid: ${new Date().toLocaleString("sv-SE")}`,
+        title: "Enterprise-förfrågan från prissidan",
+        content: `En användare är intresserad av Enterprise-planen.\nAnvändare: ${user?.name ?? user?.email ?? "Ej inloggad"}\nTid: ${new Date().toLocaleString("sv-SE")}`,
       });
-      toast.success("âœ‰ï¸ Vi har tagit emot din fÃ¶rfrÃ¥gan! Peter kontaktar dig inom 24 timmar.", { duration: 6000 });
+      toast.success("âœ‰ï¸ Vi har tagit emot din förfrågan! Peter kontaktar dig inom 24 timmar.", { duration: 6000 });
       return;
     }
     if (planId === "smf") {
       if (!isAuthenticated) {
-        toast.info("Logga in fÃ¶rst fÃ¶r att vÃ¤lja SMF-planen.");
+        toast.info("Logga in först för att välja SMF-planen.");
         setTimeout(() => { window.location.href = getLoginUrl(); }, 1500);
         return;
       }
@@ -276,7 +276,7 @@ export default function Pricing() {
     }
   };
 
-  const yearlyDiscount = 0.17; // 2 mÃ¥nader gratis
+  const yearlyDiscount = 0.17; // 2 månader gratis
 
   const displayPrice = (base: string) => {
     if (base === "0") return "0";
@@ -299,10 +299,10 @@ export default function Pricing() {
               className="text-4xl font-bold text-foreground mb-3"
               style={{ fontFamily: "'Fraunces', serif" }}
             >
-              Enkel, transparent prissÃ¤ttning
+              Enkel, transparent prissättning
             </h1>
             <p className="text-muted-foreground max-w-xl mb-8 text-lg">
-              VÃ¤lj den plan som passar ditt fÃ¶retag. Uppgradera nÃ¤r du vÃ¤xer â€“ nedgradera nÃ¤r du vill.
+              Välj den plan som passar ditt företag. Uppgradera när du växer – nedgradera när du vill.
             </p>
 
             {/* Billing toggle */}
@@ -315,7 +315,7 @@ export default function Pricing() {
                   color: billing === "monthly" ? "white" : "oklch(0.40 0.04 155)",
                 }}
               >
-                MÃ¥nadsvis
+                Månadsvis
               </button>
               <button
                 onClick={() => setBilling("yearly")}
@@ -325,7 +325,7 @@ export default function Pricing() {
                   color: billing === "yearly" ? "white" : "oklch(0.40 0.04 155)",
                 }}
               >
-                Ã…rsvis
+                Årsvis
                 <span
                   className="text-xs px-1.5 py-0.5 rounded-full font-bold"
                   style={{
@@ -421,7 +421,7 @@ export default function Pricing() {
                             className="text-sm mb-1.5"
                             style={{ color: isPopular ? "oklch(1 0 0 / 0.65)" : "oklch(0.55 0.02 155)" }}
                           >
-                            kr/{billing === "yearly" ? "mÃ¥n*" : "mÃ¥n"}
+                            kr/{billing === "yearly" ? "mån*" : "mån"}
                           </span>
                         )}
                         {plan.price === "0" && (
@@ -438,7 +438,7 @@ export default function Pricing() {
                         style={{ color: isPopular ? "oklch(1 0 0 / 0.55)" : "oklch(0.60 0.02 155)" }}
                       >
                         {billing === "yearly" && plan.price !== "0"
-                          ? `Faktureras ${Math.round(parseInt(plan.price.replace(/\s/g, ""), 10) * (1 - yearlyDiscount) * 12).toLocaleString("sv-SE")} kr/Ã¥r`
+                          ? `Faktureras ${Math.round(parseInt(plan.price.replace(/\s/g, ""), 10) * (1 - yearlyDiscount) * 12).toLocaleString("sv-SE")} kr/år`
                           : plan.period}
                       </p>
                     </div>
@@ -509,7 +509,7 @@ export default function Pricing() {
 
           {billing === "yearly" && (
             <p className="text-xs text-muted-foreground text-center -mt-10 mb-12">
-              * Ã…rsvis fakturering. Priset visas som mÃ¥nadssnitt. Bindningstid 12 mÃ¥nader.
+              * Årsvis fakturering. Priset visas som månadssnitt. Bindningstid 12 månader.
             </p>
           )}
 
@@ -520,7 +520,7 @@ export default function Pricing() {
               className="text-2xl font-bold text-foreground mb-8"
               style={{ fontFamily: "'Fraunces', serif" }}
             >
-              FullstÃ¤ndig funktionsjÃ¤mfÃ¶relse
+              Fullständig funktionsjämförelse
             </h2>
 
             <div className="rounded-2xl border border-border overflow-hidden">
@@ -599,19 +599,19 @@ export default function Pricing() {
               {
                 icon: Shield,
                 title: "GDPR-kompatibel",
-                desc: "All data lagras inom EU. DPIA ingÃ¥r i SMF- och Enterprise-planerna.",
+                desc: "All data lagras inom EU. DPIA ingår i SMF- och Enterprise-planerna.",
                 color: "oklch(0.28 0.08 155)",
               },
               {
                 icon: Clock,
-                title: "Ingen bindningstid (mÃ¥nadsvis)",
-                desc: "Avsluta nÃ¤r du vill. Ã…rsplanen ger 2 mÃ¥nader gratis men krÃ¤ver 12 mÃ¥naders bindning.",
+                title: "Ingen bindningstid (månadsvis)",
+                desc: "Avsluta när du vill. Årsplanen ger 2 månader gratis men kräver 12 månaders bindning.",
                 color: "oklch(0.62 0.12 55)",
               },
               {
                 icon: Zap,
                 title: "Alltid uppdaterad",
-                desc: "DPP-mallarna uppdateras automatiskt nÃ¤r EU-kommissionen Ã¤ndrar ESPR-specifikationerna.",
+                desc: "DPP-mallarna uppdateras automatiskt när EU-kommissionen ändrar ESPR-specifikationerna.",
                 color: "oklch(0.28 0.08 155)",
               },
             ].map((b) => {
@@ -640,7 +640,7 @@ export default function Pricing() {
               className="text-2xl font-bold text-foreground mb-8"
               style={{ fontFamily: "'Fraunces', serif" }}
             >
-              Vanliga frÃ¥gor
+              Vanliga frågor
             </h2>
             <div className="space-y-3 max-w-3xl">
               {faqs.map((faq) => (
@@ -658,10 +658,10 @@ export default function Pricing() {
               className="text-3xl font-bold mb-3"
               style={{ fontFamily: "'Fraunces', serif" }}
             >
-              Redo att bÃ¶rja?
+              Redo att börja?
             </h2>
             <p className="text-white/75 mb-7 max-w-md mx-auto">
-              Starta gratis idag â€“ inget kreditkort krÃ¤vs. Uppgradera nÃ¤r ditt fÃ¶retag Ã¤r redo fÃ¶r nÃ¤sta steg.
+              Starta gratis idag – inget kreditkort krävs. Uppgradera när ditt företag är redo för nästa steg.
             </p>
             <div className="flex flex-wrap justify-center gap-3">
               <Link href="/hitta-bidrag">

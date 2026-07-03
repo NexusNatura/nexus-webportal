@@ -97,7 +97,7 @@ describe("blog.seed", () => {
   it("requires authentication", async () => {
     const ctx = createPublicContext();
     const caller = appRouter.createCaller(ctx);
-    // seed is a protectedProcedure â€“ unauthenticated calls must throw
+    // seed is a protectedProcedure – unauthenticated calls must throw
     await expect(caller.blog.seed()).rejects.toThrow();
   });
 

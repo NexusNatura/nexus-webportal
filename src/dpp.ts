@@ -1,5 +1,5 @@
 ﻿/**
- * DPP Passport Router â€“ Nexus-OS
+ * DPP Passport Router – Nexus-OS
  * Handles creation, retrieval, Stripe payment, and publishing of Digital Product Passports
  */
 import { z } from "zod";
@@ -72,11 +72,11 @@ export const dppRouter = router({
         material: input.materials,
         additionalProperty: [
           { "@type": "PropertyValue", name: "CO2-fotavtryck", value: input.co2 ?? "Ej angiven" },
-          { "@type": "PropertyValue", name: "Ã…tervunnet innehÃ¥ll", value: input.recycled ?? "Ej angiven" },
+          { "@type": "PropertyValue", name: "Återvunnet innehåll", value: input.recycled ?? "Ej angiven" },
           { "@type": "PropertyValue", name: "DPP-ID", value: dppId },
           { "@type": "PropertyValue", name: "ESPR-kompatibel", value: "Ja" },
-          { "@type": "PropertyValue", name: "UtfÃ¤rdat av", value: "Nexus-OS DPP-Omega" },
-          { "@type": "PropertyValue", name: "UtfÃ¤rdandedatum", value: new Date().toISOString().split("T")[0] },
+          { "@type": "PropertyValue", name: "Utfärdat av", value: "Nexus-OS DPP-Omega" },
+          { "@type": "PropertyValue", name: "Utfärdandedatum", value: new Date().toISOString().split("T")[0] },
         ],
       }, null, 2);
 
@@ -87,35 +87,35 @@ export const dppRouter = router({
           messages: [
             {
               role: "system",
-              content: `Du Ã¤r DPP-Omega, Nexus-OS:s AI-agent fÃ¶r Digitala Produktpass. 
-Du analyserar produktdata och ger en strukturerad hÃ¥llbarhetsanalys pÃ¥ svenska.
+              content: `Du är DPP-Omega, Nexus-OS:s AI-agent för Digitala Produktpass. 
+Du analyserar produktdata och ger en strukturerad hållbarhetsanalys på svenska.
 Svara med markdown, max 400 ord. Inkludera: 
-1. ESPR-bedÃ¶mning (vilka krav som uppfylls/saknas)
-2. CirkulÃ¤ritetspotential (reparerbarhet, Ã¥tervinningsbarhet)
-3. Tre konkreta fÃ¶rbÃ¤ttringsrekommendationer
-4. Uppskattad LCA-fas med stÃ¶rst pÃ¥verkan`,
+1. ESPR-bedömning (vilka krav som uppfylls/saknas)
+2. Cirkuläritetspotential (reparerbarhet, återvinningsbarhet)
+3. Tre konkreta förbättringsrekommendationer
+4. Uppskattad LCA-fas med störst påverkan`,
             },
             {
               role: "user",
               content: `Analysera detta produktpass:
 Produkt: ${input.productName}
-VarumÃ¤rke: ${input.brand}
+Varumärke: ${input.brand}
 Kategori: ${input.category}
 Material: ${input.materials}
 CO2-fotavtryck: ${input.co2 ?? "Ej angiven"}
-Ã…tervunnet innehÃ¥ll: ${input.recycled ?? "Ej angiven"}`,
+Återvunnet innehåll: ${input.recycled ?? "Ej angiven"}`,
             },
           ],
         });
         const raw = resp.choices?.[0]?.message?.content;
         aiAnalysis = typeof raw === "string" ? raw : "";
       } catch {
-        aiAnalysis = "AI-analys ej tillgÃ¤nglig just nu.";
+        aiAnalysis = "AI-analys ej tillgänglig just nu.";
       }
 
       // Save to DB
       const db = await getDb();
-      if (!db) throw new Error("Databas ej tillgÃ¤nglig");
+      if (!db) throw new Error("Databas ej tillgänglig");
       await db.insert(dppPassports).values({
         userId: ctx.user.id,
         dppId,
@@ -141,7 +141,7 @@ CO2-fotavtryck: ${input.co2 ?? "Ej angiven"}
     .input(z.object({ dppId: z.string(), origin: z.string().url() }))
     .mutation(async ({ ctx, input }) => {
       const db = await getDb();
-      if (!db) throw new Error("Databas ej tillgÃ¤nglig");
+      if (!db) throw new Error("Databas ej tillgänglig");
       const [passport] = await db
         .select()
         .from(dppPassports)
@@ -149,7 +149,7 @@ CO2-fotavtryck: ${input.co2 ?? "Ej angiven"}
         .limit(1);
 
       if (!passport) throw new Error("Produktpass hittades inte");
-      if (passport.userId !== ctx.user.id) throw new Error("Ã…tkomst nekad");
+      if (passport.userId !== ctx.user.id) throw new Error("Åtkomst nekad");
       if (passport.paid) return { alreadyPaid: true, checkoutUrl: null };
 
       const stripe = getStripe();
@@ -163,8 +163,8 @@ CO2-fotavtryck: ${input.co2 ?? "Ej angiven"}
               currency: "sek",
               unit_amount: 29900, // 299 SEK
               product_data: {
-                name: `Digitalt Produktpass â€“ ${passport.productName}`,
-                description: `EU-kompatibelt DPP (ESPR) fÃ¶r ${passport.brand} Â· ID: ${passport.dppId}`,
+                name: `Digitalt Produktpass – ${passport.productName}`,
+                description: `EU-kompatibelt DPP (ESPR) för ${passport.brand} Â· ID: ${passport.dppId}`,
               },
             },
             quantity: 1,
@@ -189,7 +189,7 @@ CO2-fotavtryck: ${input.co2 ?? "Ej angiven"}
     .input(z.object({ dppId: z.string(), stripePaymentIntentId: z.string() }))
     .mutation(async ({ ctx, input }) => {
       const db = await getDb();
-      if (!db) throw new Error("Databas ej tillgÃ¤nglig");
+      if (!db) throw new Error("Databas ej tillgänglig");
       const now = Math.floor(Date.now() / 1000);
       await db
         .update(dppPassports)
@@ -203,14 +203,14 @@ CO2-fotavtryck: ${input.co2 ?? "Ej angiven"}
     .input(z.object({ dppId: z.string() }))
     .mutation(async ({ ctx, input }) => {
       const db = await getDb();
-      if (!db) throw new Error("Databas ej tillgÃ¤nglig");
+      if (!db) throw new Error("Databas ej tillgänglig");
       const [passport] = await db
         .select()
         .from(dppPassports)
         .where(eq(dppPassports.dppId, input.dppId))
         .limit(1);
       if (!passport) throw new Error("Hittades inte");
-      if (passport.userId !== ctx.user.id) throw new Error("Ã…tkomst nekad");
+      if (passport.userId !== ctx.user.id) throw new Error("Åtkomst nekad");
       if (passport.paid) throw new Error("Betalda pass kan inte raderas");
       await db.delete(dppPassports).where(eq(dppPassports.dppId, input.dppId));
       return { success: true };

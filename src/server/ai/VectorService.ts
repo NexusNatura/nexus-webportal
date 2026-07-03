@@ -54,9 +54,10 @@ export class VectorService {
                 agentName,
                 content,
                 embedding, // JSON array
+                status: 'PENDING',
                 createdAt: new Date().toISOString()
             });
-            console.log(pc.green(`✔ Minne sparat till MySQL (Långtidsminne).`));
+            console.log(pc.green(`✓ Minne sparat till MySQL (Långtidsminne) som PENDING.`));
         } catch (err) {
             console.error(pc.red('Kunde inte spara minne till databasen.'), err);
         }
@@ -81,7 +82,8 @@ export class VectorService {
         ];
     } else {
         try {
-            memories = await db.select().from(agentMemory);
+            const { eq } = await import('drizzle-orm');
+            memories = await db.select().from(agentMemory).where(eq(agentMemory.status, 'APPROVED'));
         } catch (err) {
             console.error(pc.red('Kunde inte läsa minnet från databasen. MOCK_MODE rekommenderas.'));
             return [];

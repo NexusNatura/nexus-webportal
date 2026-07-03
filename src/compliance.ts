@@ -1,5 +1,5 @@
 ﻿/**
- * Compliance Router â€“ EU AI Act Efterlevnad
+ * Compliance Router – EU AI Act Efterlevnad
  * Hanterar riskregister (Art. 9) och misuse-scenarier (Art. 9.2b)
  */
 
@@ -9,21 +9,21 @@ import { publicProcedure, router } from "../_core/trpc";
 import { getDb } from "../db";
 import { riskEntries, misuseScenarios } from "../../drizzle/schema";
 
-// â”€â”€â”€ Seed-data: FÃ¶rdefinierade risker frÃ¥n EU AI Act-analysen â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â”€â”€â”€ Seed-data: Fördefinierade risker från EU AI Act-analysen â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 const SEED_RISKS = [
   {
     riskId: "RISK-001",
     category: "model_accuracy" as const,
-    title: "GWD-Alpha falskt positivt â€“ legitimt pÃ¥stÃ¥ende flaggas som greenwashing",
+    title: "GWD-Alpha falskt positivt – legitimt påstående flaggas som greenwashing",
     description:
-      "GWD-Alpha kan felaktigt klassificera ett faktabaserat och verifierbart hÃ¥llbarhetspÃ¥stÃ¥ende som greenwashing, vilket skadar fÃ¶retagets rykte och leder till felaktiga NIF-Ã¤renden.",
+      "GWD-Alpha kan felaktigt klassificera ett faktabaserat och verifierbart hållbarhetspåstående som greenwashing, vilket skadar företagets rykte och leder till felaktiga NIF-ärenden.",
     affectedModule: "GWD-Alpha",
     likelihood: 3,
     consequence: 4,
     riskLevel: "high" as const,
-    existingControls: "HITL-operatÃ¶r (Peter Johansson) granskar alla GWD-beslut. Two-Person Rule fÃ¶r kritiska Ã¤renden.",
-    mitigationAction: "Implementera konfidenspoÃ¤ng (0â€“100%) i GWD-analysen. KrÃ¤v manuell granskning om konfidensen Ã¤r <80%. LÃ¤gg till fÃ¶rklaringstext fÃ¶r varje flaggad taktik.",
+    existingControls: "HITL-operatör (Peter Johansson) granskar alla GWD-beslut. Two-Person Rule för kritiska ärenden.",
+    mitigationAction: "Implementera konfidenspoäng (0–100%) i GWD-analysen. Kräv manuell granskning om konfidensen är <80%. Lägg till förklaringstext för varje flaggad taktik.",
     euAiActArticle: "Art. 9.2a, Art. 14",
     residualRisk: "medium" as const,
     status: "identified" as const,
@@ -31,15 +31,15 @@ const SEED_RISKS = [
   {
     riskId: "RISK-002",
     category: "model_accuracy" as const,
-    title: "Grant-Gamma felaktig bidragsmatchning â€“ ineligibelt program rekommenderas",
+    title: "Grant-Gamma felaktig bidragsmatchning – ineligibelt program rekommenderas",
     description:
-      "Grant-Gamma kan rekommendera ett bidragsprogram som leverantÃ¶ren inte Ã¤r kvalificerad fÃ¶r (t.ex. fel bransch, fel storlek, utgÃ¥ngen utlysning), vilket leder till bortkastade resurser och missat fÃ¶rtroende.",
+      "Grant-Gamma kan rekommendera ett bidragsprogram som leverantören inte är kvalificerad för (t.ex. fel bransch, fel storlek, utgången utlysning), vilket leder till bortkastade resurser och missat förtroende.",
     affectedModule: "Grant-Gamma",
     likelihood: 3,
     consequence: 3,
     riskLevel: "medium" as const,
-    existingControls: "AnvÃ¤ndaren uppmanas att verifiera mot aktuella utlysningskrav. AI-transparensbanner informerar om begrÃ¤nsningar.",
-    mitigationAction: "LÃ¤gg till datum-validering mot TED/Vinnova API. Visa alltid utlysningens deadline och lÃ¤nk till officiell kÃ¤lla. Implementera eligibilitetschecklista per program.",
+    existingControls: "Användaren uppmanas att verifiera mot aktuella utlysningskrav. AI-transparensbanner informerar om begränsningar.",
+    mitigationAction: "Lägg till datum-validering mot TED/Vinnova API. Visa alltid utlysningens deadline och länk till officiell källa. Implementera eligibilitetschecklista per program.",
     euAiActArticle: "Art. 9.2a, Art. 50",
     residualRisk: "low" as const,
     status: "identified" as const,
@@ -47,15 +47,15 @@ const SEED_RISKS = [
   {
     riskId: "RISK-003",
     category: "human_oversight" as const,
-    title: "WA-04 Policy Gate felaktig nekad Ã¥tkomst â€“ tidskritiskt Ã¤rende blockeras",
+    title: "WA-04 Policy Gate felaktig nekad åtkomst – tidskritiskt ärende blockeras",
     description:
-      "WA-04 Policy Gate kan neka Ã¥tkomst till ett legitimt Ã¤rende baserat pÃ¥ felaktiga sÃ¤kerhetsklassificeringar, vilket blockerar ett tidskritiskt arbetsflÃ¶de och krÃ¤ver manuell eskalering.",
+      "WA-04 Policy Gate kan neka åtkomst till ett legitimt ärende baserat på felaktiga säkerhetsklassificeringar, vilket blockerar ett tidskritiskt arbetsflöde och kräver manuell eskalering.",
     affectedModule: "WA-04 Policy Gate",
     likelihood: 2,
     consequence: 4,
     riskLevel: "high" as const,
-    existingControls: "Unpause Governance-procedur finns. Auto-paus krÃ¤ver manuell Ã¥terstart av operatÃ¶r.",
-    mitigationAction: "Implementera 'Emergency Override'-funktion med dubbel autentisering och obligatorisk loggning. Definiera SLA fÃ¶r Unpause-proceduren (max 2 timmar). LÃ¤gg till eskaleringsvÃ¤g till backup-operatÃ¶r.",
+    existingControls: "Unpause Governance-procedur finns. Auto-paus kräver manuell återstart av operatör.",
+    mitigationAction: "Implementera 'Emergency Override'-funktion med dubbel autentisering och obligatorisk loggning. Definiera SLA för Unpause-proceduren (max 2 timmar). Lägg till eskaleringsväg till backup-operatör.",
     euAiActArticle: "Art. 9.2b, Art. 14",
     residualRisk: "low" as const,
     status: "identified" as const,
@@ -63,15 +63,15 @@ const SEED_RISKS = [
   {
     riskId: "RISK-004",
     category: "transparency" as const,
-    title: "OtillrÃ¤cklig AI-transparens mot slutanvÃ¤ndare",
+    title: "Otillräcklig AI-transparens mot slutanvändare",
     description:
-      "AnvÃ¤ndare interagerar med AI-agenter utan tydlig information om att de kommunicerar med ett AI-system, i strid med Artikel 50 EU AI Act.",
+      "Användare interagerar med AI-agenter utan tydlig information om att de kommunicerar med ett AI-system, i strid med Artikel 50 EU AI Act.",
     affectedModule: "NexusCore (alla moduler)",
     likelihood: 4,
     consequence: 3,
     riskLevel: "high" as const,
     existingControls: "Ingen befintlig kontroll (gap identifierat).",
-    mitigationAction: "Implementera AITransparencyBanner i Operator Dashboard och alla agentinteraktioner. MÃ¤rk alla AI-genererade NIF-intyg. Uppdatera anvÃ¤ndarvillkor.",
+    mitigationAction: "Implementera AITransparencyBanner i Operator Dashboard och alla agentinteraktioner. Märk alla AI-genererade NIF-intyg. Uppdatera användarvillkor.",
     euAiActArticle: "Art. 50",
     residualRisk: "low" as const,
     status: "in_progress" as const,
@@ -79,15 +79,15 @@ const SEED_RISKS = [
   {
     riskId: "RISK-005",
     category: "data_quality" as const,
-    title: "Gemini-modellens trÃ¤ningsdatums cutoff ger fÃ¶rÃ¥ldrad information",
+    title: "Gemini-modellens träningsdatums cutoff ger föråldrad information",
     description:
-      "Gemini-modellen kan ge svar baserade pÃ¥ fÃ¶rÃ¥ldrad information om EU-direktiv, bidragsprogram eller hÃ¥llbarhetsstandarder som har uppdaterats efter modellens trÃ¤ningsdatum.",
+      "Gemini-modellen kan ge svar baserade på föråldrad information om EU-direktiv, bidragsprogram eller hållbarhetsstandarder som har uppdaterats efter modellens träningsdatum.",
     affectedModule: "Alla AI-agenter (Gemini)",
     likelihood: 3,
     consequence: 3,
     riskLevel: "medium" as const,
-    existingControls: "AI-transparensbanner informerar om begrÃ¤nsningar. AnvÃ¤ndaren uppmanas att verifiera mot officiella kÃ¤llor.",
-    mitigationAction: "Implementera RAG (Retrieval-Augmented Generation) med aktuella EU-dokument. LÃ¤gg till datum-stÃ¤mpel pÃ¥ alla AI-svar. Uppdatera systemprompter med aktuella regelverksdatum.",
+    existingControls: "AI-transparensbanner informerar om begränsningar. Användaren uppmanas att verifiera mot officiella källor.",
+    mitigationAction: "Implementera RAG (Retrieval-Augmented Generation) med aktuella EU-dokument. Lägg till datum-stämpel på alla AI-svar. Uppdatera systemprompter med aktuella regelverksdatum.",
     euAiActArticle: "Art. 10, Art. 9.2a",
     residualRisk: "medium" as const,
     status: "identified" as const,
@@ -97,69 +97,69 @@ const SEED_RISKS = [
 const SEED_MISUSE = [
   {
     scenarioId: "MS-001",
-    title: "GWD-Alpha falskt positivt â€“ legitimt pÃ¥stÃ¥ende felaktigt flaggas",
+    title: "GWD-Alpha falskt positivt – legitimt påstående felaktigt flaggas",
     description:
-      "En leverantÃ¶r med ett faktabaserat och verifierbart hÃ¥llbarhetspÃ¥stÃ¥ende (t.ex. certifierad av tredje part) fÃ¥r sitt pÃ¥stÃ¥ende felaktigt flaggat som greenwashing av GWD-Alpha, vilket leder till ett felaktigt NIF-Ã¤rende och skadat affÃ¤rsrykte.",
+      "En leverantör med ett faktabaserat och verifierbart hållbarhetspåstående (t.ex. certifierad av tredje part) får sitt påstående felaktigt flaggat som greenwashing av GWD-Alpha, vilket leder till ett felaktigt NIF-ärende och skadat affärsrykte.",
     affectedModule: "GWD-Alpha",
     scenarioType: "false_positive" as const,
     likelihood: 3,
     consequence: 4,
     trigger:
-      "GWD-Alpha analyserar ett pÃ¥stÃ¥ende med hÃ¶g konfidenspoÃ¤ng men saknar tillgÃ¥ng till tredjepartscertifieringen som verifierar pÃ¥stÃ¥endet.",
+      "GWD-Alpha analyserar ett påstående med hög konfidenspoäng men saknar tillgång till tredjepartscertifieringen som verifierar påståendet.",
     impact:
-      "LeverantÃ¶ren nekas ett bidrag eller en upphandling baserat pÃ¥ ett felaktigt NIF-Ã¤rende. Nexus-OS fÃ¶rlorar fÃ¶rtroende. Potentiell juridisk exponering om leverantÃ¶ren bestrider beslutet.",
+      "Leverantören nekas ett bidrag eller en upphandling baserat på ett felaktigt NIF-ärende. Nexus-OS förlorar förtroende. Potentiell juridisk exponering om leverantören bestrider beslutet.",
     mitigationMeasures:
-      "1. KrÃ¤v konfidenspoÃ¤ng â‰¥80% fÃ¶r automatisk flaggning. 2. Implementera 'BegÃ¤r verifiering'-funktion dÃ¤r leverantÃ¶ren kan ladda upp certifieringsdokument. 3. HITL-operatÃ¶r granskar alltid Ã¤renden med konfidenspoÃ¤ng 60â€“80%. 4. LÃ¤gg till 'Ã–verklagandeprocess' i NIF-Ã¤rendeflÃ¶det.",
+      "1. Kräv konfidenspoäng â‰¥80% för automatisk flaggning. 2. Implementera 'Begär verifiering'-funktion där leverantören kan ladda upp certifieringsdokument. 3. HITL-operatör granskar alltid ärenden med konfidenspoäng 60–80%. 4. Lägg till 'Överklagandeprocess' i NIF-ärendeflödet.",
     detectionMethod:
-      "LeverantÃ¶ren bestrider Ã¤rendet via plattformens Ã¶verklagandefunktion. Manuell granskning av HITL-operatÃ¶r. Kvartalsvis stickprovsgranskning av avslutade Ã¤renden.",
+      "Leverantören bestrider ärendet via plattformens överklagandefunktion. Manuell granskning av HITL-operatör. Kvartalsvis stickprovsgranskning av avslutade ärenden.",
     testingProtocol:
-      "Testa GWD-Alpha med 20 kÃ¤nda legitima hÃ¥llbarhetspÃ¥stÃ¥enden (med tredjepartscertifiering). Acceptanskriterium: <10% falskt positiva.",
+      "Testa GWD-Alpha med 20 kända legitima hållbarhetspåståenden (med tredjepartscertifiering). Acceptanskriterium: <10% falskt positiva.",
     linkedRiskId: "RISK-001",
     euAiActReference: "Art. 9.2b, Art. 14",
     status: "identified" as const,
   },
   {
     scenarioId: "MS-002",
-    title: "Grant-Gamma rekommenderar ineligibelt program â€“ resurser slÃ¶sas",
+    title: "Grant-Gamma rekommenderar ineligibelt program – resurser slösas",
     description:
-      "Grant-Gamma rekommenderar ett Vinnova-program fÃ¶r ett fÃ¶retag som inte uppfyller eligibilitetskraven (t.ex. fÃ¶r stor omsÃ¤ttning, fel bransch-SNI-kod, eller utgÃ¥ngen utlysning). FÃ¶retaget investerar tid i en ansÃ¶kan som automatiskt avslÃ¥s.",
+      "Grant-Gamma rekommenderar ett Vinnova-program för ett företag som inte uppfyller eligibilitetskraven (t.ex. för stor omsättning, fel bransch-SNI-kod, eller utgången utlysning). Företaget investerar tid i en ansökan som automatiskt avslås.",
     affectedModule: "Grant-Gamma",
     scenarioType: "false_negative" as const,
     likelihood: 3,
     consequence: 3,
     trigger:
-      "Grant-Gamma matchar mot ett program baserat pÃ¥ nyckelord i fÃ¶retagets beskrivning utan att verifiera eligibilitetskriterier mot aktuell utlysningstext.",
+      "Grant-Gamma matchar mot ett program baserat på nyckelord i företagets beskrivning utan att verifiera eligibilitetskriterier mot aktuell utlysningstext.",
     impact:
-      "FÃ¶retaget lÃ¤gger 20â€“80 timmar pÃ¥ en ansÃ¶kan som avslÃ¥s. Nexus-OS fÃ¶rlorar trovÃ¤rdighet. Potentiell churn av pilotkund.",
+      "Företaget lägger 20–80 timmar på en ansökan som avslås. Nexus-OS förlorar trovärdighet. Potentiell churn av pilotkund.",
     mitigationMeasures:
-      "1. Implementera eligibilitetschecklista per program (omsÃ¤ttningsgrÃ¤ns, anstÃ¤llda, bransch, geografi). 2. Visa alltid utlysningens deadline och lÃ¤nk till officiell kÃ¤lla. 3. LÃ¤gg till varning om utlysningen stÃ¤nger inom 30 dagar. 4. KrÃ¤v att operatÃ¶ren bekrÃ¤ftar eligibilitet innan ansÃ¶kningsutkast genereras.",
+      "1. Implementera eligibilitetschecklista per program (omsättningsgräns, anställda, bransch, geografi). 2. Visa alltid utlysningens deadline och länk till officiell källa. 3. Lägg till varning om utlysningen stänger inom 30 dagar. 4. Kräv att operatören bekräftar eligibilitet innan ansökningsutkast genereras.",
     detectionMethod:
-      "SpÃ¥ra ansÃ¶kningsutfall (godkÃ¤nd/avslagen) per rekommendation. Alert om avslagsfrekvens >20% fÃ¶r ett specifikt program.",
+      "Spåra ansökningsutfall (godkänd/avslagen) per rekommendation. Alert om avslagsfrekvens >20% för ett specifikt program.",
     testingProtocol:
-      "Testa Grant-Gamma med 10 fÃ¶retagsprofiler mot 5 program med kÃ¤nda eligibilitetskrav. Acceptanskriterium: 0 rekommendationer till ineligibla fÃ¶retag.",
+      "Testa Grant-Gamma med 10 företagsprofiler mot 5 program med kända eligibilitetskrav. Acceptanskriterium: 0 rekommendationer till ineligibla företag.",
     linkedRiskId: "RISK-002",
     euAiActReference: "Art. 9.2b",
     status: "identified" as const,
   },
   {
     scenarioId: "MS-003",
-    title: "WA-04 felaktig nekad Ã¥tkomst â€“ tidskritiskt Ã¤rende blockeras",
+    title: "WA-04 felaktig nekad åtkomst – tidskritiskt ärende blockeras",
     description:
-      "WA-04 Policy Gate nekar Ã¥tkomst till ett legitimt Ã¤rende (t.ex. en EU-bidragsansÃ¶kan med 24 timmars deadline) baserat pÃ¥ en felaktig sÃ¤kerhetsklassificering, och Unpause-proceduren tar lÃ¤ngre tid Ã¤n tillgÃ¤nglig tid.",
+      "WA-04 Policy Gate nekar åtkomst till ett legitimt ärende (t.ex. en EU-bidragsansökan med 24 timmars deadline) baserat på en felaktig säkerhetsklassificering, och Unpause-proceduren tar längre tid än tillgänglig tid.",
     affectedModule: "WA-04 Policy Gate",
     scenarioType: "false_positive" as const,
     likelihood: 2,
     consequence: 5,
     trigger:
-      "WA-04 triggas av ett ovanligt anvÃ¤ndningsmÃ¶nster (t.ex. hÃ¶g aktivitet sent pÃ¥ kvÃ¤llen) och klassificerar det som en sÃ¤kerhetsavvikelse, trots att det Ã¤r en legitim operatÃ¶r som arbetar mot en deadline.",
+      "WA-04 triggas av ett ovanligt användningsmönster (t.ex. hög aktivitet sent på kvällen) och klassificerar det som en säkerhetsavvikelse, trots att det är en legitim operatör som arbetar mot en deadline.",
     impact:
-      "AnsÃ¶kan missas. BidragsmÃ¶jlighet fÃ¶rloras (potentiellt 50 000â€“400 000 EUR). OperatÃ¶ren fÃ¶rlorar fÃ¶rtroende fÃ¶r systemet. Potentiell juridisk exponering om kunden lider ekonomisk skada.",
+      "Ansökan missas. Bidragsmöjlighet förloras (potentiellt 50 000–400 000 EUR). Operatören förlorar förtroende för systemet. Potentiell juridisk exponering om kunden lider ekonomisk skada.",
     mitigationMeasures:
-      "1. Implementera 'Emergency Override' med dubbel autentisering (SMS + lÃ¶senord) och obligatorisk loggning. 2. Definiera SLA: Unpause-procedur max 30 minuter under kontorstid, max 2 timmar utanfÃ¶r. 3. LÃ¤gg till backup-operatÃ¶r med Unpause-behÃ¶righet. 4. Implementera 'Deadline Alert' som flaggar Ã¤renden med <48h deadline och sÃ¤nker WA-04:s kÃ¤nslighet.",
+      "1. Implementera 'Emergency Override' med dubbel autentisering (SMS + lösenord) och obligatorisk loggning. 2. Definiera SLA: Unpause-procedur max 30 minuter under kontorstid, max 2 timmar utanför. 3. Lägg till backup-operatör med Unpause-behörighet. 4. Implementera 'Deadline Alert' som flaggar ärenden med <48h deadline och sänker WA-04:s känslighet.",
     detectionMethod:
-      "OperatÃ¶ren rapporterar via nÃ¶dkontakt (SMS/email till backup-operatÃ¶r). Automatisk alert om WA-04 blockerar ett Ã¤rende med aktiv deadline.",
+      "Operatören rapporterar via nödkontakt (SMS/email till backup-operatör). Automatisk alert om WA-04 blockerar ett ärende med aktiv deadline.",
     testingProtocol:
-      "Simulera WA-04-blockering under ett Ã¤rende med 1-timmes deadline. MÃ¤t tid till Unpause. Acceptanskriterium: <30 minuter under kontorstid.",
+      "Simulera WA-04-blockering under ett ärende med 1-timmes deadline. Mät tid till Unpause. Acceptanskriterium: <30 minuter under kontorstid.",
     linkedRiskId: "RISK-003",
     euAiActReference: "Art. 9.2b, Art. 14",
     status: "identified" as const,
@@ -271,7 +271,7 @@ export const complianceRouter = router({
     }),
   }),
 
-  // Sammanfattning fÃ¶r ComplianceDashboard
+  // Sammanfattning för ComplianceDashboard
   summary: publicProcedure.query(async () => {
     const db = await getDb();
     if (!db) return { risks: [], misuse: [], totalRisks: 0, criticalRisks: 0, openMisuse: 0, risksByLevel: {}, risksByStatus: {} };

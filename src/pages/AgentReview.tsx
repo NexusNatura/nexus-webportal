@@ -1,6 +1,6 @@
 ﻿/**
- * AgentReview.tsx â€” Admin-granskningspanel fÃ¶r Nexus-OS Agentmarknaden
- * TillgÃ¤nglig pÃ¥ /operator/agent-review (krÃ¤ver admin-roll)
+ * AgentReview.tsx — Admin-granskningspanel för Nexus-OS Agentmarknaden
+ * Tillgänglig på /operator/agent-review (kräver admin-roll)
  * Design: Cyberpunk Terminal / Dark Ops Intelligence Center
  */
 
@@ -33,8 +33,8 @@ import {
 function RiskBadge({ risk }: { risk: string }) {
   const map: Record<string, { label: string; color: string }> = {
     minimal: { label: "Minimal risk", color: "text-emerald-400 bg-emerald-400/10 border-emerald-400/30" },
-    limited: { label: "BegrÃ¤nsad risk", color: "text-yellow-400 bg-yellow-400/10 border-yellow-400/30" },
-    high: { label: "HÃ¶g risk", color: "text-red-400 bg-red-400/10 border-red-400/30" },
+    limited: { label: "Begränsad risk", color: "text-yellow-400 bg-yellow-400/10 border-yellow-400/30" },
+    high: { label: "Hög risk", color: "text-red-400 bg-red-400/10 border-red-400/30" },
   };
   const r = map[risk] ?? { label: risk, color: "text-gray-400 bg-gray-400/10 border-gray-400/30" };
   return (
@@ -146,12 +146,12 @@ function AgentDetailPanel({ agent, onClose, onApprove, onReject, isApproving, is
           {useCases.length > 0 && (
             <div>
               <h3 className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "#00ff9d80" }}>
-                <Star className="w-3 h-3 inline mr-1" />AnvÃ¤ndningsfall
+                <Star className="w-3 h-3 inline mr-1" />Användningsfall
               </h3>
               <ul className="space-y-1">
                 {useCases.map((uc) => (
                   <li key={uc} className="text-sm text-gray-300 flex items-start gap-2">
-                    <span style={{ color: "#00ff9d" }}>â€º</span>
+                    <span style={{ color: "#00ff9d" }}>”º</span>
                     {uc}
                   </li>
                 ))}
@@ -163,7 +163,7 @@ function AgentDetailPanel({ agent, onClose, onApprove, onReject, isApproving, is
           {agent.systemPrompt && (
             <div>
               <h3 className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "#00ff9d80" }}>
-                <Code className="w-3 h-3 inline mr-1" />System-prompt (fÃ¶rhandsgranskning)
+                <Code className="w-3 h-3 inline mr-1" />System-prompt (förhandsgranskning)
               </h3>
               <div
                 className="rounded-lg p-3 text-xs font-mono text-gray-400 max-h-32 overflow-y-auto"
@@ -177,7 +177,7 @@ function AgentDetailPanel({ agent, onClose, onApprove, onReject, isApproving, is
           {/* Pricing */}
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-wider mb-2" style={{ color: "#00ff9d80" }}>
-              <DollarSign className="w-3 h-3 inline mr-1" />PrissÃ¤ttning
+              <DollarSign className="w-3 h-3 inline mr-1" />Prissättning
             </h3>
             <div className="flex gap-4">
               {agent.pricePerTaskOre && (
@@ -187,7 +187,7 @@ function AgentDetailPanel({ agent, onClose, onApprove, onReject, isApproving, is
               )}
               {agent.priceMonthlyOre && (
                 <div className="text-sm text-gray-300">
-                  MÃ¥nadsvis: <span className="text-white font-semibold">{(agent.priceMonthlyOre / 100).toLocaleString("sv-SE")} SEK/mÃ¥n</span>
+                  Månadsvis: <span className="text-white font-semibold">{(agent.priceMonthlyOre / 100).toLocaleString("sv-SE")} SEK/mån</span>
                 </div>
               )}
             </div>
@@ -196,7 +196,7 @@ function AgentDetailPanel({ agent, onClose, onApprove, onReject, isApproving, is
           {/* Creator info */}
           <div className="flex items-center gap-2 text-xs text-gray-500">
             <User className="w-3 h-3" />
-            Skapad av anvÃ¤ndare #{agent.creatorId ?? "Nexus-OS"} Â· {new Date(agent.createdAt).toLocaleDateString("sv-SE")}
+            Skapad av användare #{agent.creatorId ?? "Nexus-OS"} Â· {new Date(agent.createdAt).toLocaleDateString("sv-SE")}
           </div>
         </div>
 
@@ -211,7 +211,7 @@ function AgentDetailPanel({ agent, onClose, onApprove, onReject, isApproving, is
                 onClick={onApprove}
               >
                 <CheckCircle2 className="w-4 h-4 mr-2" />
-                {isApproving ? "GodkÃ¤nner..." : "GodkÃ¤nn & Publicera"}
+                {isApproving ? "Godkänner..." : "Godkänn & Publicera"}
               </Button>
               <Button
                 variant="outline"
@@ -241,7 +241,7 @@ function AgentDetailPanel({ agent, onClose, onApprove, onReject, isApproving, is
                   style={{ background: "#ff3b5c", color: "white" }}
                   onClick={() => onReject(rejectReason || undefined)}
                 >
-                  {isRejecting ? "Avvisar..." : "BekrÃ¤fta avvisning"}
+                  {isRejecting ? "Avvisar..." : "Bekräfta avvisning"}
                 </Button>
                 <Button
                   variant="outline"
@@ -307,7 +307,7 @@ export default function AgentReview() {
 
   const approveMutation = trpc.agents.publishAgent.useMutation({
     onSuccess: () => {
-      toast.success("âœ… Agenten har godkÃ¤nts och publicerats pÃ¥ marknadsplatsen!");
+      toast.success("âœ… Agenten har godkänts och publicerats på marknadsplatsen!");
       setSelectedAgent(null);
       refetch();
     },
@@ -340,8 +340,8 @@ export default function AgentReview() {
       <div className="min-h-screen flex items-center justify-center" style={{ background: "#0a0e14" }}>
         <div className="text-center max-w-md">
           <AlertTriangle className="w-12 h-12 mx-auto mb-4" style={{ color: "#ff3b5c" }} />
-          <h1 className="text-2xl font-bold text-white mb-2">Ã…tkomst nekad</h1>
-          <p className="text-gray-400 mb-6">Den hÃ¤r sidan krÃ¤ver administratÃ¶rsbehÃ¶righet.</p>
+          <h1 className="text-2xl font-bold text-white mb-2">Åtkomst nekad</h1>
+          <p className="text-gray-400 mb-6">Den här sidan kräver administratörsbehörighet.</p>
           <Link href="/operator">
             <Button style={{ background: "#00ff9d", color: "#0a0e14" }}>
               <ChevronLeft className="w-4 h-4 mr-1" />
@@ -376,7 +376,7 @@ export default function AgentReview() {
             style={{ borderColor: "#ffb80040", color: "#ffb800", background: "#ffb80010" }}
           >
             <Clock className="w-3 h-3" />
-            {pendingAgents.length} vÃ¤ntar granskning
+            {pendingAgents.length} väntar granskning
           </div>
           <button
             onClick={() => refetch()}
@@ -392,7 +392,7 @@ export default function AgentReview() {
         {/* Stats row */}
         <div className="grid grid-cols-3 gap-4 mb-8">
           {[
-            { label: "VÃ¤ntar granskning", value: pendingAgents.length, color: "#ffb800", icon: Clock },
+            { label: "Väntar granskning", value: pendingAgents.length, color: "#ffb800", icon: Clock },
             { label: "Granskade idag", value: 0, color: "#00ff9d", icon: CheckCircle2 },
             { label: "Avvisade totalt", value: 0, color: "#ff3b5c", icon: XCircle },
           ].map(({ label, value, color, icon: Icon }) => (
@@ -414,13 +414,13 @@ export default function AgentReview() {
         <div>
           <div className="flex items-center gap-2 mb-4">
             <div className="w-1 h-5 rounded-full" style={{ background: "#00ff9d" }} />
-            <h2 className="font-bold text-white">GranskningskÃ¶</h2>
+            <h2 className="font-bold text-white">Granskningskö</h2>
           </div>
 
           {isLoading ? (
             <div className="text-center py-16">
               <RefreshCw className="w-8 h-8 animate-spin mx-auto mb-3" style={{ color: "#00ff9d" }} />
-              <p className="text-gray-400">HÃ¤mtar agenter...</p>
+              <p className="text-gray-400">Hämtar agenter...</p>
             </div>
           ) : pendingAgents.length === 0 ? (
             <div
@@ -428,12 +428,12 @@ export default function AgentReview() {
               style={{ background: "#0d1117", borderColor: "#ffffff10" }}
             >
               <CheckCircle2 className="w-12 h-12 mx-auto mb-4" style={{ color: "#00ff9d" }} />
-              <h3 className="text-lg font-bold text-white mb-2">GranskningskÃ¶n Ã¤r tom</h3>
+              <h3 className="text-lg font-bold text-white mb-2">Granskningskön är tom</h3>
               <p className="text-gray-400 text-sm">
-                Inga agenter vÃ¤ntar pÃ¥ granskning just nu. Bra jobbat!
+                Inga agenter väntar på granskning just nu. Bra jobbat!
               </p>
               <p className="text-gray-500 text-xs mt-3">
-                Nya agenter visas hÃ¤r nÃ¤r anvÃ¤ndare skickar in dem via AgentBuilder.
+                Nya agenter visas här när användare skickar in dem via AgentBuilder.
               </p>
             </div>
           ) : (
@@ -481,7 +481,7 @@ export default function AgentReview() {
                         style={{ borderColor: "#ffb80040", color: "#ffb800", background: "#ffb80010" }}
                       >
                         <Clock className="w-3 h-3" />
-                        VÃ¤ntar
+                        Väntar
                       </div>
                       <Button
                         size="sm"
@@ -501,8 +501,8 @@ export default function AgentReview() {
                   {/* Submitted date */}
                   <div className="mt-3 pt-3 border-t flex items-center gap-2 text-xs text-gray-600" style={{ borderColor: "#ffffff08" }}>
                     <User className="w-3 h-3" />
-                    InlÃ¤mnad {new Date(agent.createdAt).toLocaleDateString("sv-SE", { year: "numeric", month: "long", day: "numeric" })}
-                    {agent.creatorId && ` Â· Skapad av anvÃ¤ndare #${agent.creatorId}`}
+                    Inlämnad {new Date(agent.createdAt).toLocaleDateString("sv-SE", { year: "numeric", month: "long", day: "numeric" })}
+                    {agent.creatorId && ` Â· Skapad av användare #${agent.creatorId}`}
                   </div>
                 </div>
               ))}
@@ -517,11 +517,11 @@ export default function AgentReview() {
         >
           <Shield className="w-5 h-5 flex-shrink-0 mt-0.5" style={{ color: "#00ff9d" }} />
           <div>
-            <p className="text-sm font-semibold text-white mb-1">EU AI Act â€“ Artikel 14 (HITL)</p>
+            <p className="text-sm font-semibold text-white mb-1">EU AI Act – Artikel 14 (HITL)</p>
             <p className="text-xs text-gray-400 leading-relaxed">
-              Alla agenter som publiceras pÃ¥ Nexus-OS Agentmarknaden granskas manuellt av en HITL-operatÃ¶r
+              Alla agenter som publiceras på Nexus-OS Agentmarknaden granskas manuellt av en HITL-operatör
               (Human-in-the-Loop) i enlighet med EU AI Act Artikel 14. Granskningen inkluderar riskklassificering,
-              systempromptkontroll och verifiering av att agenten uppfyller Nexus-OS sÃ¤kerhetspolicyer.
+              systempromptkontroll och verifiering av att agenten uppfyller Nexus-OS säkerhetspolicyer.
             </p>
           </div>
         </div>

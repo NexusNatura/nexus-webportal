@@ -136,57 +136,57 @@ export const misuseRouter = router({
     const scenarios = [
       {
         scenarioId: "WA-04-FALSE-POSITIVE",
-        title: "GWD Falskt Positivt â€“ Greenwashing-flagga",
+        title: "GWD Falskt Positivt – Greenwashing-flagga",
         description:
-          "GWD-Alpha flaggar ett fÃ¶retags hÃ¥llbarhetsrapport som greenwashing nÃ¤r det faktiskt fÃ¶ljer EU-standarder.",
+          "GWD-Alpha flaggar ett företags hållbarhetsrapport som greenwashing när det faktiskt följer EU-standarder.",
         affectedModule: "GWD-Alpha",
         scenarioType: "false_positive" as const,
         likelihood: 3,
         consequence: 4,
         trigger:
-          "FÃ¶retag med certifierad grÃ¶n produktion publicerar hÃ¥llbarhetsrapport",
+          "Företag med certifierad grön produktion publicerar hållbarhetsrapport",
         impact:
-          "Felaktig flaggning skadar fÃ¶retagets rykte och kan leda till rÃ¤ttsliga Ã¥tgÃ¤rder",
+          "Felaktig flaggning skadar företagets rykte och kan leda till rättsliga åtgärder",
         mitigationMeasures:
-          "Implementera dubbel-verifikation med HITL-granskning innan flagga publiceras. LÃ¤gg till appeals-process fÃ¶r fÃ¶retag.",
+          "Implementera dubbel-verifikation med HITL-granskning innan flagga publiceras. Lägg till appeals-process för företag.",
         detectionMethod:
-          "JÃ¤mfÃ¶r flaggade pÃ¥stÃ¥enden mot certifieringsdatabaser (FSC, B Corp, etc.)",
+          "Jämför flaggade påståenden mot certifieringsdatabaser (FSC, B Corp, etc.)",
       },
       {
         scenarioId: "GRANT-GAMMA-MISMATCH",
-        title: "Grant-Gamma Felaktig Matchning â€“ Fel Bidragsprogram",
+        title: "Grant-Gamma Felaktig Matchning – Fel Bidragsprogram",
         description:
-          "Grant-Gamma rekommenderar ett EU-bidragsprogram som inte matchar fÃ¶retagets profil eller Ã¤r stÃ¤ngt fÃ¶r ansÃ¶kan.",
+          "Grant-Gamma rekommenderar ett EU-bidragsprogram som inte matchar företagets profil eller är stängt för ansökan.",
         affectedModule: "Grant-Gamma",
         scenarioType: "false_negative" as const,
         likelihood: 2,
         consequence: 3,
         trigger:
-          "SmÃ¥fÃ¶retag sÃ¶ker bidrag fÃ¶r industriell omstÃ¤llning eller cirkulÃ¤r ekonomi",
+          "Småföretag söker bidrag för industriell omställning eller cirkulär ekonomi",
         impact:
-          "FÃ¶retag missar relevanta bidrag och fÃ¥r rekommendation om irrelevanta program",
+          "Företag missar relevanta bidrag och får rekommendation om irrelevanta program",
         mitigationMeasures:
-          "Validera bidragsprogram mot aktuella tidsfrister och krav. Implementera feedback-loop frÃ¥n anvÃ¤ndare.",
+          "Validera bidragsprogram mot aktuella tidsfrister och krav. Implementera feedback-loop från användare.",
         detectionMethod:
-          "JÃ¤mfÃ¶r rekommenderade program mot fÃ¶retagets bransch och storlek",
+          "Jämför rekommenderade program mot företagets bransch och storlek",
       },
       {
         scenarioId: "SCRAPER-BETA-EXCLUSION",
-        title: "WA-04 Felaktig Nekad â€“ Legitimt Bidrag Avvisas",
+        title: "WA-04 Felaktig Nekad – Legitimt Bidrag Avvisas",
         description:
-          "Webskrapningsagenten (Scraper-Beta) klassificerar ett legitimt bidragsprogram som 'inte relevant' och exkluderar det frÃ¥n resultatet.",
+          "Webskrapningsagenten (Scraper-Beta) klassificerar ett legitimt bidragsprogram som 'inte relevant' och exkluderar det från resultatet.",
         affectedModule: "Scraper-Beta",
         scenarioType: "false_negative" as const,
         likelihood: 2,
         consequence: 4,
         trigger:
-          "Scraper-Beta klassificerar bidragsprogram baserat pÃ¥ nyckelordsmatchning",
+          "Scraper-Beta klassificerar bidragsprogram baserat på nyckelordsmatchning",
         impact:
-          "FÃ¶retag missar kritiska bidrag fÃ¶r cirkulÃ¤r ekonomi eller ESPR-relaterade stÃ¶d",
+          "Företag missar kritiska bidrag för cirkulär ekonomi eller ESPR-relaterade stöd",
         mitigationMeasures:
-          "Implementera manuell granskning av exkluderade bidrag. LÃ¤gg till user-feedback fÃ¶r att trÃ¤na om klassificeringsmodellen.",
+          "Implementera manuell granskning av exkluderade bidrag. Lägg till user-feedback för att träna om klassificeringsmodellen.",
         detectionMethod:
-          "SpÃ¥ra anvÃ¤ndarfeedback nÃ¤r anvÃ¤ndare hittar relevanta bidrag som agenten missade",
+          "Spåra användarfeedback när användare hittar relevanta bidrag som agenten missade",
       },
     ];
 

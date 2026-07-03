@@ -15,23 +15,23 @@ import { invokeLLM } from "../_core/llm";
 // â”€â”€â”€ Shared Zod schemas â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 const agentDraftDataSchema = z.object({
-  // Step 1 â€“ Basic info
+  // Step 1 – Basic info
   name: z.string().max(128).optional(),
   slug: z.string().max(64).optional(),
   tagline: z.string().max(256).optional(),
   category: z.enum(["grants", "compliance", "dpp", "symbiosis", "design", "circular"]).optional(),
   iconName: z.string().max(64).optional(),
   accentColor: z.string().max(64).optional(),
-  // Step 2 â€“ Capabilities
+  // Step 2 – Capabilities
   description: z.string().optional(),
   capabilities: z.array(z.string()).optional(),
   useCases: z.array(z.string()).optional(),
   systemPrompt: z.string().optional(),
   trainingNotes: z.string().optional(),
-  // Step 3 â€“ EU AI Act
+  // Step 3 – EU AI Act
   riskClass: z.enum(["minimal", "limited", "high"]).optional(),
   securityLevel: z.enum(["open", "standard", "high_a", "high_b"]).optional(),
-  // Step 4 â€“ Pricing
+  // Step 4 – Pricing
   pricingModel: z.enum(["per_task", "monthly", "both"]).optional(),
   pricePerTaskOre: z.number().int().positive().optional(),
   priceMonthlyOre: z.number().int().positive().optional(),
@@ -111,7 +111,7 @@ export const agentsRouter = router({
       if (agent.status === "coming_soon") {
         throw new TRPCError({
           code: "BAD_REQUEST",
-          message: "Denna agent Ã¤r inte tillgÃ¤nglig fÃ¶r kÃ¶p Ã¤nnu.",
+          message: "Denna agent är inte tillgänglig för köp ännu.",
         });
       }
 
@@ -123,7 +123,7 @@ export const agentsRouter = router({
       if (!amountOre) {
         throw new TRPCError({
           code: "BAD_REQUEST",
-          message: `Denna agent stÃ¶djer inte prismodellen "${input.purchaseType}".`,
+          message: `Denna agent stödjer inte prismodellen "${input.purchaseType}".`,
         });
       }
 
@@ -142,8 +142,8 @@ export const agentsRouter = router({
       const stripe = getStripe();
       const priceLabel =
         input.purchaseType === "monthly"
-          ? `${agent.name} â€“ MÃ¥nadsabonnemang`
-          : `${agent.name} â€“ Per uppgift`;
+          ? `${agent.name} – Månadsabonnemang`
+          : `${agent.name} – Per uppgift`;
 
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ["card"],
@@ -230,8 +230,8 @@ export const agentsRouter = router({
       }
 
       await notifyOwner({
-        title: `IntresseanmÃ¤lan: ${agent.name}`,
-        content: `AnvÃ¤ndare ${ctx.user.name ?? ctx.user.email ?? ctx.user.id} Ã¤r intresserad av agenten "${agent.name}" (${agent.slug}).\n\nMeddelande: ${input.message ?? "(inget meddelande)"}`,
+        title: `Intresseanmälan: ${agent.name}`,
+        content: `Användare ${ctx.user.name ?? ctx.user.email ?? ctx.user.id} är intresserad av agenten "${agent.name}" (${agent.slug}).\n\nMeddelande: ${input.message ?? "(inget meddelande)"}`,
       });
 
       return { ok: true };
@@ -330,7 +330,7 @@ export const agentsRouter = router({
       })
     )
     .mutation(async ({ input }) => {
-      const prompt = `Du Ã¤r en EU AI Act-expert. Klassificera fÃ¶ljande AI-agent enligt EU AI Act (2024/1689) riskklassificering.
+      const prompt = `Du är en EU AI Act-expert. Klassificera följande AI-agent enligt EU AI Act (2024/1689) riskklassificering.
 
 Agent: ${input.name}
 Kategori: ${input.category}
@@ -341,14 +341,14 @@ Svara ENBART med ett JSON-objekt i detta format:
 {
   "riskClass": "minimal" | "limited" | "high",
   "securityLevel": "open" | "standard" | "high_a" | "high_b",
-  "justification": "kort motivering pÃ¥ svenska (max 2 meningar)",
+  "justification": "kort motivering på svenska (max 2 meningar)",
   "relevantArticles": ["Artikel X", "Artikel Y"],
   "recommendations": ["rekommendation 1", "rekommendation 2"]
 }`;
 
       const response = await invokeLLM({
         messages: [
-          { role: "system", content: "Du Ã¤r en EU AI Act-expert. Svara alltid med valid JSON." },
+          { role: "system", content: "Du är en EU AI Act-expert. Svara alltid med valid JSON." },
           { role: "user", content: prompt },
         ],
         response_format: {
@@ -413,12 +413,12 @@ Svara ENBART med ett JSON-objekt i detta format:
       if (!d.name || !d.slug || !d.tagline || !d.category || !d.description) {
         throw new TRPCError({
           code: "BAD_REQUEST",
-          message: "Fyll i alla obligatoriska fÃ¤lt (namn, slug, tagline, kategori, beskrivning) innan du skickar in.",
+          message: "Fyll i alla obligatoriska fält (namn, slug, tagline, kategori, beskrivning) innan du skickar in.",
         });
       }
 
       if (!d.pricingModel) {
-        throw new TRPCError({ code: "BAD_REQUEST", message: "VÃ¤lj en prismodell." });
+        throw new TRPCError({ code: "BAD_REQUEST", message: "Välj en prismodell." });
       }
 
       // Check slug uniqueness
@@ -429,7 +429,7 @@ Svara ENBART med ett JSON-objekt i detta format:
         .limit(1);
 
       if (existing) {
-        throw new TRPCError({ code: "CONFLICT", message: `Slug "${d.slug}" Ã¤r redan tagen. VÃ¤lj ett annat.` });
+        throw new TRPCError({ code: "CONFLICT", message: `Slug "${d.slug}" är redan tagen. Välj ett annat.` });
       }
 
       // Insert as pending_review agent
@@ -463,8 +463,8 @@ Svara ENBART med ett JSON-objekt i detta format:
 
       // Notify owner
       await notifyOwner({
-        title: `Ny agent fÃ¶r granskning: ${d.name}`,
-        content: `AnvÃ¤ndare ${ctx.user.name ?? ctx.user.email ?? ctx.user.id} har skickat in agenten "${d.name}" (${d.slug}) fÃ¶r granskning.\n\nKategori: ${d.category}\nRiskklass: ${d.riskClass ?? "limited"}\nPrismodell: ${d.pricingModel}`,
+        title: `Ny agent för granskning: ${d.name}`,
+        content: `Användare ${ctx.user.name ?? ctx.user.email ?? ctx.user.id} har skickat in agenten "${d.name}" (${d.slug}) för granskning.\n\nKategori: ${d.category}\nRiskklass: ${d.riskClass ?? "limited"}\nPrismodell: ${d.pricingModel}`,
       });
 
       // Delete the draft
@@ -478,7 +478,7 @@ Svara ENBART med ett JSON-objekt i detta format:
     .input(z.object({ agentId: z.number().int().positive() }))
     .mutation(async ({ input, ctx }) => {
       if (ctx.user.role !== "admin") {
-        throw new TRPCError({ code: "FORBIDDEN", message: "Endast administratÃ¶rer kan publicera agenter." });
+        throw new TRPCError({ code: "FORBIDDEN", message: "Endast administratörer kan publicera agenter." });
       }
 
       const db = await getDb();
@@ -495,7 +495,7 @@ Svara ENBART med ett JSON-objekt i detta format:
   /** Admin: list agents pending review */
   listPending: protectedProcedure.query(async ({ ctx }) => {
     if (ctx.user.role !== "admin") {
-      throw new TRPCError({ code: "FORBIDDEN", message: "Endast administratÃ¶rer kan se granskningskÃ¶n." });
+      throw new TRPCError({ code: "FORBIDDEN", message: "Endast administratörer kan se granskningskön." });
     }
     const db = await getDb();
     if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "DB unavailable." });
@@ -511,7 +511,7 @@ Svara ENBART med ett JSON-objekt i detta format:
     .input(z.object({ agentId: z.number().int().positive(), reason: z.string().max(500).optional() }))
     .mutation(async ({ input, ctx }) => {
       if (ctx.user.role !== "admin") {
-        throw new TRPCError({ code: "FORBIDDEN", message: "Endast administratÃ¶rer kan avvisa agenter." });
+        throw new TRPCError({ code: "FORBIDDEN", message: "Endast administratörer kan avvisa agenter." });
       }
       const db = await getDb();
       if (!db) throw new TRPCError({ code: "INTERNAL_SERVER_ERROR", message: "DB unavailable." });

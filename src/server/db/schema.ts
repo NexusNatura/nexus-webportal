@@ -99,6 +99,7 @@ export const agentMemory = mysqlTable("agent_memory", {
   agentName: varchar("agent_name", { length: 255 }).notNull(),
   content: text("content").notNull(),
   embedding: json("embedding").notNull(), // Vektor array ex. [0.12, 0.45, ...]
+  status: varchar("status", { length: 50 }).default('APPROVED'), // PENDING | APPROVED | REJECTED
   createdAt: varchar("created_at", { length: 255 }).notNull(),
 });
 

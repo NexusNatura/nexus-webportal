@@ -21,9 +21,9 @@ import { notifyOwner } from "../_core/notification";
 const SEED_LISTINGS = [
   {
     sellerId: 1,
-    title: "LCA-data â€“ Silverring 925 (Ã…tervunnet)",
+    title: "LCA-data – Silverring 925 (Återvunnet)",
     description:
-      "FullstÃ¤ndig LCA-analys fÃ¶r silverring tillverkad av 94% Ã¥tervunnet silver. Inkluderar Scope 1â€“3, materialsammansÃ¤ttning och certifieringsdokumentation.",
+      "Fullständig LCA-analys för silverring tillverkad av 94% återvunnet silver. Inkluderar Scope 1–3, materialsammansättning och certifieringsdokumentation.",
     category: "Smycken & Accessoarer",
     priceOre: 45000,
     sellerSharePct: 70,
@@ -36,10 +36,10 @@ const SEED_LISTINGS = [
   },
   {
     sellerId: 1,
-    title: "LCA-data â€“ StÃ¥lbalk (Ã…tervunnet konstruktionsstÃ¥l)",
+    title: "LCA-data – Stålbalk (Återvunnet konstruktionsstål)",
     description:
-      "Industriell LCA-data fÃ¶r konstruktionsstÃ¥l med 78% Ã¥tervunnet innehÃ¥ll. Inkluderar EPD-rapport, karbonfotavtryck per ton och materialflÃ¶desanalys.",
-    category: "Metall & StÃ¥l",
+      "Industriell LCA-data för konstruktionsstål med 78% återvunnet innehåll. Inkluderar EPD-rapport, karbonfotavtryck per ton och materialflödesanalys.",
+    category: "Metall & Stål",
     priceOre: 120000,
     sellerSharePct: 70,
     dataPoints: 112,
@@ -51,9 +51,9 @@ const SEED_LISTINGS = [
   },
   {
     sellerId: 1,
-    title: "LCA-data â€“ Ekologisk bomullsjacka",
+    title: "LCA-data – Ekologisk bomullsjacka",
     description:
-      "Textil LCA-data fÃ¶r GOTS-certifierad bomullsjacka. Inkluderar vattenavtryck, kemikalieanvÃ¤ndning och end-of-life-rekommendationer.",
+      "Textil LCA-data för GOTS-certifierad bomullsjacka. Inkluderar vattenavtryck, kemikalieanvändning och end-of-life-rekommendationer.",
     category: "Textil & Mode",
     priceOre: 75000,
     sellerSharePct: 70,
@@ -66,9 +66,9 @@ const SEED_LISTINGS = [
   },
   {
     sellerId: 1,
-    title: "LCA-data â€“ BioPUR gummiprodukter",
+    title: "LCA-data – BioPUR gummiprodukter",
     description:
-      "HÃ¥llbarhetsdata fÃ¶r biopolymerbaserade gummiprodukter. Inkluderar jÃ¤mfÃ¶relse mot konventionellt PUR, COâ‚‚-besparingsberÃ¤kning och ESPR-checklista.",
+      "Hållbarhetsdata för biopolymerbaserade gummiprodukter. Inkluderar jämförelse mot konventionellt PUR, COâ‚‚-besparingsberäkning och ESPR-checklista.",
     category: "Polymerer & Gummi",
     priceOre: 89000,
     sellerSharePct: 70,
@@ -81,10 +81,10 @@ const SEED_LISTINGS = [
   },
   {
     sellerId: 1,
-    title: "LCA-data â€“ LimtrÃ¤ konstruktionsbalkar",
+    title: "LCA-data – Limträ konstruktionsbalkar",
     description:
-      "Skogsbruksdata och LCA fÃ¶r EUDR-spÃ¥rbara limtrÃ¤balkar. Inkluderar FSC-certifiering, koldioxidlagring och end-of-life-data.",
-    category: "TrÃ¤ & Skogsbruk",
+      "Skogsbruksdata och LCA för EUDR-spårbara limträbalkar. Inkluderar FSC-certifiering, koldioxidlagring och end-of-life-data.",
+    category: "Trä & Skogsbruk",
     priceOre: 65000,
     sellerSharePct: 80,
     dataPoints: 55,
@@ -193,7 +193,7 @@ export const marketplaceRouter = router({
       // Notify owner of new listing
       await notifyOwner({
         title: "Ny DPP-listning i Marketplace",
-        content: `${ctx.user.name ?? ctx.user.email} har listat "${input.title}" fÃ¶r ${input.priceSek} SEK.`,
+        content: `${ctx.user.name ?? ctx.user.email} har listat "${input.title}" för ${input.priceSek} SEK.`,
       }).catch(() => {});
 
       return { id: insertId, success: true };
@@ -221,7 +221,7 @@ export const marketplaceRouter = router({
         .limit(1);
       const listing = rows[0];
       if (!listing) throw new TRPCError({ code: "NOT_FOUND", message: "Listning hittades inte" });
-      if (listing.status !== "active") throw new TRPCError({ code: "BAD_REQUEST", message: "Listningen Ã¤r inte aktiv" });
+      if (listing.status !== "active") throw new TRPCError({ code: "BAD_REQUEST", message: "Listningen är inte aktiv" });
 
       // Create pending purchase record
       const [purchaseResult] = await db.insert(marketplacePurchases).values({
@@ -353,12 +353,12 @@ export const marketplaceRouter = router({
     )
     .mutation(async ({ input }) => {
       const subject = input.listingTitle
-        ? `Datapaket-fÃ¶rfrÃ¥gan: ${input.listingTitle}`
-        : `Prisplan-fÃ¶rfrÃ¥gan: ${input.planName ?? "OkÃ¤nd plan"}`;
+        ? `Datapaket-förfrågan: ${input.listingTitle}`
+        : `Prisplan-förfrågan: ${input.planName ?? "Okänd plan"}`;
 
       await notifyOwner({
         title: subject,
-        content: `Namn: ${input.name}\nE-post: ${input.email}\nOrg: ${input.org ?? "â€“"}\nSyfte: ${input.purpose ?? "â€“"}`,
+        content: `Namn: ${input.name}\nE-post: ${input.email}\nOrg: ${input.org ?? "–"}\nSyfte: ${input.purpose ?? "–"}`,
       }).catch(() => {});
 
       return { success: true };

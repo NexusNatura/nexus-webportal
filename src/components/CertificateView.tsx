@@ -1,6 +1,6 @@
 ﻿/**
- * NEXUS-OS â€“ CertificateView
- * Visuellt certifikat som visas nÃ¤r en kurs Ã¤r avklarad
+ * NEXUS-OS – CertificateView
+ * Visuellt certifikat som visas när en kurs är avklarad
  */
 
 import { useRef } from "react";
@@ -38,10 +38,10 @@ export default function CertificateView({
   const handleShare = () => {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(
-        `Jag har precis avslutat kursen "${courseName}" och fÃ¥tt certifieringen ${certAbbr} pÃ¥ Nexus-OS! ðŸŽ“ #CircularEconomy #ESPR #Nexus`
+        `Jag har precis avslutat kursen "${courseName}" och fått certifieringen ${certAbbr} på Nexus-OS! ðŸŽ“ #CircularEconomy #ESPR #Nexus`
       );
       toast.success("Delningstext kopierad!", {
-        description: "Klistra in pÃ¥ LinkedIn eller i ett e-postmeddelande.",
+        description: "Klistra in på LinkedIn eller i ett e-postmeddelande.",
       });
     }
   };
@@ -79,7 +79,7 @@ export default function CertificateView({
             Nexus-OS Â· Circular Excellence Program
           </p>
           <h1 className="font-display text-3xl font-bold mb-1 relative z-10">Certifikat</h1>
-          <p className="text-white/60 text-sm mb-6 relative z-10">fÃ¶r slutfÃ¶rd utbildning</p>
+          <p className="text-white/60 text-sm mb-6 relative z-10">för slutförd utbildning</p>
 
           <div className="bg-white/10 rounded-xl px-6 py-4 mb-6 relative z-10">
             <p className="text-white/60 text-xs mb-1">Tilldelat</p>
@@ -87,16 +87,16 @@ export default function CertificateView({
           </div>
 
           <p className="text-white/80 text-sm mb-2 relative z-10">
-            fÃ¶r framgÃ¥ngsrikt genomfÃ¶rande av
+            för framgångsrikt genomförande av
           </p>
           <p className="font-display text-xl font-bold text-white mb-1 relative z-10">{courseName}</p>
           <div className="inline-flex items-center gap-2 bg-[#b87333] text-white px-4 py-1.5 rounded-full text-sm font-bold mt-2 mb-6 relative z-10">
             <CheckCircle2 className="w-4 h-4" />
-            {certAbbr} â€“ {certName}
+            {certAbbr} – {certName}
           </div>
 
           <div className="flex items-center justify-center gap-6 text-xs text-white/50 relative z-10">
-            <span>UtfÃ¤rdat: {completedDate}</span>
+            <span>Utfärdat: {completedDate}</span>
             <span>Â·</span>
             <span>Nexus-OS Platform v2.0</span>
             <span>Â·</span>
@@ -113,7 +113,7 @@ export default function CertificateView({
             </p>
           </div>
           <p className="text-sm text-[var(--text-muted)] mb-5">
-            Ditt certifikat {certAbbr} Ã¤r nu aktivt. Det stÃ¤rker din trovÃ¤rdighet i ansÃ¶kningar till
+            Ditt certifikat {certAbbr} är nu aktivt. Det stärker din trovärdighet i ansökningar till
             Vinnova, Almi och EU-finansiering.
           </p>
           <div className="flex flex-wrap gap-3">
@@ -130,10 +130,10 @@ export default function CertificateView({
               onClick={handleShare}
             >
               <Share2 className="w-4 h-4" />
-              Dela pÃ¥ LinkedIn
+              Dela på LinkedIn
             </Button>
             <Button variant="ghost" onClick={onClose}>
-              StÃ¤ng
+              Stäng
             </Button>
           </div>
         </div>

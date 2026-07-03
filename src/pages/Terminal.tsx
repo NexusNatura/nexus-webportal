@@ -1,5 +1,5 @@
 ﻿/*
- * NEXUS-OS Terminal Page â€“ NexusCore v5.0 PowerShell Guide
+ * NEXUS-OS Terminal Page – NexusCore v5.0 PowerShell Guide
  * Design: Nordic Sustainability Intelligence
  */
 
@@ -10,18 +10,18 @@ import { toast } from "sonner";
 import { Terminal as TerminalIcon, Copy, CheckCircle2, Download, ChevronDown, ChevronRight } from "lucide-react";
 
 const commands = [
-  { cmd: "nexus 'version'", desc: "Visa version och systemstatus", output: "NexusCore v5.0 | WA-04: AKTIV | WA-06: InlÃ¤st" },
-  { cmd: "nexus 'status'", desc: "FullstÃ¤ndig systemhÃ¤lsa", output: "âœ“ Gemini API: Ansluten | SÃ¤kerhetsklass: 2 | 47 sessioner" },
-  { cmd: "nexus 'scan bidrag' -Profil 'Ditt FÃ¶retag'", desc: "AI-matchning mot 100+ EU-program", output: "â˜… Klimatklivet: 92% | â˜… Almi: 88% | â˜… Vinnova: 85%" },
+  { cmd: "nexus 'version'", desc: "Visa version och systemstatus", output: "NexusCore v5.0 | WA-04: AKTIV | WA-06: Inläst" },
+  { cmd: "nexus 'status'", desc: "Fullständig systemhälsa", output: "âœ“ Gemini API: Ansluten | Säkerhetsklass: 2 | 47 sessioner" },
+  { cmd: "nexus 'scan bidrag' -Profil 'Ditt Företag'", desc: "AI-matchning mot 100+ EU-program", output: "â˜… Klimatklivet: 92% | â˜… Almi: 88% | â˜… Vinnova: 85%" },
   { cmd: "nexus 'generate dpp' -Produkt 'Produktnamn'", desc: "Generera EU ESPR-kompatibelt DPP", output: "âœ“ DPP genererat: EU JSON-LD | LCA: 2.3 kg COâ‚‚e" },
-  { cmd: "nexus 'generate erasmus'", desc: "Generera Erasmus+ KA220-ansÃ¶kan", output: "âœ“ 7-sektioners ansÃ¶kan genererad med AI" },
+  { cmd: "nexus 'generate erasmus'", desc: "Generera Erasmus+ KA220-ansökan", output: "âœ“ 7-sektioners ansökan genererad med AI" },
   { cmd: "nexus 'generate dpia'", desc: "Generera GDPR DPIA-dokument", output: "âœ“ DPIA genererad: GDPR Art. 35-kompatibel" },
-  { cmd: "nexus 'symbiosis scan' -Region 'Skaraborg'", desc: "KartlÃ¤gg industriella symbiosflÃ¶den", output: "âœ“ 4 flÃ¶den hittade | COâ‚‚-besparing: 38.9 ton/Ã¥r" },
-  { cmd: "nexus 'improve erasmus'", desc: "AI-fÃ¶rbÃ¤ttra befintlig ansÃ¶kan", output: "âœ“ AnsÃ¶kan fÃ¶rbÃ¤ttrad i 3 iterationer" },
-  { cmd: "nexus 'open latest'", desc: "Ã–ppna senaste genererat dokument", output: "âœ“ Ã–ppnar i Notepad..." },
+  { cmd: "nexus 'symbiosis scan' -Region 'Skaraborg'", desc: "Kartlägg industriella symbiosflöden", output: "âœ“ 4 flöden hittade | COâ‚‚-besparing: 38.9 ton/år" },
+  { cmd: "nexus 'improve erasmus'", desc: "AI-förbättra befintlig ansökan", output: "âœ“ Ansökan förbättrad i 3 iterationer" },
+  { cmd: "nexus 'open latest'", desc: "Öppna senaste genererat dokument", output: "âœ“ Öppnar i Notepad..." },
   { cmd: "nexus 'wa04 status'", desc: "Visa Policy Gate-status", output: "WA-04: AKTIV | Klass: 2 | Auto-paus: AV" },
-  { cmd: "nexus 'log stats'", desc: "WA-06 inlÃ¤rningsstatistik", output: "OK: 89% | Refined: 8% | Rejected: 3% | Total: 47" },
-  { cmd: "nexus 'help'", desc: "Visa alla kommandon", output: "NexusCore v5.0 â€” Alla kommandon listade" },
+  { cmd: "nexus 'log stats'", desc: "WA-06 inlärningsstatistik", output: "OK: 89% | Refined: 8% | Rejected: 3% | Total: 47" },
+  { cmd: "nexus 'help'", desc: "Visa alla kommandon", output: "NexusCore v5.0 — Alla kommandon listade" },
 ];
 
 const installSteps = [
@@ -41,16 +41,16 @@ New-Item -ItemType Directory -Force -Path $ModulePath`,
   },
   {
     title: "Kopiera NexusCore_v5.psm1",
-    code: `# Ladda ner frÃ¥n Nexus-OS (eller klistra in koden)
+    code: `# Ladda ner från Nexus-OS (eller klistra in koden)
 # Spara filen som NexusCore.psm1 i modulkatalogen
 Copy-Item "NexusCore_v5.psm1" "$ModulePath\\NexusCore.psm1" -Force`,
   },
   {
     title: "Konfigurera Gemini API-nyckel",
-    code: `# SÃ¤tt din Gemini API-nyckel (hÃ¤mtas frÃ¥n Google AI Studio)
+    code: `# Sätt din Gemini API-nyckel (hämtas från Google AI Studio)
 [System.Environment]::SetEnvironmentVariable(
     "GOOGLE_API_KEY", 
-    "din-api-nyckel-hÃ¤r",
+    "din-api-nyckel-här",
     "User"
 )`,
   },
@@ -61,7 +61,7 @@ Import-Module "$ModulePath\\NexusCore.psm1" -Force
 
 # Verifiera installation
 nexus 'version'
-# FÃ¶rvÃ¤ntat: NexusCore v5.0 | WA-04: AKTIV`,
+# Förväntat: NexusCore v5.0 | WA-04: AKTIV`,
   },
 ];
 
@@ -78,7 +78,7 @@ export default function Terminal() {
   };
 
   return (
-    <Layout title="NexusCore Terminal" subtitle="PowerShell-agent v5.0 â€“ Installationsguide & Kommandoreferens">
+    <Layout title="NexusCore Terminal" subtitle="PowerShell-agent v5.0 – Installationsguide & Kommandoreferens">
       {/* Header */}
       <div className="bg-[oklch(0.22_0.07_155)] px-4 lg:px-8 py-6 border-b border-[oklch(0.30_0.07_155)]">
         <div className="flex flex-wrap items-center gap-4">
@@ -90,12 +90,12 @@ export default function Terminal() {
               NexusCore v5.0
             </h2>
             <p className="text-[oklch(0.65_0.05_155)] text-sm">
-              Senior AI-agent fÃ¶r EU-byrÃ¥krati Â· PowerShell 7.x Â· Gemini AI
+              Senior AI-agent för EU-byråkrati Â· PowerShell 7.x Â· Gemini AI
             </p>
           </div>
           <Button
             className="bg-[oklch(0.62_0.12_55)] text-white gap-2 border-0"
-            onClick={() => toast.info("Ladda ner NexusCore_v5.psm1 frÃ¥n Code-panelen")}
+            onClick={() => toast.info("Ladda ner NexusCore_v5.psm1 från Code-panelen")}
           >
             <Download className="w-4 h-4" />
             Ladda ner modul

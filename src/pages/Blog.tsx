@@ -1,6 +1,6 @@
 ﻿/**
- * NEXUS-OS â€“ Blogg
- * Listvy fÃ¶r alla blogginlÃ¤gg med featured-sektion och kategorier
+ * NEXUS-OS – Blogg
+ * Listvy för alla blogginlägg med featured-sektion och kategorier
  */
 import { Link } from "wouter";
 import Layout from "@/components/Layout";
@@ -27,10 +27,10 @@ function formatDate(dateStr: string): string {
 
 const CATEGORY_COLORS: Record<string, string> = {
   "AI & Reglering": "bg-[oklch(0.18_0.04_155)] text-[oklch(0.75_0.18_155)] border-[oklch(0.35_0.12_155)]",
-  "HÃ¥llbarhet & Reglering": "bg-[oklch(0.18_0.04_200)] text-[oklch(0.75_0.18_200)] border-[oklch(0.35_0.12_200)]",
+  "Hållbarhet & Reglering": "bg-[oklch(0.18_0.04_200)] text-[oklch(0.75_0.18_200)] border-[oklch(0.35_0.12_200)]",
   "Greenwashing & Integritet": "bg-[oklch(0.18_0.04_25)] text-[oklch(0.75_0.18_25)] border-[oklch(0.35_0.12_25)]",
-  "Upphandling & AffÃ¤rsutveckling": "bg-[oklch(0.18_0.04_55)] text-[oklch(0.75_0.18_55)] border-[oklch(0.35_0.12_55)]",
-  "CirkulÃ¤r Ekonomi": "bg-[oklch(0.18_0.04_130)] text-[oklch(0.75_0.18_130)] border-[oklch(0.35_0.12_130)]",
+  "Upphandling & Affärsutveckling": "bg-[oklch(0.18_0.04_55)] text-[oklch(0.75_0.18_55)] border-[oklch(0.35_0.12_55)]",
+  "Cirkulär Ekonomi": "bg-[oklch(0.18_0.04_130)] text-[oklch(0.75_0.18_130)] border-[oklch(0.35_0.12_130)]",
 };
 
 export default function Blog() {
@@ -44,10 +44,10 @@ export default function Blog() {
     setSeeding(true);
     try {
       const result = await seedMutation.mutateAsync();
-      toast.success(`${result.seeded} blogginlÃ¤gg seedade`);
+      toast.success(`${result.seeded} blogginlägg seedade`);
       await refetch();
     } catch (error) {
-      toast.error("Kunde inte seeda blogginlÃ¤gg");
+      toast.error("Kunde inte seeda blogginlägg");
       console.error(error);
     } finally {
       setSeeding(false);
@@ -69,10 +69,10 @@ export default function Blog() {
               </span>
             </div>
             <h1 className="text-4xl font-bold text-[oklch(0.92_0.04_155)] mb-4 leading-tight">
-              Djupanalys om AI, hÃ¥llbarhet<br />och EU-lagstiftning
+              Djupanalys om AI, hållbarhet<br />och EU-lagstiftning
             </h1>
             <p className="text-[oklch(0.65_0.06_155)] text-lg max-w-2xl">
-              Seniora perspektiv frÃ¥n fÃ¤ltet â€“ skrivet av Peter Johansson och Manus AI fÃ¶r tillverkare, upphandlare och hÃ¥llbarhetsansvariga som vill fÃ¶rstÃ¥ vad som hÃ¤nder nu.
+              Seniora perspektiv från fältet – skrivet av Peter Johansson och Manus AI för tillverkare, upphandlare och hållbarhetsansvariga som vill förstå vad som händer nu.
             </p>
             {allPosts.length === 0 && (
               <Button
@@ -82,7 +82,7 @@ export default function Blog() {
                 className="mt-4 bg-[oklch(0.65_0.18_155)] hover:bg-[oklch(0.72_0.18_155)] text-[oklch(0.08_0.01_155)]"
               >
                 {seeding ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : <Zap className="w-4 h-4 mr-2" />}
-                Seeda blogginlÃ¤gg
+                Seeda blogginlägg
               </Button>
             )}
           </div>
@@ -95,7 +95,7 @@ export default function Blog() {
             </div>
           )}
           {!isLoading && allPosts.length === 0 && (
-            <div className="text-center py-20 text-[oklch(0.55_0.06_155)]">Inga inlÃ¤gg hittades.</div>
+            <div className="text-center py-20 text-[oklch(0.55_0.06_155)]">Inga inlägg hittades.</div>
           )}
           {/* Featured posts */}
           {featured.length > 0 && (
@@ -103,7 +103,7 @@ export default function Blog() {
               <div className="flex items-center gap-2 mb-6">
                 <div className="w-1 h-5 bg-[oklch(0.65_0.18_155)] rounded-full" />
                 <span className="text-[oklch(0.65_0.18_155)] text-sm font-mono uppercase tracking-widest">
-                  Utvalda inlÃ¤gg
+                  Utvalda inlägg
                 </span>
               </div>
               <div className="grid md:grid-cols-2 gap-6">
@@ -144,7 +144,7 @@ export default function Blog() {
                             </div>
                           </div>
                           <div className="flex items-center gap-1 text-[oklch(0.55_0.12_155)] text-xs font-mono group-hover:text-[oklch(0.75_0.18_155)] transition-colors">
-                            LÃ¤s mer <ArrowRight className="w-3 h-3" />
+                            Läs mer <ArrowRight className="w-3 h-3" />
                           </div>
                         </div>
                       </div>
@@ -160,7 +160,7 @@ export default function Blog() {
             <div className="flex items-center gap-2 mb-6">
               <div className="w-1 h-5 bg-[oklch(0.55_0.1_200)] rounded-full" />
               <span className="text-[oklch(0.55_0.1_200)] text-sm font-mono uppercase tracking-widest">
-                Alla inlÃ¤gg
+                Alla inlägg
               </span>
             </div>
             <div className="space-y-4">
@@ -201,7 +201,7 @@ export default function Blog() {
                         </div>
                       </div>
                       <div className="flex-shrink-0 flex items-center gap-1 text-[oklch(0.5_0.1_155)] text-xs font-mono group-hover:text-[oklch(0.75_0.18_155)] transition-colors mt-1">
-                        LÃ¤s <ArrowRight className="w-3 h-3" />
+                        Läs <ArrowRight className="w-3 h-3" />
                       </div>
                     </div>
                   </article>
@@ -213,15 +213,15 @@ export default function Blog() {
           {/* CTA */}
           <div className="mt-16 border border-[oklch(0.25_0.08_155)] rounded-xl bg-[oklch(0.12_0.03_155)] p-8 text-center">
             <h3 className="text-xl font-bold text-[oklch(0.88_0.04_155)] mb-2">
-              Vill du bidra med ett inlÃ¤gg?
+              Vill du bidra med ett inlägg?
             </h3>
             <p className="text-[oklch(0.58_0.06_155)] text-sm mb-5 max-w-md mx-auto">
-              Vi vÃ¤lkomnar perspektiv frÃ¥n tillverkare, upphandlare, hÃ¥llbarhetsansvariga och jurister som arbetar med EU:s hÃ¥llbarhetslagstiftning i praktiken.
+              Vi välkomnar perspektiv från tillverkare, upphandlare, hållbarhetsansvariga och jurister som arbetar med EU:s hållbarhetslagstiftning i praktiken.
             </p>
             <Button
               variant="outline"
               className="border-[oklch(0.4_0.12_155)] text-[oklch(0.72_0.15_155)] hover:bg-[oklch(0.2_0.06_155)]"
-              onClick={() => window.open("mailto:peter@jerker-ai.se?subject=GÃ¤stinlÃ¤gg Nexus-OS Blogg", "_blank")}
+              onClick={() => window.open("mailto:peter@jerker-ai.se?subject=Gästinlägg Nexus-OS Blogg", "_blank")}
             >
               Kontakta oss
             </Button>

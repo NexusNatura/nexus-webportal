@@ -1,14 +1,14 @@
 ﻿/**
- * AgentBuilder â€“ Nexus-OS
+ * AgentBuilder – Nexus-OS
  * 5-step wizard for creating, configuring, EU AI Act-classifying and publishing agents
  * on the Nexus-OS Agent Marketplace.
  *
  * Steps:
- *  1. Grundinfo       â€“ name, slug, tagline, category, icon, color
- *  2. Kapabiliteter   â€“ description, capabilities, use cases, system prompt
- *  3. EU AI Act       â€“ AI-assisted risk classification (classifyRisk)
- *  4. PrissÃ¤ttning    â€“ pricing model, per-task price, monthly price
- *  5. FÃ¶rhandsvisning â€“ review all data, submit for review
+ *  1. Grundinfo       – name, slug, tagline, category, icon, color
+ *  2. Kapabiliteter   – description, capabilities, use cases, system prompt
+ *  3. EU AI Act       – AI-assisted risk classification (classifyRisk)
+ *  4. Prissättning    – pricing model, per-task price, monthly price
+ *  5. Förhandsvisning – review all data, submit for review
  */
 import { useState, useEffect, useCallback } from "react";
 import { useLocation } from "wouter";
@@ -84,7 +84,7 @@ const CATEGORIES: { value: Category; label: string; icon: React.ReactNode }[] = 
   { value: "dpp", label: "Digitalt Produktpass", icon: <FileText className="w-4 h-4" /> },
   { value: "symbiosis", label: "Industriell Symbios", icon: <Recycle className="w-4 h-4" /> },
   { value: "design", label: "Design & UX", icon: <Palette className="w-4 h-4" /> },
-  { value: "circular", label: "CirkulÃ¤r Ekonomi", icon: <TrendingUp className="w-4 h-4" /> },
+  { value: "circular", label: "Cirkulär Ekonomi", icon: <TrendingUp className="w-4 h-4" /> },
 ];
 
 const ICONS = [
@@ -100,8 +100,8 @@ const ICONS = [
 ];
 
 const ACCENT_COLORS = [
-  { value: "text-emerald-400", label: "GrÃ¶n", bg: "bg-emerald-400" },
-  { value: "text-blue-400", label: "BlÃ¥", bg: "bg-blue-400" },
+  { value: "text-emerald-400", label: "Grön", bg: "bg-emerald-400" },
+  { value: "text-blue-400", label: "Blå", bg: "bg-blue-400" },
   { value: "text-amber-400", label: "Gul", bg: "bg-amber-400" },
   { value: "text-purple-400", label: "Lila", bg: "bg-purple-400" },
   { value: "text-teal-400", label: "Teal", bg: "bg-teal-400" },
@@ -111,31 +111,31 @@ const ACCENT_COLORS = [
 ];
 
 const RISK_LABELS: Record<RiskClass, { label: string; color: string; desc: string }> = {
-  minimal: { label: "Minimal risk", color: "text-emerald-400 border-emerald-400/30 bg-emerald-400/10", desc: "Inga specifika EU AI Act-krav utÃ¶ver transparens." },
-  limited: { label: "BegrÃ¤nsad risk", color: "text-amber-400 border-amber-400/30 bg-amber-400/10", desc: "KrÃ¤ver transparensdeklaration (Art. 50) och grundlÃ¤ggande dokumentation." },
-  high: { label: "HÃ¶g risk", color: "text-rose-400 border-rose-400/30 bg-rose-400/10", desc: "KrÃ¤ver fullstÃ¤ndig riskbedÃ¶mning, DPIA, mÃ¤nsklig tillsyn (Art. 14) och CE-mÃ¤rkning." },
+  minimal: { label: "Minimal risk", color: "text-emerald-400 border-emerald-400/30 bg-emerald-400/10", desc: "Inga specifika EU AI Act-krav utöver transparens." },
+  limited: { label: "Begränsad risk", color: "text-amber-400 border-amber-400/30 bg-amber-400/10", desc: "Kräver transparensdeklaration (Art. 50) och grundläggande dokumentation." },
+  high: { label: "Hög risk", color: "text-rose-400 border-rose-400/30 bg-rose-400/10", desc: "Kräver fullständig riskbedömning, DPIA, mänsklig tillsyn (Art. 14) och CE-märkning." },
 };
 
 const SECURITY_LABELS: Record<SecurityLevel, string> = {
-  open: "Ã–ppen (inga restriktioner)",
-  standard: "Standard (grundlÃ¤ggande Ã¥tkomstkontroll)",
-  high_a: "HÃ¶g A (autentisering + loggning)",
-  high_b: "HÃ¶g B (fullstÃ¤ndig revision + HITL)",
+  open: "Öppen (inga restriktioner)",
+  standard: "Standard (grundläggande åtkomstkontroll)",
+  high_a: "Hög A (autentisering + loggning)",
+  high_b: "Hög B (fullständig revision + HITL)",
 };
 
 const STEPS = [
   { id: 1, label: "Grundinfo", icon: <Bot className="w-4 h-4" /> },
   { id: 2, label: "Kapabiliteter", icon: <Sparkles className="w-4 h-4" /> },
   { id: 3, label: "EU AI Act", icon: <Shield className="w-4 h-4" /> },
-  { id: 4, label: "PrissÃ¤ttning", icon: <DollarSign className="w-4 h-4" /> },
-  { id: 5, label: "FÃ¶rhandsvisning", icon: <Eye className="w-4 h-4" /> },
+  { id: 4, label: "Prissättning", icon: <DollarSign className="w-4 h-4" /> },
+  { id: 5, label: "Förhandsvisning", icon: <Eye className="w-4 h-4" /> },
 ];
 
 // â”€â”€â”€ Helper: auto-generate slug â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function toSlug(name: string): string {
   return name
     .toLowerCase()
-    .replace(/Ã¥/g, "a").replace(/Ã¤/g, "a").replace(/Ã¶/g, "o")
+    .replace(/å/g, "a").replace(/ä/g, "a").replace(/ö/g, "o")
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "")
     .slice(0, 64);
@@ -168,7 +168,7 @@ export default function AgentBuilder() {
     if (!user || draftId) return;
     createDraft.mutate(undefined, {
       onSuccess: (res) => setDraftId(res.draftId),
-      onError: () => toast.error("Kunde inte skapa utkast. FÃ¶rsÃ¶k igen."),
+      onError: () => toast.error("Kunde inte skapa utkast. Försök igen."),
     });
   }, [user]);
 
@@ -196,7 +196,7 @@ export default function AgentBuilder() {
 
   const handleClassifyRisk = async () => {
     if (!data.name || !data.description || !data.category) {
-      toast.error("Fyll i namn, beskrivning och kategori i steg 1 och 2 fÃ¶rst.");
+      toast.error("Fyll i namn, beskrivning och kategori i steg 1 och 2 först.");
       return;
     }
     try {
@@ -216,7 +216,7 @@ export default function AgentBuilder() {
       }));
       toast.success("EU AI Act-klassificering klar!");
     } catch {
-      toast.error("Klassificering misslyckades. FÃ¶rsÃ¶k igen.");
+      toast.error("Klassificering misslyckades. Försök igen.");
     }
   };
 
@@ -225,10 +225,10 @@ export default function AgentBuilder() {
     try {
       await updateDraft.mutateAsync({ draftId, step: 5, data });
       const result = await submitForReview.mutateAsync({ draftId });
-      toast.success(`Agenten "${data.name}" har skickats in fÃ¶r granskning!`);
+      toast.success(`Agenten "${data.name}" har skickats in för granskning!`);
       navigate(`/agenter`);
     } catch (e: unknown) {
-      toast.error(e instanceof Error ? e.message : "InlÃ¤mning misslyckades.");
+      toast.error(e instanceof Error ? e.message : "Inlämning misslyckades.");
     }
   };
 
@@ -251,9 +251,9 @@ export default function AgentBuilder() {
             <Bot className="w-8 h-8 text-emerald-400" />
           </div>
           <div className="text-center">
-            <h2 className="text-2xl font-bold text-white mb-2">Logga in fÃ¶r att skapa agenter</h2>
+            <h2 className="text-2xl font-bold text-white mb-2">Logga in för att skapa agenter</h2>
             <p className="text-[oklch(0.65_0.02_240)] max-w-md">
-              Du behÃ¶ver ett Nexus-OS-konto fÃ¶r att publicera agenter pÃ¥ marknaden.
+              Du behöver ett Nexus-OS-konto för att publicera agenter på marknaden.
             </p>
           </div>
           <Button
@@ -280,7 +280,7 @@ export default function AgentBuilder() {
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-white">Skapa ny agent</h1>
-                <p className="text-sm text-[oklch(0.55_0.02_240)]">Publicera pÃ¥ Nexus-OS Agentmarknaden</p>
+                <p className="text-sm text-[oklch(0.55_0.02_240)]">Publicera på Nexus-OS Agentmarknaden</p>
               </div>
             </div>
           </div>
@@ -320,7 +320,7 @@ export default function AgentBuilder() {
               <CardHeader>
                 <CardTitle className="text-white flex items-center gap-2">
                   <Bot className="w-5 h-5 text-emerald-400" />
-                  Steg 1 â€“ Grundinformation
+                  Steg 1 – Grundinformation
                 </CardTitle>
                 <p className="text-sm text-[oklch(0.55_0.02_240)]">
                   Definiera agentens identitet och kategori.
@@ -355,7 +355,7 @@ export default function AgentBuilder() {
                     className="bg-[oklch(0.15_0.01_240)] border-[oklch(0.22_0.02_240)] text-white font-mono text-sm"
                   />
                   <p className="text-xs text-[oklch(0.45_0.02_240)] mt-1">
-                    AnvÃ¤nds i URL: /agenter/{data.slug || "din-agent"}
+                    Används i URL: /agenter/{data.slug || "din-agent"}
                   </p>
                 </div>
 
@@ -367,7 +367,7 @@ export default function AgentBuilder() {
                   <Input
                     value={data.tagline ?? ""}
                     onChange={(e) => updateField("tagline", e.target.value)}
-                    placeholder="En mening som beskriver vad agenten gÃ¶r"
+                    placeholder="En mening som beskriver vad agenten gör"
                     maxLength={256}
                     className="bg-[oklch(0.15_0.01_240)] border-[oklch(0.22_0.02_240)] text-white"
                   />
@@ -420,7 +420,7 @@ export default function AgentBuilder() {
 
                 {/* Accent color */}
                 <div>
-                  <label className="text-sm font-medium text-[oklch(0.75_0.02_240)] mb-2 block">AccentfÃ¤rg</label>
+                  <label className="text-sm font-medium text-[oklch(0.75_0.02_240)] mb-2 block">Accentfärg</label>
                   <div className="flex flex-wrap gap-2">
                     {ACCENT_COLORS.map((color) => (
                       <button
@@ -443,7 +443,7 @@ export default function AgentBuilder() {
                   <Button
                     onClick={() => {
                       if (!data.name || !data.slug || !data.tagline || !data.category) {
-                        toast.error("Fyll i alla obligatoriska fÃ¤lt (*).");
+                        toast.error("Fyll i alla obligatoriska fält (*).");
                         return;
                       }
                       saveAndAdvance(2);
@@ -452,7 +452,7 @@ export default function AgentBuilder() {
                     disabled={updateDraft.isPending}
                   >
                     {updateDraft.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
-                    NÃ¤sta steg <ChevronRight className="w-4 h-4" />
+                    Nästa steg <ChevronRight className="w-4 h-4" />
                   </Button>
                 </div>
               </CardContent>
@@ -465,22 +465,22 @@ export default function AgentBuilder() {
               <CardHeader>
                 <CardTitle className="text-white flex items-center gap-2">
                   <Sparkles className="w-5 h-5 text-emerald-400" />
-                  Steg 2 â€“ Kapabiliteter & Systemprompt
+                  Steg 2 – Kapabiliteter & Systemprompt
                 </CardTitle>
                 <p className="text-sm text-[oklch(0.55_0.02_240)]">
-                  Beskriv vad agenten kan gÃ¶ra och hur den Ã¤r konfigurerad.
+                  Beskriv vad agenten kan göra och hur den är konfigurerad.
                 </p>
               </CardHeader>
               <CardContent className="space-y-5">
                 {/* Description */}
                 <div>
                   <label className="text-sm font-medium text-[oklch(0.75_0.02_240)] mb-1.5 block">
-                    FullstÃ¤ndig beskrivning <span className="text-rose-400">*</span>
+                    Fullständig beskrivning <span className="text-rose-400">*</span>
                   </label>
                   <Textarea
                     value={data.description ?? ""}
                     onChange={(e) => updateField("description", e.target.value)}
-                    placeholder="Beskriv vad agenten gÃ¶r, vilka problem den lÃ¶ser och fÃ¶r vem den Ã¤r avsedd..."
+                    placeholder="Beskriv vad agenten gör, vilka problem den löser och för vem den är avsedd..."
                     rows={4}
                     className="bg-[oklch(0.15_0.01_240)] border-[oklch(0.22_0.02_240)] text-white resize-none"
                   />
@@ -545,7 +545,7 @@ export default function AgentBuilder() {
                 {/* Use cases */}
                 <div>
                   <label className="text-sm font-medium text-[oklch(0.75_0.02_240)] mb-1.5 block">
-                    AnvÃ¤ndningsfall
+                    Användningsfall
                   </label>
                   <div className="flex gap-2 mb-2">
                     <Input
@@ -607,25 +607,25 @@ export default function AgentBuilder() {
                   <Textarea
                     value={data.systemPrompt ?? ""}
                     onChange={(e) => updateField("systemPrompt", e.target.value)}
-                    placeholder="Du Ã¤r en expert pÃ¥... Din uppgift Ã¤r att... Du ska alltid..."
+                    placeholder="Du är en expert på... Din uppgift är att... Du ska alltid..."
                     rows={5}
                     className="bg-[oklch(0.15_0.01_240)] border-[oklch(0.22_0.02_240)] text-white font-mono text-sm resize-none"
                   />
                   <p className="text-xs text-[oklch(0.45_0.02_240)] mt-1">
-                    Systemprompt Ã¤r krypterad och visas aldrig fÃ¶r kÃ¶pare.
+                    Systemprompt är krypterad och visas aldrig för köpare.
                   </p>
                 </div>
 
                 {/* Training notes */}
                 <div>
                   <label className="text-sm font-medium text-[oklch(0.75_0.02_240)] mb-1.5 block">
-                    TrÃ¤ningsanteckningar
+                    Träningsanteckningar
                     <span className="text-[oklch(0.45_0.02_240)] font-normal ml-2">(valfritt)</span>
                   </label>
                   <Textarea
                     value={data.trainingNotes ?? ""}
                     onChange={(e) => updateField("trainingNotes", e.target.value)}
-                    placeholder="Beskriv trÃ¤ningsdata, domÃ¤nkunskap, begrÃ¤nsningar..."
+                    placeholder="Beskriv träningsdata, domänkunskap, begränsningar..."
                     rows={3}
                     className="bg-[oklch(0.15_0.01_240)] border-[oklch(0.22_0.02_240)] text-white resize-none"
                   />
@@ -642,7 +642,7 @@ export default function AgentBuilder() {
                   <Button
                     onClick={() => {
                       if (!data.description) {
-                        toast.error("LÃ¤gg till en beskrivning.");
+                        toast.error("Lägg till en beskrivning.");
                         return;
                       }
                       saveAndAdvance(3);
@@ -651,7 +651,7 @@ export default function AgentBuilder() {
                     disabled={updateDraft.isPending}
                   >
                     {updateDraft.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
-                    NÃ¤sta steg <ChevronRight className="w-4 h-4" />
+                    Nästa steg <ChevronRight className="w-4 h-4" />
                   </Button>
                 </div>
               </CardContent>
@@ -664,11 +664,11 @@ export default function AgentBuilder() {
               <CardHeader>
                 <CardTitle className="text-white flex items-center gap-2">
                   <Shield className="w-5 h-5 text-blue-400" />
-                  Steg 3 â€“ EU AI Act-klassificering
+                  Steg 3 – EU AI Act-klassificering
                 </CardTitle>
                 <p className="text-sm text-[oklch(0.55_0.02_240)]">
-                  Alla agenter pÃ¥ Nexus-OS Ã¤r EU AI Act-kompatibla vid leverans.
-                  LÃ¥t AI klassificera din agent automatiskt.
+                  Alla agenter på Nexus-OS är EU AI Act-kompatibla vid leverans.
+                  Låt AI klassificera din agent automatiskt.
                 </p>
               </CardHeader>
               <CardContent className="space-y-5">
@@ -680,8 +680,8 @@ export default function AgentBuilder() {
                     <div className="flex-1">
                       <p className="text-sm font-medium text-blue-400 mb-1">AI-assisterad klassificering</p>
                       <p className="text-xs text-[oklch(0.55_0.02_240)] mb-3">
-                        Nexus-OS AI analyserar din agent mot EU AI Act (2024/1689) och fÃ¶reslÃ¥r
-                        riskklass, sÃ¤kerhetsnivÃ¥ och relevanta artiklar.
+                        Nexus-OS AI analyserar din agent mot EU AI Act (2024/1689) och föreslår
+                        riskklass, säkerhetsnivå och relevanta artiklar.
                       </p>
                       <Button
                         onClick={handleClassifyRisk}
@@ -769,7 +769,7 @@ export default function AgentBuilder() {
                       </div>
                     </div>
                     <div>
-                      <label className="text-xs text-[oklch(0.55_0.02_240)] mb-1.5 block">SÃ¤kerhetsnivÃ¥</label>
+                      <label className="text-xs text-[oklch(0.55_0.02_240)] mb-1.5 block">Säkerhetsnivå</label>
                       <div className="space-y-1.5">
                         {(["open", "standard", "high_a", "high_b"] as SecurityLevel[]).map((sl) => (
                           <button
@@ -801,7 +801,7 @@ export default function AgentBuilder() {
                   <Button
                     onClick={() => {
                       if (!data.riskClass || !data.securityLevel) {
-                        toast.error("Klassificera agenten (automatiskt eller manuellt) innan du fortsÃ¤tter.");
+                        toast.error("Klassificera agenten (automatiskt eller manuellt) innan du fortsätter.");
                         return;
                       }
                       saveAndAdvance(4);
@@ -810,23 +810,23 @@ export default function AgentBuilder() {
                     disabled={updateDraft.isPending}
                   >
                     {updateDraft.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
-                    NÃ¤sta steg <ChevronRight className="w-4 h-4" />
+                    Nästa steg <ChevronRight className="w-4 h-4" />
                   </Button>
                 </div>
               </CardContent>
             </Card>
           )}
 
-          {/* â”€â”€ STEP 4: PrissÃ¤ttning â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+          {/* â”€â”€ STEP 4: Prissättning â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
           {currentStep === 4 && (
             <Card className="bg-[oklch(0.12_0.01_240)] border-[oklch(0.2_0.02_240)]">
               <CardHeader>
                 <CardTitle className="text-white flex items-center gap-2">
                   <DollarSign className="w-5 h-5 text-amber-400" />
-                  Steg 4 â€“ PrissÃ¤ttning
+                  Steg 4 – Prissättning
                 </CardTitle>
                 <p className="text-sm text-[oklch(0.55_0.02_240)]">
-                  VÃ¤lj prismodell och sÃ¤tt priser i SEK. Nexus-OS tar 20% provision.
+                  Välj prismodell och sätt priser i SEK. Nexus-OS tar 20% provision.
                 </p>
               </CardHeader>
               <CardContent className="space-y-5">
@@ -838,9 +838,9 @@ export default function AgentBuilder() {
                   </label>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                     {([
-                      { value: "per_task", label: "Per uppgift", desc: "Kunden betalar per kÃ¶rning" },
-                      { value: "monthly", label: "MÃ¥nadsabonnemang", desc: "ObegrÃ¤nsad anvÃ¤ndning" },
-                      { value: "both", label: "BÃ¥da", desc: "Kunden vÃ¤ljer modell" },
+                      { value: "per_task", label: "Per uppgift", desc: "Kunden betalar per körning" },
+                      { value: "monthly", label: "Månadsabonnemang", desc: "Obegränsad användning" },
+                      { value: "both", label: "Båda", desc: "Kunden väljer modell" },
                     ] as { value: PricingModel; label: string; desc: string }[]).map((pm) => (
                       <button
                         key={pm.value}
@@ -878,7 +878,7 @@ export default function AgentBuilder() {
                       <span className="text-sm text-[oklch(0.55_0.02_240)]">SEK</span>
                       {data.pricePerTaskOre ? (
                         <span className="text-xs text-[oklch(0.45_0.02_240)]">
-                          Du fÃ¥r: {((data.pricePerTaskOre * 0.8) / 100).toFixed(0)} SEK
+                          Du får: {((data.pricePerTaskOre * 0.8) / 100).toFixed(0)} SEK
                         </span>
                       ) : null}
                     </div>
@@ -889,7 +889,7 @@ export default function AgentBuilder() {
                 {(data.pricingModel === "monthly" || data.pricingModel === "both") && (
                   <div>
                     <label className="text-sm font-medium text-[oklch(0.75_0.02_240)] mb-1.5 block">
-                      MÃ¥nadsabonnemang (SEK/mÃ¥n) <span className="text-rose-400">*</span>
+                      Månadsabonnemang (SEK/mån) <span className="text-rose-400">*</span>
                     </label>
                     <div className="flex items-center gap-3">
                       <Input
@@ -902,10 +902,10 @@ export default function AgentBuilder() {
                         placeholder="1200"
                         className="bg-[oklch(0.15_0.01_240)] border-[oklch(0.22_0.02_240)] text-white max-w-[180px]"
                       />
-                      <span className="text-sm text-[oklch(0.55_0.02_240)]">SEK/mÃ¥n</span>
+                      <span className="text-sm text-[oklch(0.55_0.02_240)]">SEK/mån</span>
                       {data.priceMonthlyOre ? (
                         <span className="text-xs text-[oklch(0.45_0.02_240)]">
-                          Du fÃ¥r: {((data.priceMonthlyOre * 0.8) / 100).toFixed(0)} SEK/mÃ¥n
+                          Du får: {((data.priceMonthlyOre * 0.8) / 100).toFixed(0)} SEK/mån
                         </span>
                       ) : null}
                     </div>
@@ -916,7 +916,7 @@ export default function AgentBuilder() {
                 <div className="grid grid-cols-2 gap-4">
                   <div>
                     <label className="text-sm font-medium text-[oklch(0.75_0.02_240)] mb-1.5 block">
-                      Benchmark-poÃ¤ng (0â€“100)
+                      Benchmark-poäng (0–100)
                       <span className="text-[oklch(0.45_0.02_240)] font-normal ml-1">(valfritt)</span>
                     </label>
                     <Input
@@ -953,7 +953,7 @@ export default function AgentBuilder() {
                 <div className="p-3 rounded-lg border border-amber-400/20 bg-amber-400/5 flex items-start gap-2">
                   <Info className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
                   <p className="text-xs text-[oklch(0.6_0.02_240)]">
-                    Nexus-OS tar 20% provision pÃ¥ alla fÃ¶rsÃ¤ljningar. Utbetalning sker mÃ¥nadsvis via Stripe Connect.
+                    Nexus-OS tar 20% provision på alla försäljningar. Utbetalning sker månadsvis via Stripe Connect.
                     Minimiutbetalning: 500 SEK.
                   </p>
                 </div>
@@ -969,7 +969,7 @@ export default function AgentBuilder() {
                   <Button
                     onClick={() => {
                       if (!data.pricingModel) {
-                        toast.error("VÃ¤lj en prismodell.");
+                        toast.error("Välj en prismodell.");
                         return;
                       }
                       if (
@@ -983,7 +983,7 @@ export default function AgentBuilder() {
                         (data.pricingModel === "monthly" || data.pricingModel === "both") &&
                         !data.priceMonthlyOre
                       ) {
-                        toast.error("Ange mÃ¥nadsabonnemangspris.");
+                        toast.error("Ange månadsabonnemangspris.");
                         return;
                       }
                       saveAndAdvance(5);
@@ -992,14 +992,14 @@ export default function AgentBuilder() {
                     disabled={updateDraft.isPending}
                   >
                     {updateDraft.isPending ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
-                    FÃ¶rhandsvisning <ChevronRight className="w-4 h-4" />
+                    Förhandsvisning <ChevronRight className="w-4 h-4" />
                   </Button>
                 </div>
               </CardContent>
             </Card>
           )}
 
-          {/* â”€â”€ STEP 5: FÃ¶rhandsvisning â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
+          {/* â”€â”€ STEP 5: Förhandsvisning â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */}
           {currentStep === 5 && (
             <div className="space-y-4">
               {/* Preview card */}
@@ -1008,11 +1008,11 @@ export default function AgentBuilder() {
                 <CardHeader>
                   <CardTitle className="text-white flex items-center gap-2">
                     <Eye className="w-5 h-5 text-emerald-400" />
-                    Steg 5 â€“ FÃ¶rhandsvisning & Publicering
+                    Steg 5 – Förhandsvisning & Publicering
                   </CardTitle>
                   <p className="text-sm text-[oklch(0.55_0.02_240)]">
-                    Granska din agent innan du skickar in fÃ¶r granskning. Nexus-OS-teamet godkÃ¤nner
-                    agenter inom 24â€“48 timmar.
+                    Granska din agent innan du skickar in för granskning. Nexus-OS-teamet godkänner
+                    agenter inom 24–48 timmar.
                   </p>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -1032,7 +1032,7 @@ export default function AgentBuilder() {
                             </Badge>
                           )}
                           <Badge variant="outline" className="text-xs border-amber-400/30 text-amber-400 bg-amber-400/5">
-                            VÃ¤ntar pÃ¥ granskning
+                            Väntar på granskning
                           </Badge>
                         </div>
                         <p className="text-sm text-[oklch(0.6_0.02_240)] mb-3">{data.tagline || "Tagline"}</p>
@@ -1062,7 +1062,7 @@ export default function AgentBuilder() {
                         )}
                         {data.priceMonthlyOre && (
                           <span className="font-semibold text-white">
-                            {(data.priceMonthlyOre / 100).toLocaleString("sv-SE")} SEK/mÃ¥n
+                            {(data.priceMonthlyOre / 100).toLocaleString("sv-SE")} SEK/mån
                           </span>
                         )}
                       </div>
@@ -1077,16 +1077,16 @@ export default function AgentBuilder() {
                     {[
                       { label: "Slug", value: data.slug },
                       { label: "Kategori", value: CATEGORIES.find((c) => c.value === data.category)?.label },
-                      { label: "Riskklass", value: data.riskClass ? RISK_LABELS[data.riskClass].label : "â€“" },
-                      { label: "SÃ¤kerhetsnivÃ¥", value: data.securityLevel ? SECURITY_LABELS[data.securityLevel] : "â€“" },
+                      { label: "Riskklass", value: data.riskClass ? RISK_LABELS[data.riskClass].label : "–" },
+                      { label: "Säkerhetsnivå", value: data.securityLevel ? SECURITY_LABELS[data.securityLevel] : "–" },
                       { label: "Prismodell", value: data.pricingModel },
                       { label: "Kapabiliteter", value: `${(data.capabilities ?? []).length} st` },
-                      { label: "AnvÃ¤ndningsfall", value: `${(data.useCases ?? []).length} st` },
+                      { label: "Användningsfall", value: `${(data.useCases ?? []).length} st` },
                       { label: "Systemprompt", value: data.systemPrompt ? "Ja (krypterad)" : "Nej" },
                     ].map((row) => (
                       <div key={row.label} className="flex flex-col gap-0.5">
                         <span className="text-xs text-[oklch(0.45_0.02_240)]">{row.label}</span>
-                        <span className="text-sm text-white font-medium">{row.value ?? "â€“"}</span>
+                        <span className="text-sm text-white font-medium">{row.value ?? "–"}</span>
                       </div>
                     ))}
                   </div>
@@ -1095,8 +1095,8 @@ export default function AgentBuilder() {
                   <div className="p-3 rounded-lg border border-amber-400/20 bg-amber-400/5 flex items-start gap-2">
                     <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
                     <p className="text-xs text-[oklch(0.6_0.02_240)]">
-                      NÃ¤r du skickar in agenten granskas den av Nexus-OS-teamet. Du fÃ¥r ett meddelande
-                      nÃ¤r agenten Ã¤r godkÃ¤nd och publicerad pÃ¥ marknaden. Granskning tar 24â€“48 timmar.
+                      När du skickar in agenten granskas den av Nexus-OS-teamet. Du får ett meddelande
+                      när agenten är godkänd och publicerad på marknaden. Granskning tar 24–48 timmar.
                     </p>
                   </div>
 
@@ -1118,7 +1118,7 @@ export default function AgentBuilder() {
                       ) : (
                         <Check className="w-4 h-4" />
                       )}
-                      {submitForReview.isPending ? "Skickar in..." : "Skicka in fÃ¶r granskning"}
+                      {submitForReview.isPending ? "Skickar in..." : "Skicka in för granskning"}
                     </Button>
                   </div>
                 </CardContent>

@@ -1,5 +1,5 @@
 ﻿/**
- * AgentCommunity Router â€“ Educational Platform for Agent Creators
+ * AgentCommunity Router – Educational Platform for Agent Creators
  * Handles courses, lessons, quizzes, logic puzzles, and certifications
  */
 import { z } from "zod";

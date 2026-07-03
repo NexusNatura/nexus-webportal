@@ -94,13 +94,13 @@ const INITIAL_DATA: WizardData = {
 };
 
 const CHEMISTRY_LABELS: Record<Chemistry, string> = {
-  li_nmc: "Li-NMC â€“ Litium Nickel Mangan Kobolt",
-  li_lco: "Li-LCO â€“ Litium Koboltoxid",
-  li_lfp: "Li-LFP â€“ Litium JÃ¤rnfosfat",
-  li_nca: "Li-NCA â€“ Litium Nickel Kobolt Aluminium",
-  li_lto: "Li-LTO â€“ Litium Titanatoxid",
-  nimh: "NiMH â€“ Nickel Metallhydrid",
-  nicd: "NiCd â€“ Nickel Kadmium",
+  li_nmc: "Li-NMC – Litium Nickel Mangan Kobolt",
+  li_lco: "Li-LCO – Litium Koboltoxid",
+  li_lfp: "Li-LFP – Litium Järnfosfat",
+  li_nca: "Li-NCA – Litium Nickel Kobolt Aluminium",
+  li_lto: "Li-LTO – Litium Titanatoxid",
+  nimh: "NiMH – Nickel Metallhydrid",
+  nicd: "NiCd – Nickel Kadmium",
   lead_acid: "Bly-syra (Lead-Acid)",
   sodium: "Natrium-jon (Sodium-Ion)",
   other: "Annan kemi",
@@ -108,17 +108,17 @@ const CHEMISTRY_LABELS: Record<Chemistry, string> = {
 
 const CATEGORY_LABELS: Record<BatteryCategory, string> = {
   portable: "Portabelt batteri (< 5 kg)",
-  light_means: "LÃ¤tt transportmedel (e-cykel, elscooter)",
+  light_means: "Lätt transportmedel (e-cykel, elscooter)",
   ev: "Elfordon (EV-batteri)",
   industrial: "Industriellt batteri (â‰¥ 2 kWh)",
-  sli: "SLI â€“ Start/Belysning/TÃ¤ndning",
+  sli: "SLI – Start/Belysning/Tändning",
 };
 
 const STEPS = [
   { id: 1, label: "Grunddata", icon: Battery, color: "text-cyan-400" },
   { id: 2, label: "Batterikemi", icon: Zap, color: "text-yellow-400" },
   { id: 3, label: "Karbonfotavtryck", icon: Leaf, color: "text-green-400" },
-  { id: 4, label: "Ã…tervunnet innehÃ¥ll", icon: Recycle, color: "text-emerald-400" },
+  { id: 4, label: "Återvunnet innehåll", icon: Recycle, color: "text-emerald-400" },
   { id: 5, label: "Demontering", icon: Wrench, color: "text-orange-400" },
   { id: 6, label: "End-of-Life", icon: Trash2, color: "text-red-400" },
 ];
@@ -185,9 +185,9 @@ export default function BatteryPassportBuilder() {
   const [currentStep, setCurrentStep] = useState(1);
   const [data, setData] = useState<WizardData>(INITIAL_DATA);
   const [dismantlingSteps, setDismantlingSteps] = useState<DismantlingStep[]>([
-    { step: 1, title: "SÃ¤kerhetskontroll", description: "Kontrollera att batteriet Ã¤r urladdat till < 20% SOC", tool: "Multimeter", warning: "Risk fÃ¶r elektrisk stÃ¶t vid > 20% SOC" },
-    { step: 2, title: "Demontera hÃ¶lje", description: "Skruva loss hÃ¶ljet med T10 Torx-skruvar", tool: "T10 Torx-skruvmejsel", warning: "" },
-    { step: 3, title: "Koppla loss celler", description: "Koppla loss cellerna frÃ¥n BMS-kortet i rÃ¤tt ordning", tool: "Isolerade tÃ¤nger", warning: "Kortslut aldrig cellerna" },
+    { step: 1, title: "Säkerhetskontroll", description: "Kontrollera att batteriet är urladdat till < 20% SOC", tool: "Multimeter", warning: "Risk för elektrisk stöt vid > 20% SOC" },
+    { step: 2, title: "Demontera hölje", description: "Skruva loss höljet med T10 Torx-skruvar", tool: "T10 Torx-skruvmejsel", warning: "" },
+    { step: 3, title: "Koppla loss celler", description: "Koppla loss cellerna från BMS-kortet i rätt ordning", tool: "Isolerade tänger", warning: "Kortslut aldrig cellerna" },
   ]);
   const [passportId, setPassportId] = useState<string | null>(null);
   const [showJsonLd, setShowJsonLd] = useState(false);
@@ -211,7 +211,7 @@ export default function BatteryPassportBuilder() {
     try {
       if (currentStep === 1) {
         if (!data.manufacturerName || !data.serialNumber || !data.batteryCategory) {
-          toast.error("Fyll i obligatoriska fÃ¤lt: Tillverkare, Serienummer och Batterikategori");
+          toast.error("Fyll i obligatoriska fält: Tillverkare, Serienummer och Batterikategori");
           return;
         }
         if (!passportId) {
@@ -241,7 +241,7 @@ export default function BatteryPassportBuilder() {
           const result = await generateJsonLd.mutateAsync({ passportId: Number(passportId) });
           setJsonLdData(true);
           setJsonLdString(JSON.stringify(result.jsonLd, null, 2));
-          toast.success("Batteripass komplett â€“ JSON-LD genererat!");
+          toast.success("Batteripass komplett – JSON-LD genererat!");
           setCurrentStep(7);
           return;
         }
@@ -251,7 +251,7 @@ export default function BatteryPassportBuilder() {
       }
       setCurrentStep(prev => prev + 1);
     } catch (err) {
-      toast.error("Fel vid sparning â€“ fÃ¶rsÃ¶k igen");
+      toast.error("Fel vid sparning – försök igen");
       console.error(err);
     }
   };
@@ -260,7 +260,7 @@ export default function BatteryPassportBuilder() {
     if (!passportId) return;
     try {
       await publishMutation.mutateAsync({ passportId: Number(passportId) });
-      toast.success("Batteripasset Ã¤r publicerat!");
+      toast.success("Batteripasset är publicerat!");
       navigate("/battery-passports");
     } catch {
       toast.error("Publicering misslyckades");
@@ -270,12 +270,12 @@ export default function BatteryPassportBuilder() {
   const handleAnalyzeGaps = async () => {
     if (!passportId) return;
     try {
-      setAiAnalysis("Analyserar batteripasset fÃ¶r saknade datapunkter...");
+      setAiAnalysis("Analyserar batteripasset för saknade datapunkter...");
       const gaps = [];
-      if (!data.carbonFootprintKgCo2eKwh) gaps.push("Karbonfotavtryck saknas (obligatoriskt frÃ¥n 2025)");
-      if (!data.recycledLithiumPct) gaps.push("Ã…tervunnet litium % saknas");
-      if (!data.expectedLifecycleCycles) gaps.push("FÃ¶rvÃ¤ntad livscykel saknas");
-      const analysis = gaps.length > 0 ? gaps.join("\n") : "Alla obligatoriska fÃ¤lt Ã¤r ifyllda!";
+      if (!data.carbonFootprintKgCo2eKwh) gaps.push("Karbonfotavtryck saknas (obligatoriskt från 2025)");
+      if (!data.recycledLithiumPct) gaps.push("Återvunnet litium % saknas");
+      if (!data.expectedLifecycleCycles) gaps.push("Förväntad livscykel saknas");
+      const analysis = gaps.length > 0 ? gaps.join("\n") : "Alla obligatoriska fält är ifyllda!";
       setAiAnalysis(analysis);
     } catch {
       toast.error("AI-analys misslyckades");
@@ -308,7 +308,7 @@ export default function BatteryPassportBuilder() {
               </div>
               <div>
                 <h1 className="text-lg font-bold text-white">BatteryPassport Builder</h1>
-                <p className="text-xs text-slate-400">EU BatterifÃ¶rordning 2023/1542 Â· Annex XIII</p>
+                <p className="text-xs text-slate-400">EU Batteriförordning 2023/1542 Â· Annex XIII</p>
               </div>
             </div>
             {passportId && (
@@ -357,7 +357,7 @@ export default function BatteryPassportBuilder() {
           {currentStep === 1 && (
             <div className="space-y-6">
               <div>
-                <h2 className="text-xl font-bold text-white mb-1">Steg 1 â€“ Grunddata</h2>
+                <h2 className="text-xl font-bold text-white mb-1">Steg 1 – Grunddata</h2>
                 <p className="text-sm text-slate-400">Obligatoriska identifieringsuppgifter enligt Artikel 38 och Annex XIII, del A.</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -371,13 +371,13 @@ export default function BatteryPassportBuilder() {
                 </FieldGroup>
                 <FieldGroup label="Tillverkare" required>
                   <Input value={data.manufacturerName} onChange={e => set("manufacturerName")(e.target.value)}
-                    placeholder="FÃ¶retagsnamn" className="bg-slate-800 border-slate-700 text-slate-100" />
+                    placeholder="Företagsnamn" className="bg-slate-800 border-slate-700 text-slate-100" />
                 </FieldGroup>
                 <FieldGroup label="Tillverkningsland">
                   <Input value={data.manufacturerCountry} onChange={e => set("manufacturerCountry")(e.target.value)}
                     placeholder="SE" className="bg-slate-800 border-slate-700 text-slate-100" />
                 </FieldGroup>
-                <FieldGroup label="Batterikategori" required hint="AvgÃ¶r vilka krav som gÃ¤ller">
+                <FieldGroup label="Batterikategori" required hint="Avgör vilka krav som gäller">
                   <SelectField value={data.batteryCategory} onChange={v => set("batteryCategory")(v)}
                     options={Object.entries(CATEGORY_LABELS).map(([k, v]) => ({ value: k, label: v }))} />
                 </FieldGroup>
@@ -409,27 +409,27 @@ export default function BatteryPassportBuilder() {
           {currentStep === 2 && (
             <div className="space-y-6">
               <div>
-                <h2 className="text-xl font-bold text-white mb-1">Steg 2 â€“ Batterikemi & Elektriska egenskaper</h2>
-                <p className="text-sm text-slate-400">Tekniska specifikationer enligt Annex XIII, del B. Obligatoriska fÃ¶r industriella och EV-batterier.</p>
+                <h2 className="text-xl font-bold text-white mb-1">Steg 2 – Batterikemi & Elektriska egenskaper</h2>
+                <p className="text-sm text-slate-400">Tekniska specifikationer enligt Annex XIII, del B. Obligatoriska för industriella och EV-batterier.</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <FieldGroup label="Batterikemi" required hint="VÃ¤lj den dominerande cellkemin">
+                <FieldGroup label="Batterikemi" required hint="Välj den dominerande cellkemin">
                   <SelectField value={data.chemistry} onChange={v => set("chemistry")(v)}
                     options={Object.entries(CHEMISTRY_LABELS).map(([k, v]) => ({ value: k, label: v }))} />
                 </FieldGroup>
-                <FieldGroup label="Nominell kapacitet" hint="StandardvÃ¤rde vid 25Â°C">
+                <FieldGroup label="Nominell kapacitet" hint="Standardvärde vid 25Â°C">
                   <NumericInput value={data.nominalCapacityAh} onChange={set("nominalCapacityAh")} placeholder="0.0" unit="Ah" />
                 </FieldGroup>
-                <FieldGroup label="Nominell spÃ¤nning">
+                <FieldGroup label="Nominell spänning">
                   <NumericInput value={data.nominalVoltageV} onChange={set("nominalVoltageV")} placeholder="0.0" unit="V" />
                 </FieldGroup>
-                <FieldGroup label="Energikapacitet" hint="Obligatorisk fÃ¶r EV och industriella">
+                <FieldGroup label="Energikapacitet" hint="Obligatorisk för EV och industriella">
                   <NumericInput value={data.energyCapacityKwh} onChange={set("energyCapacityKwh")} placeholder="0.0" unit="kWh" />
                 </FieldGroup>
-                <FieldGroup label="EnergitÃ¤thet">
+                <FieldGroup label="Energitäthet">
                   <NumericInput value={data.energyDensityWhKg} onChange={set("energyDensityWhKg")} placeholder="0.0" unit="Wh/kg" />
                 </FieldGroup>
-                <FieldGroup label="EffekttÃ¤thet">
+                <FieldGroup label="Effekttäthet">
                   <NumericInput value={data.powerDensityWKg} onChange={set("powerDensityWKg")} placeholder="0.0" unit="W/kg" />
                 </FieldGroup>
                 <FieldGroup label="Temperaturintervall (min)">
@@ -438,11 +438,11 @@ export default function BatteryPassportBuilder() {
                 <FieldGroup label="Temperaturintervall (max)">
                   <NumericInput value={data.temperatureRangeMax} onChange={set("temperatureRangeMax")} placeholder="60" unit="Â°C" />
                 </FieldGroup>
-                <FieldGroup label="FÃ¶rvÃ¤ntad livslÃ¤ngd (cykler)" hint="Antal laddningscykler till 80% kapacitet">
+                <FieldGroup label="Förväntad livslängd (cykler)" hint="Antal laddningscykler till 80% kapacitet">
                   <NumericInput value={data.expectedLifecycleCycles} onChange={set("expectedLifecycleCycles")} placeholder="500" unit="cykler" />
                 </FieldGroup>
-                <FieldGroup label="FÃ¶rvÃ¤ntad livslÃ¤ngd (Ã¥r)">
-                  <NumericInput value={data.expectedLifetimeYears} onChange={set("expectedLifetimeYears")} placeholder="10" unit="Ã¥r" />
+                <FieldGroup label="Förväntad livslängd (år)">
+                  <NumericInput value={data.expectedLifetimeYears} onChange={set("expectedLifetimeYears")} placeholder="10" unit="år" />
                 </FieldGroup>
               </div>
             </div>
@@ -452,20 +452,20 @@ export default function BatteryPassportBuilder() {
           {currentStep === 3 && (
             <div className="space-y-6">
               <div>
-                <h2 className="text-xl font-bold text-white mb-1">Steg 3 â€“ Karbonfotavtryck</h2>
-                <p className="text-sm text-slate-400">Obligatoriskt frÃ¥n 2025 fÃ¶r EV-batterier och industriella batterier â‰¥ 2 kWh (Artikel 7).</p>
+                <h2 className="text-xl font-bold text-white mb-1">Steg 3 – Karbonfotavtryck</h2>
+                <p className="text-sm text-slate-400">Obligatoriskt från 2025 för EV-batterier och industriella batterier â‰¥ 2 kWh (Artikel 7).</p>
               </div>
               <div className="p-4 rounded-lg border border-amber-500/20 bg-amber-500/5 flex gap-3">
                 <AlertTriangle className="w-4 h-4 text-amber-400 flex-shrink-0 mt-0.5" />
                 <div className="text-sm text-amber-200">
-                  <strong>TrÃ¶skelvÃ¤rden 2025:</strong> EV-batterier mÃ¥ste deklarera karbonfotavtryck. FrÃ¥n 2027 gÃ¤ller prestandaklasser (Aâ€“E). Tredjepartsverifiering krÃ¤vs fÃ¶r klass Aâ€“C.
+                  <strong>Tröskelvärden 2025:</strong> EV-batterier måste deklarera karbonfotavtryck. Från 2027 gäller prestandaklasser (A–E). Tredjepartsverifiering krävs för klass A–C.
                 </div>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <FieldGroup label="Karbonfotavtryck" hint="Total klimatpÃ¥verkan per kWh batterikapacitet">
+                <FieldGroup label="Karbonfotavtryck" hint="Total klimatpåverkan per kWh batterikapacitet">
                   <NumericInput value={data.carbonFootprintKgCo2eKwh} onChange={set("carbonFootprintKgCo2eKwh")} placeholder="0.0" unit="kg COâ‚‚e/kWh" />
                 </FieldGroup>
-                <FieldGroup label="SystemgrÃ¤ns" hint="Vilken del av livscykeln ingÃ¥r?">
+                <FieldGroup label="Systemgräns" hint="Vilken del av livscykeln ingår?">
                   <SelectField value={data.carbonFootprintSystemBoundary} onChange={v => set("carbonFootprintSystemBoundary")(v)}
                     options={[
                       { value: "cradle_to_gate", label: "Vagga till grind (Cradle-to-Gate)" },
@@ -473,11 +473,11 @@ export default function BatteryPassportBuilder() {
                       { value: "gate_to_gate", label: "Grind till grind (Gate-to-Gate)" },
                     ]} />
                 </FieldGroup>
-                <FieldGroup label="BerÃ¤kningsmetod" hint="T.ex. ISO 14067, GHG Protocol, EN 50693">
+                <FieldGroup label="Beräkningsmetod" hint="T.ex. ISO 14067, GHG Protocol, EN 50693">
                   <Input value={data.carbonFootprintVerificationMethod} onChange={e => set("carbonFootprintVerificationMethod")(e.target.value)}
                     placeholder="ISO 14067:2018" className="bg-slate-800 border-slate-700 text-slate-100" />
                 </FieldGroup>
-                <FieldGroup label="Tredjepartsverifierare" hint="Ackrediterat organ som verifierat berÃ¤kningen">
+                <FieldGroup label="Tredjepartsverifierare" hint="Ackrediterat organ som verifierat beräkningen">
                   <Input value={data.carbonFootprintThirdPartyVerifier} onChange={e => set("carbonFootprintThirdPartyVerifier")(e.target.value)}
                     placeholder="T.ex. Bureau Veritas, SGS, DNV" className="bg-slate-800 border-slate-700 text-slate-100" />
                 </FieldGroup>
@@ -485,12 +485,12 @@ export default function BatteryPassportBuilder() {
             </div>
           )}
 
-          {/* â”€â”€ Step 4: Ã…tervunnet innehÃ¥ll â”€â”€ */}
+          {/* â”€â”€ Step 4: Återvunnet innehåll â”€â”€ */}
           {currentStep === 4 && (
             <div className="space-y-6">
               <div>
-                <h2 className="text-xl font-bold text-white mb-1">Steg 4 â€“ Ã…tervunnet innehÃ¥ll</h2>
-                <p className="text-sm text-slate-400">Minimikrav pÃ¥ Ã¥tervunnet material (Artikel 8). GÃ¤ller industriella batterier och EV-batterier.</p>
+                <h2 className="text-xl font-bold text-white mb-1">Steg 4 – Återvunnet innehåll</h2>
+                <p className="text-sm text-slate-400">Minimikrav på återvunnet material (Artikel 8). Gäller industriella batterier och EV-batterier.</p>
               </div>
               <div className="p-4 rounded-lg border border-cyan-500/20 bg-cyan-500/5">
                 <p className="text-xs text-cyan-300 font-medium mb-2">Minimikrav 2030 (Artikel 8.4):</p>
@@ -503,17 +503,17 @@ export default function BatteryPassportBuilder() {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 {[
-                  { field: "recycledCobaltPct" as const, label: "Ã…tervunnet kobolt (Co)", target: "16% (2030)" },
-                  { field: "recycledLithiumPct" as const, label: "Ã…tervunnet litium (Li)", target: "6% (2030)" },
-                  { field: "recycledNickelPct" as const, label: "Ã…tervunnet nickel (Ni)", target: "6% (2030)" },
-                  { field: "recycledLeadPct" as const, label: "Ã…tervunnet bly (Pb)", target: "85% (2030)" },
-                  { field: "recycledManganesePct" as const, label: "Ã…tervunnet mangan (Mn)", target: "Rekommenderat" },
+                  { field: "recycledCobaltPct" as const, label: "Återvunnet kobolt (Co)", target: "16% (2030)" },
+                  { field: "recycledLithiumPct" as const, label: "Återvunnet litium (Li)", target: "6% (2030)" },
+                  { field: "recycledNickelPct" as const, label: "Återvunnet nickel (Ni)", target: "6% (2030)" },
+                  { field: "recycledLeadPct" as const, label: "Återvunnet bly (Pb)", target: "85% (2030)" },
+                  { field: "recycledManganesePct" as const, label: "Återvunnet mangan (Mn)", target: "Rekommenderat" },
                 ].map(({ field, label, target }) => (
-                  <FieldGroup key={field} label={label} hint={`MÃ¥l: ${target}`}>
+                  <FieldGroup key={field} label={label} hint={`Mål: ${target}`}>
                     <NumericInput value={data[field]} onChange={set(field)} placeholder="0.0" unit="%" />
                   </FieldGroup>
                 ))}
-                <FieldGroup label="Verifierare" hint="Organisation som verifierat Ã¥tervunnet innehÃ¥ll">
+                <FieldGroup label="Verifierare" hint="Organisation som verifierat återvunnet innehåll">
                   <Input value={data.recycledContentVerifier} onChange={e => set("recycledContentVerifier")(e.target.value)}
                     placeholder="T.ex. Revac Sverige AB, Bureau Veritas" className="bg-slate-800 border-slate-700 text-slate-100" />
                 </FieldGroup>
@@ -530,8 +530,8 @@ export default function BatteryPassportBuilder() {
           {currentStep === 5 && (
             <div className="space-y-6">
               <div>
-                <h2 className="text-xl font-bold text-white mb-1">Steg 5 â€“ Demonteringsanvisningar</h2>
-                <p className="text-sm text-slate-400">Obligatoriska reparations- och demonteringsanvisningar (Artikel 11). MÃ¥ste vara tillgÃ¤ngliga fÃ¶r auktoriserade reparatÃ¶rer.</p>
+                <h2 className="text-xl font-bold text-white mb-1">Steg 5 – Demonteringsanvisningar</h2>
+                <p className="text-sm text-slate-400">Obligatoriska reparations- och demonteringsanvisningar (Artikel 11). Måste vara tillgängliga för auktoriserade reparatörer.</p>
               </div>
               <div className="space-y-3">
                 {dismantlingSteps.map((step, idx) => (
@@ -556,30 +556,30 @@ export default function BatteryPassportBuilder() {
                         <Input value={step.description} onChange={e => updateDismantlingStep(idx, "description", e.target.value)}
                           placeholder="Detaljerad instruktion" className="bg-slate-900 border-slate-600 text-slate-100 h-8 text-sm" />
                       </FieldGroup>
-                      <FieldGroup label="SÃ¤kerhetsvarning">
+                      <FieldGroup label="Säkerhetsvarning">
                         <Input value={step.warning} onChange={e => updateDismantlingStep(idx, "warning", e.target.value)}
-                          placeholder="Risk fÃ¶r..." className="bg-slate-900 border-slate-600 text-slate-100 h-8 text-sm" />
+                          placeholder="Risk för..." className="bg-slate-900 border-slate-600 text-slate-100 h-8 text-sm" />
                       </FieldGroup>
                     </div>
                   </div>
                 ))}
                 <button onClick={addDismantlingStep}
                   className="w-full py-2 border border-dashed border-slate-600 rounded-lg text-sm text-slate-400 hover:text-slate-200 hover:border-slate-500 transition-colors flex items-center justify-center gap-2">
-                  <Plus className="w-4 h-4" /> LÃ¤gg till demonteringssteg
+                  <Plus className="w-4 h-4" /> Lägg till demonteringssteg
                 </button>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <FieldGroup label="Erforderliga verktyg (sammanfattning)">
                   <Textarea value={data.requiredTools} onChange={e => set("requiredTools")(e.target.value)}
-                    placeholder="Lista alla verktyg som krÃ¤vs" rows={3}
+                    placeholder="Lista alla verktyg som krävs" rows={3}
                     className="bg-slate-800 border-slate-700 text-slate-100 resize-none" />
                 </FieldGroup>
-                <FieldGroup label="SÃ¤kerhetsvarningar (sammanfattning)">
+                <FieldGroup label="Säkerhetsvarningar (sammanfattning)">
                   <Textarea value={data.safetyWarnings} onChange={e => set("safetyWarnings")(e.target.value)}
-                    placeholder="Ã–vergripande sÃ¤kerhetsinstruktioner" rows={3}
+                    placeholder="Övergripande säkerhetsinstruktioner" rows={3}
                     className="bg-slate-800 border-slate-700 text-slate-100 resize-none" />
                 </FieldGroup>
-                <FieldGroup label="LÃ¤nk till servicedokumentation" hint="URL till fullstÃ¤ndig teknisk dokumentation">
+                <FieldGroup label="Länk till servicedokumentation" hint="URL till fullständig teknisk dokumentation">
                   <Input value={data.serviceDocumentationUrl} onChange={e => set("serviceDocumentationUrl")(e.target.value)}
                     placeholder="https://" className="bg-slate-800 border-slate-700 text-slate-100" />
                 </FieldGroup>
@@ -591,27 +591,27 @@ export default function BatteryPassportBuilder() {
           {currentStep === 6 && (
             <div className="space-y-6">
               <div>
-                <h2 className="text-xl font-bold text-white mb-1">Steg 6 â€“ End-of-Life & Insamling</h2>
-                <p className="text-sm text-slate-400">Insamlings- och Ã¥tervinningsinformation (Artikel 60-61). Revac Sverige AB Ã¤r fÃ¶rifyllt som godkÃ¤nd Ã¥tervinnare.</p>
+                <h2 className="text-xl font-bold text-white mb-1">Steg 6 – End-of-Life & Insamling</h2>
+                <p className="text-sm text-slate-400">Insamlings- och återvinningsinformation (Artikel 60-61). Revac Sverige AB är förifyllt som godkänd återvinnare.</p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                 <FieldGroup label="Insamlingsansvarig (PRO)" hint="Producer Responsibility Organisation">
                   <Input value={data.collectionScheme} onChange={e => set("collectionScheme")(e.target.value)}
                     placeholder="Batterikretsen" className="bg-slate-800 border-slate-700 text-slate-100" />
                 </FieldGroup>
-                <FieldGroup label="Insamlingspunkt (URL)" hint="LÃ¤nk till nÃ¤rmaste insamlingsstation">
+                <FieldGroup label="Insamlingspunkt (URL)" hint="Länk till närmaste insamlingsstation">
                   <Input value={data.collectionPointUrl} onChange={e => set("collectionPointUrl")(e.target.value)}
                     placeholder="https://batterikretsen.se/hitta-insamling" className="bg-slate-800 border-slate-700 text-slate-100" />
                 </FieldGroup>
-                <FieldGroup label="GodkÃ¤nd Ã¥tervinnare" hint="Auktoriserat Ã¥tervinningsfÃ¶retag">
+                <FieldGroup label="Godkänd återvinnare" hint="Auktoriserat återvinningsföretag">
                   <Input value={data.approvedRecycler} onChange={e => set("approvedRecycler")(e.target.value)}
                     placeholder="Revac Sverige AB" className="bg-slate-800 border-slate-700 text-slate-100" />
                 </FieldGroup>
-                <FieldGroup label="Ã…tervinnarens certifiering" hint="T.ex. ISO 14001, R2v3, e-Stewards">
+                <FieldGroup label="Återvinnarens certifiering" hint="T.ex. ISO 14001, R2v3, e-Stewards">
                   <Input value={data.approvedRecyclerCertification} onChange={e => set("approvedRecyclerCertification")(e.target.value)}
                     placeholder="ISO 14001" className="bg-slate-800 border-slate-700 text-slate-100" />
                 </FieldGroup>
-                <FieldGroup label="Revac anlÃ¤ggningskod" hint="Specifik anlÃ¤ggning fÃ¶r spÃ¥rbarhet">
+                <FieldGroup label="Revac anläggningskod" hint="Specifik anläggning för spårbarhet">
                   <Input value={data.revacFacilityCode} onChange={e => set("revacFacilityCode")(e.target.value)}
                     placeholder="REVAC-SE-KAT-001" className="bg-slate-800 border-slate-700 text-slate-100" />
                 </FieldGroup>
@@ -619,7 +619,7 @@ export default function BatteryPassportBuilder() {
               <div className="p-4 rounded-lg border border-green-500/20 bg-green-500/5 flex gap-3">
                 <Info className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
                 <div className="text-sm text-green-200">
-                  <strong>Revac-integration:</strong> AnlÃ¤ggningskoden kopplar batteripasset direkt till Revacs materialflÃ¶dessystem (MFI), vilket mÃ¶jliggÃ¶r automatisk spÃ¥rning av Ã¥tervinningsmÃ¥l och CSRD-rapportering.
+                  <strong>Revac-integration:</strong> Anläggningskoden kopplar batteripasset direkt till Revacs materialflödessystem (MFI), vilket möjliggör automatisk spårning av återvinningsmål och CSRD-rapportering.
                 </div>
               </div>
             </div>
@@ -630,7 +630,7 @@ export default function BatteryPassportBuilder() {
             <div className="space-y-6">
               <div>
                 <h2 className="text-xl font-bold text-white mb-1">Granska & Publicera</h2>
-                <p className="text-sm text-slate-400">Batteripasset Ã¤r komplett. Granska JSON-LD-dokumentet och publicera fÃ¶r EU-registrering.</p>
+                <p className="text-sm text-slate-400">Batteripasset är komplett. Granska JSON-LD-dokumentet och publicera för EU-registrering.</p>
               </div>
 
               {/* Summary Card */}
@@ -659,7 +659,7 @@ export default function BatteryPassportBuilder() {
                   </div>
                   <div className="bg-slate-800/50 rounded-lg p-3">
                     <p className="text-xs text-slate-400 mb-1">Karbonfotavtryck</p>
-                    <p className="text-slate-200 font-medium">{data.carbonFootprintKgCo2eKwh || "â€“"} kg COâ‚‚e/kWh</p>
+                    <p className="text-slate-200 font-medium">{data.carbonFootprintKgCo2eKwh || "–"} kg COâ‚‚e/kWh</p>
                   </div>
                 </div>
               </div>
@@ -681,7 +681,7 @@ export default function BatteryPassportBuilder() {
                 {aiAnalysis ? (
                   <div className="text-sm text-slate-300 whitespace-pre-wrap leading-relaxed">{aiAnalysis}</div>
                 ) : (
-                  <p className="text-sm text-slate-500">Klicka pÃ¥ "Analysera gap" fÃ¶r att lÃ¥ta DPP-Delta identifiera saknade datapunkter och ge handlingsbara rekommendationer.</p>
+                  <p className="text-sm text-slate-500">Klicka på "Analysera gap" för att låta DPP-Delta identifiera saknade datapunkter och ge handlingsbara rekommendationer.</p>
                 )}
               </div>
 
@@ -692,12 +692,12 @@ export default function BatteryPassportBuilder() {
                     <div className="flex items-center gap-2">
                       <FileJson className="w-4 h-4 text-cyan-400" />
                       <span className="font-medium text-slate-200">JSON-LD Dokument</span>
-                      <Badge className="bg-cyan-500/10 text-cyan-400 border-cyan-500/20 text-xs">EU BatterifÃ¶rordning 2023/1542</Badge>
+                      <Badge className="bg-cyan-500/10 text-cyan-400 border-cyan-500/20 text-xs">EU Batteriförordning 2023/1542</Badge>
                     </div>
                     <button onClick={() => setShowJsonLd(!showJsonLd)}
                       className="flex items-center gap-1.5 text-xs text-slate-400 hover:text-slate-200 transition-colors">
                       <Eye className="w-3.5 h-3.5" />
-                      {showJsonLd ? "DÃ¶lj" : "Visa"} JSON-LD
+                      {showJsonLd ? "Dölj" : "Visa"} JSON-LD
                     </button>
                   </div>
                   {showJsonLd && (
@@ -729,13 +729,13 @@ export default function BatteryPassportBuilder() {
               <Button variant="outline" onClick={() => setCurrentStep(prev => prev - 1)}
                 disabled={currentStep === 1}
                 className="border-slate-700 text-slate-300 hover:bg-slate-800">
-                <ChevronLeft className="w-4 h-4 mr-1" /> FÃ¶regÃ¥ende
+                <ChevronLeft className="w-4 h-4 mr-1" /> Föregående
               </Button>
               <span className="text-xs text-slate-500">Steg {currentStep} av 6</span>
               <Button onClick={handleNext} disabled={isLoading}
                 className="bg-cyan-600 hover:bg-cyan-500 text-white">
                 {isLoading ? <Loader2 className="w-4 h-4 animate-spin mr-2" /> : null}
-                {currentStep === 6 ? "Generera JSON-LD" : "NÃ¤sta"}
+                {currentStep === 6 ? "Generera JSON-LD" : "Nästa"}
                 {!isLoading && currentStep < 6 && <ChevronRight className="w-4 h-4 ml-1" />}
               </Button>
             </div>

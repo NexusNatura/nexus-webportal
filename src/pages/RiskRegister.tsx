@@ -1,6 +1,6 @@
 ﻿/**
- * RiskRegister â€“ EU AI Act Artikel 9
- * Interaktivt riskregister med statushantering och riskpoÃ¤ng
+ * RiskRegister – EU AI Act Artikel 9
+ * Interaktivt riskregister med statushantering och riskpoäng
  */
 
 import { useState } from "react";
@@ -22,9 +22,9 @@ import {
 import { Link } from "wouter";
 
 const riskLevelLabel: Record<string, string> = {
-  low: "LÃ¥g",
+  low: "Låg",
   medium: "Medel",
-  high: "HÃ¶g",
+  high: "Hög",
   critical: "Kritisk",
 };
 
@@ -37,7 +37,7 @@ const riskLevelStyle: Record<string, string> = {
 
 const statusOptions = [
   { value: "identified", label: "Identifierad", color: "text-slate-400" },
-  { value: "in_progress", label: "PÃ¥gÃ¥r", color: "text-blue-400" },
+  { value: "in_progress", label: "Pågår", color: "text-blue-400" },
   { value: "mitigated", label: "Mitigerad", color: "text-amber-400" },
   { value: "verified", label: "Verifierad", color: "text-emerald-400" },
   { value: "accepted", label: "Accepterad", color: "text-purple-400" },
@@ -47,9 +47,9 @@ const categoryLabel: Record<string, string> = {
   data_quality: "Datakvalitet",
   model_accuracy: "Modellnoggrannhet",
   transparency: "Transparens",
-  human_oversight: "MÃ¤nsklig tillsyn",
-  security: "SÃ¤kerhet",
-  fundamental_rights: "GrundlÃ¤ggande rÃ¤ttigheter",
+  human_oversight: "Mänsklig tillsyn",
+  security: "Säkerhet",
+  fundamental_rights: "Grundläggande rättigheter",
   operational: "Operationell",
 };
 
@@ -86,9 +86,9 @@ export default function RiskRegister() {
     try {
       await seedRisks.mutateAsync();
       await refetch();
-      toast.success("5 fÃ¶rdefinierade risker inlÃ¤sta frÃ¥n EU AI Act-analysen");
+      toast.success("5 fördefinierade risker inlästa från EU AI Act-analysen");
     } catch {
-      toast.error("Kunde inte lÃ¤sa in seed-data");
+      toast.error("Kunde inte läsa in seed-data");
     } finally {
       setSeeding(false);
     }
@@ -97,7 +97,7 @@ export default function RiskRegister() {
   const handleExportPDF = async () => {
     try {
       const doc = {
-        title: "Riskregister â€“ EU AI Act Artikel 9",
+        title: "Riskregister – EU AI Act Artikel 9",
         date: new Date().toISOString().split('T')[0],
         totalRisks: risks.length,
         risks: sortedRisks.map(r => ({
@@ -131,7 +131,7 @@ export default function RiskRegister() {
             </style>
           </head>
           <body>
-            <h1>Riskregister â€“ EU AI Act Artikel 9</h1>
+            <h1>Riskregister – EU AI Act Artikel 9</h1>
             <p><strong>Datum:</strong> ${doc.date}</p>
             <p><strong>Totalt antal risker:</strong> ${doc.totalRisks}</p>
             <table>
@@ -142,7 +142,7 @@ export default function RiskRegister() {
                   <th>Kategori</th>
                   <th>Sannolikhet</th>
                   <th>Konsekvens</th>
-                  <th>PoÃ¤ng</th>
+                  <th>Poäng</th>
                   <th>Status</th>
                   <th>Mitigeringsplan</th>
                 </tr>
@@ -228,19 +228,19 @@ export default function RiskRegister() {
                 variant="outline"
               >
                 {seeding ? <RefreshCw className="w-4 h-4 animate-spin mr-2" /> : <Zap className="w-4 h-4 mr-2" />}
-                LÃ¤s in fÃ¶rdefinierade risker
+                Läs in fördefinierade risker
               </Button>
             )}
           </div>
         </div>
 
-        {/* FÃ¶rklaring */}
+        {/* Förklaring */}
         <div className="flex items-start gap-2 p-3 bg-orange-950/20 border border-orange-500/20 rounded-lg mb-6 mt-4">
           <Shield className="w-4 h-4 text-orange-400 flex-shrink-0 mt-0.5" />
           <p className="text-xs text-orange-200/70">
             Riskregistret dokumenterar identifierade risker i enlighet med EU AI Act Artikel 9.
-            Varje risk bedÃ¶ms efter sannolikhet (1â€“5) och konsekvens (1â€“5). RiskpoÃ¤ng = sannolikhet Ã— konsekvens.
-            Risker med poÃ¤ng â‰¥9 krÃ¤ver aktiv mitigeringsplan.
+            Varje risk bedöms efter sannolikhet (1–5) och konsekvens (1–5). Riskpoäng = sannolikhet Ã— konsekvens.
+            Risker med poäng â‰¥9 kräver aktiv mitigeringsplan.
           </p>
         </div>
 
@@ -248,8 +248,8 @@ export default function RiskRegister() {
         {sortedRisks.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 text-center">
             <AlertTriangle className="w-12 h-12 text-slate-700 mb-4" />
-            <p className="text-slate-400 mb-2">Inga risker dokumenterade Ã¤nnu</p>
-            <p className="text-sm text-slate-600">Klicka "LÃ¤s in fÃ¶rdefinierade risker" fÃ¶r att komma igÃ¥ng</p>
+            <p className="text-slate-400 mb-2">Inga risker dokumenterade ännu</p>
+            <p className="text-sm text-slate-600">Klicka "Läs in fördefinierade risker" för att komma igång</p>
           </div>
         ) : (
           <div className="space-y-3">
@@ -310,17 +310,17 @@ export default function RiskRegister() {
                           <p className="text-sm text-slate-300 leading-relaxed">{risk.existingControls ?? "Inga kontroller dokumenterade"}</p>
                         </div>
                         <div>
-                          <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">MitigeringsÃ¥tgÃ¤rd</h4>
-                          <p className="text-sm text-slate-300 leading-relaxed">{risk.mitigationAction ?? "Ingen Ã¥tgÃ¤rd planerad"}</p>
+                          <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Mitigeringsåtgärd</h4>
+                          <p className="text-sm text-slate-300 leading-relaxed">{risk.mitigationAction ?? "Ingen åtgärd planerad"}</p>
                         </div>
                         <div className="flex flex-col gap-2">
                           <div>
                             <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">EU AI Act-artikel</h4>
-                            <Badge variant="outline" className="text-xs border-amber-500/40 text-amber-400">{risk.euAiActArticle ?? "â€“"}</Badge>
+                            <Badge variant="outline" className="text-xs border-amber-500/40 text-amber-400">{risk.euAiActArticle ?? "–"}</Badge>
                           </div>
                           {risk.residualRisk && (
                             <div>
-                              <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">KvarstÃ¥ende risk</h4>
+                              <h4 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-1">Kvarstående risk</h4>
                               <Badge variant="outline" className={`text-xs border ${riskLevelStyle[risk.residualRisk]}`}>
                                 {riskLevelLabel[risk.residualRisk]}
                               </Badge>

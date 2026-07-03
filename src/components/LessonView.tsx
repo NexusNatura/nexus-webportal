@@ -1,6 +1,6 @@
 ﻿/**
- * NEXUS-OS â€“ LessonView
- * Interaktivt lektionslÃ¤ge med lÃ¤svy, nyckelbegrepp, quiz och AI-assistent
+ * NEXUS-OS – LessonView
+ * Interaktivt lektionsläge med läsvy, nyckelbegrepp, quiz och AI-assistent
  */
 
 import { useState, useRef, useEffect } from "react";
@@ -47,7 +47,7 @@ export default function LessonView({
   const [chatMessages, setChatMessages] = useState<ChatMsg[]>([
     {
       role: "assistant",
-      text: `Hej! Jag Ã¤r din kursassistent fÃ¶r "${lesson.title}". StÃ¤ll gÃ¤rna frÃ¥gor om innehÃ¥llet i denna lektion.`,
+      text: `Hej! Jag är din kursassistent för "${lesson.title}". Ställ gärna frågor om innehållet i denna lektion.`,
     },
   ]);
   const [chatInput, setChatInput] = useState("");
@@ -60,7 +60,7 @@ export default function LessonView({
     onError: () => {
       setChatMessages((prev) => [
         ...prev,
-        { role: "assistant", text: "TyvÃ¤rr kunde jag inte svara just nu. FÃ¶rsÃ¶k igen." },
+        { role: "assistant", text: "Tyvärr kunde jag inte svara just nu. Försök igen." },
       ]);
     },
   });
@@ -77,7 +77,7 @@ export default function LessonView({
     setChatMessages([
       {
         role: "assistant",
-        text: `Hej! Jag Ã¤r din kursassistent fÃ¶r "${lesson.title}". StÃ¤ll gÃ¤rna frÃ¥gor om innehÃ¥llet i denna lektion.`,
+        text: `Hej! Jag är din kursassistent för "${lesson.title}". Ställ gärna frågor om innehållet i denna lektion.`,
       },
     ]);
   }, [lesson.id]);
@@ -90,7 +90,7 @@ export default function LessonView({
   const handleSubmitQuiz = () => {
     const unanswered = lesson.quiz.filter((q) => quizAnswers[q.id] == null);
     if (unanswered.length > 0) {
-      toast.error(`Svara pÃ¥ alla ${lesson.quiz.length} frÃ¥gor innan du lÃ¤mnar in.`);
+      toast.error(`Svara på alla ${lesson.quiz.length} frågor innan du lämnar in.`);
       return;
     }
     setQuizSubmitted(true);
@@ -98,7 +98,7 @@ export default function LessonView({
       setTimeout(() => {
         onComplete(lesson.id);
         toast.success("Lektion avklarad! ðŸŽ‰", {
-          description: `Du fick ${quizScore}/${lesson.quiz.length} rÃ¤tt.`,
+          description: `Du fick ${quizScore}/${lesson.quiz.length} rätt.`,
         });
       }, 500);
     }
@@ -112,7 +112,7 @@ export default function LessonView({
     agentChatMutation.mutate({
       agentId: "gwd-alpha",
       message: userText,
-      context: `Du Ã¤r en kursassistent fÃ¶r Nexus-OS utbildningsplattform. Lektionen heter "${lesson.title}". KursinnehÃ¥ll: ${lesson.intro} ${lesson.sections.map((s) => s.heading + ": " + s.body).join(" ")}. Svara pÃ¥ svenska, pedagogiskt och koncist.`,
+      context: `Du är en kursassistent för Nexus-OS utbildningsplattform. Lektionen heter "${lesson.title}". Kursinnehåll: ${lesson.intro} ${lesson.sections.map((s) => s.heading + ": " + s.body).join(" ")}. Svara på svenska, pedagogiskt och koncist.`,
     });
   };
 
@@ -154,7 +154,7 @@ export default function LessonView({
             {tab === "content" && <BookOpen className="w-3.5 h-3.5" />}
             {tab === "concepts" && <Lightbulb className="w-3.5 h-3.5" />}
             {tab === "quiz" && <HelpCircle className="w-3.5 h-3.5" />}
-            {tab === "content" ? "InnehÃ¥ll" : tab === "concepts" ? "Nyckelbegrepp" : "Quiz"}
+            {tab === "content" ? "Innehåll" : tab === "concepts" ? "Nyckelbegrepp" : "Quiz"}
             {tab === "quiz" && quizSubmitted && (
               <span className={`text-xs font-bold ml-1 ${quizPassed ? "text-emerald-600" : "text-red-500"}`}>
                 {quizScore}/{lesson.quiz.length}
@@ -198,7 +198,7 @@ export default function LessonView({
                   href="/produktpass"
                   className="inline-flex items-center gap-2 mt-3 px-4 py-2 bg-[var(--forest-deep)] text-white text-xs font-semibold rounded-lg hover:bg-[var(--forest-mid)] transition-colors"
                 >
-                  <span>ðŸ—‚</span> Ã–ppna DPP-verktyget
+                  <span>ðŸ—‚</span> Öppna DPP-verktyget
                 </a>
               )}
             </div>
@@ -209,7 +209,7 @@ export default function LessonView({
         {activeTab === "concepts" && (
           <div className="px-6 py-6 max-w-2xl">
             <p className="text-sm text-[var(--text-muted)] mb-5">
-              Viktiga termer och definitioner frÃ¥n denna lektion.
+              Viktiga termer och definitioner från denna lektion.
             </p>
             <div className="space-y-3">
               {lesson.keyConcepts.map((concept) => (
@@ -233,8 +233,8 @@ export default function LessonView({
             {!quizSubmitted ? (
               <>
                 <p className="text-sm text-[var(--text-muted)] mb-5">
-                  Svara pÃ¥ {lesson.quiz.length} frÃ¥gor fÃ¶r att avklara lektionen. Du behÃ¶ver minst{" "}
-                  {Math.ceil(lesson.quiz.length * 0.67)} rÃ¤tt.
+                  Svara på {lesson.quiz.length} frågor för att avklara lektionen. Du behöver minst{" "}
+                  {Math.ceil(lesson.quiz.length * 0.67)} rätt.
                 </p>
                 {lesson.quiz.map((q, qi) => (
                   <QuizCard
@@ -252,7 +252,7 @@ export default function LessonView({
                   className="w-full bg-[var(--forest-deep)] hover:bg-[var(--forest-mid)] text-white h-11 mt-2"
                   onClick={handleSubmitQuiz}
                 >
-                  LÃ¤mna in svar
+                  Lämna in svar
                 </Button>
               </>
             ) : (
@@ -269,18 +269,18 @@ export default function LessonView({
                     <>
                       <Award className="w-10 h-10 text-emerald-600 mx-auto mb-2" />
                       <div className="font-display text-2xl font-bold text-emerald-700 mb-1">
-                        {quizScore}/{lesson.quiz.length} rÃ¤tt!
+                        {quizScore}/{lesson.quiz.length} rätt!
                       </div>
-                      <p className="text-sm text-emerald-600">Lektion avklarad â€“ bra jobbat!</p>
+                      <p className="text-sm text-emerald-600">Lektion avklarad – bra jobbat!</p>
                     </>
                   ) : (
                     <>
                       <XCircle className="w-10 h-10 text-red-500 mx-auto mb-2" />
                       <div className="font-display text-2xl font-bold text-red-600 mb-1">
-                        {quizScore}/{lesson.quiz.length} rÃ¤tt
+                        {quizScore}/{lesson.quiz.length} rätt
                       </div>
                       <p className="text-sm text-red-500">
-                        Du behÃ¶ver {Math.ceil(lesson.quiz.length * 0.67)} rÃ¤tt. LÃ¤s igenom innehÃ¥llet och fÃ¶rsÃ¶k igen.
+                        Du behöver {Math.ceil(lesson.quiz.length * 0.67)} rätt. Läs igenom innehållet och försök igen.
                       </p>
                       <Button
                         variant="outline"
@@ -291,7 +291,7 @@ export default function LessonView({
                           setQuizSubmitted(false);
                         }}
                       >
-                        FÃ¶rsÃ¶k igen
+                        Försök igen
                       </Button>
                     </>
                   )}
@@ -323,7 +323,7 @@ export default function LessonView({
           className="gap-2"
         >
           <ChevronLeft className="w-4 h-4" />
-          FÃ¶regÃ¥ende
+          Föregående
         </Button>
 
         <Button
@@ -333,7 +333,7 @@ export default function LessonView({
           className="gap-2 text-[var(--forest-mid)]"
         >
           <MessageSquare className="w-4 h-4" />
-          FrÃ¥ga AI-assistenten
+          Fråga AI-assistenten
         </Button>
 
         <Button
@@ -341,7 +341,7 @@ export default function LessonView({
           disabled={!hasNext}
           className="bg-[var(--forest-deep)] hover:bg-[var(--forest-mid)] text-white gap-2"
         >
-          NÃ¤sta lektion
+          Nästa lektion
           <ChevronRight className="w-4 h-4" />
         </Button>
       </div>
@@ -392,7 +392,7 @@ export default function LessonView({
                   value={chatInput}
                   onChange={(e) => setChatInput(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSendChat()}
-                  placeholder="StÃ¤ll en frÃ¥ga om lektionen..."
+                  placeholder="Ställ en fråga om lektionen..."
                   disabled={agentChatMutation.isPending}
                   className="flex-1 border border-[var(--sand-border)] rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--forest-mid)] disabled:opacity-50"
                 />
@@ -468,7 +468,7 @@ function QuizCard({
       </div>
       {submitted && (
         <div className="mt-3 p-3 bg-blue-50 border border-blue-200 rounded-lg text-xs text-blue-800 leading-relaxed">
-          <span className="font-bold">FÃ¶rklaring: </span>{question.explanation}
+          <span className="font-bold">Förklaring: </span>{question.explanation}
         </div>
       )}
     </div>

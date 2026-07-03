@@ -1,6 +1,6 @@
 ﻿/**
- * NEXUS-OS â€“ BlogginlÃ¤gg artikelvy
- * Full lÃ¤svy med Markdown-rendering, metadata och relaterade inlÃ¤gg
+ * NEXUS-OS – Blogginlägg artikelvy
+ * Full läsvy med Markdown-rendering, metadata och relaterade inlägg
  */
 import { useParams, Link } from "wouter";
 import Layout from "@/components/Layout";
@@ -31,10 +31,10 @@ function formatDate(d: Date | string): string {
 
 const CATEGORY_COLORS: Record<string, string> = {
   "AI & Reglering": "bg-[oklch(0.18_0.04_155)] text-[oklch(0.75_0.18_155)] border-[oklch(0.35_0.12_155)]",
-  "HÃ¥llbarhet & Reglering": "bg-[oklch(0.18_0.04_200)] text-[oklch(0.75_0.18_200)] border-[oklch(0.35_0.12_200)]",
+  "Hållbarhet & Reglering": "bg-[oklch(0.18_0.04_200)] text-[oklch(0.75_0.18_200)] border-[oklch(0.35_0.12_200)]",
   "Greenwashing & Integritet": "bg-[oklch(0.18_0.04_25)] text-[oklch(0.75_0.18_25)] border-[oklch(0.35_0.12_25)]",
-  "Upphandling & AffÃ¤rsutveckling": "bg-[oklch(0.18_0.04_55)] text-[oklch(0.75_0.18_55)] border-[oklch(0.35_0.12_55)]",
-  "CirkulÃ¤r Ekonomi": "bg-[oklch(0.18_0.04_130)] text-[oklch(0.75_0.18_130)] border-[oklch(0.35_0.12_130)]",
+  "Upphandling & Affärsutveckling": "bg-[oklch(0.18_0.04_55)] text-[oklch(0.75_0.18_55)] border-[oklch(0.35_0.12_55)]",
+  "Cirkulär Ekonomi": "bg-[oklch(0.18_0.04_130)] text-[oklch(0.75_0.18_130)] border-[oklch(0.35_0.12_130)]",
 };
 
 export default function BlogPostPage() {
@@ -50,7 +50,7 @@ export default function BlogPostPage() {
   const handleCopyLink = () => {
     navigator.clipboard.writeText(currentUrl);
     setCopied(true);
-    toast.success("LÃ¤nk kopierad till urklipp");
+    toast.success("Länk kopierad till urklipp");
     setTimeout(() => setCopied(false), 2500);
   };
 
@@ -58,7 +58,7 @@ export default function BlogPostPage() {
     if (!post) return;
     const linkedInUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}&title=${encodeURIComponent(post.title)}&summary=${encodeURIComponent(post.excerpt)}&source=Nexus-OS`;
     window.open(linkedInUrl, "_blank", "noopener,noreferrer,width=600,height=600");
-    toast.success("Ã–ppnar LinkedIn-delning...");
+    toast.success("Öppnar LinkedIn-delning...");
   };
 
   if (isLoading) {
@@ -76,7 +76,7 @@ export default function BlogPostPage() {
       <Layout>
         <div className="min-h-screen bg-[oklch(0.08_0.01_155)] flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-2xl font-bold text-[oklch(0.88_0.04_155)] mb-4">InlÃ¤gget hittades inte</h1>
+            <h1 className="text-2xl font-bold text-[oklch(0.88_0.04_155)] mb-4">Inlägget hittades inte</h1>
             <Link href="/blogg">
               <Button variant="outline" className="border-[oklch(0.35_0.1_155)] text-[oklch(0.65_0.12_155)]">
                 <ArrowLeft className="w-4 h-4 mr-2" />
@@ -102,13 +102,13 @@ export default function BlogPostPage() {
             <Link href="/blogg">
               <button className="flex items-center gap-2 text-[oklch(0.55_0.08_155)] hover:text-[oklch(0.75_0.18_155)] transition-colors text-sm font-mono">
                 <ArrowLeft className="w-4 h-4" />
-                Alla inlÃ¤gg
+                Alla inlägg
               </button>
             </Link>
             <div className="flex items-center gap-3">
               <span className="text-[oklch(0.42_0.05_155)] text-xs font-mono flex items-center gap-1">
                 <Clock className="w-3 h-3" />
-                {post.readingTime} min lÃ¤sning
+                {post.readingTime} min läsning
               </span>
               <div className="relative">
                 <button
@@ -128,8 +128,8 @@ export default function BlogPostPage() {
                         <Linkedin className="w-4 h-4 text-[oklch(0.72_0.18_220)]" />
                       </div>
                       <div>
-                        <p className="text-[oklch(0.78_0.06_155)] text-xs font-semibold group-hover:text-[oklch(0.9_0.08_155)]">Dela pÃ¥ LinkedIn</p>
-                        <p className="text-[oklch(0.42_0.04_155)] text-[10px]">Ã–ppnar LinkedIn</p>
+                        <p className="text-[oklch(0.78_0.06_155)] text-xs font-semibold group-hover:text-[oklch(0.9_0.08_155)]">Dela på LinkedIn</p>
+                        <p className="text-[oklch(0.42_0.04_155)] text-[10px]">Öppnar LinkedIn</p>
                       </div>
                     </button>
                     <div className="h-px bg-[oklch(0.2_0.04_155)] mx-2" />
@@ -146,9 +146,9 @@ export default function BlogPostPage() {
                       </div>
                       <div>
                         <p className="text-[oklch(0.78_0.06_155)] text-xs font-semibold group-hover:text-[oklch(0.9_0.08_155)]">
-                          {copied ? "Kopierad!" : "Kopiera lÃ¤nk"}
+                          {copied ? "Kopierad!" : "Kopiera länk"}
                         </p>
-                        <p className="text-[oklch(0.42_0.04_155)] text-[10px]">DirektlÃ¤nk till inlÃ¤gget</p>
+                        <p className="text-[oklch(0.42_0.04_155)] text-[10px]">Direktlänk till inlägget</p>
                       </div>
                     </button>
                   </div>
@@ -249,7 +249,7 @@ export default function BlogPostPage() {
                   <div className="group p-4 rounded-xl border border-[oklch(0.2_0.04_155)] bg-[oklch(0.11_0.02_155)] hover:border-[oklch(0.4_0.1_155)] transition-all cursor-pointer">
                     <div className="flex items-center gap-2 text-[oklch(0.48_0.06_155)] text-xs font-mono mb-2">
                       <ArrowLeft className="w-3 h-3" />
-                      FÃ¶regÃ¥ende
+                      Föregående
                     </div>
                     <p className="text-[oklch(0.78_0.06_155)] text-sm font-medium group-hover:text-[oklch(0.88_0.08_155)] transition-colors line-clamp-2">
                       {prevPost.title}
@@ -261,7 +261,7 @@ export default function BlogPostPage() {
                 <Link href={`/blogg/${nextPost.slug}`}>
                   <div className="group p-4 rounded-xl border border-[oklch(0.2_0.04_155)] bg-[oklch(0.11_0.02_155)] hover:border-[oklch(0.4_0.1_155)] transition-all cursor-pointer text-right">
                     <div className="flex items-center justify-end gap-2 text-[oklch(0.48_0.06_155)] text-xs font-mono mb-2">
-                      NÃ¤sta
+                      Nästa
                       <ArrowRight className="w-3 h-3" />
                     </div>
                     <p className="text-[oklch(0.78_0.06_155)] text-sm font-medium group-hover:text-[oklch(0.88_0.08_155)] transition-colors line-clamp-2">

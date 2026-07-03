@@ -1,5 +1,5 @@
 ﻿/**
- * NEXUS-OS â€“ Blog Router
+ * NEXUS-OS – Blog Router
  * tRPC procedures for blog posts stored in MySQL
  */
 import { z } from "zod";
@@ -12,44 +12,44 @@ import { blogPosts, InsertBlogPost } from "../../drizzle/schema";
 const SEED_POSTS: InsertBlogPost[] = [
   {
     slug: "nexus-os-eu-ai-act-ansvarsfull-ai",
-    title: "Nexus-OS och EU AI Act: VarfÃ¶r ansvarsfull AI Ã¤r vÃ¥r konkurrensfÃ¶rdel",
+    title: "Nexus-OS och EU AI Act: Varför ansvarsfull AI är vår konkurrensfördel",
     excerpt:
-      "NÃ¤r EU:s AI-fÃ¶rordning trÃ¤der i full kraft den 2 augusti 2026 kommer de flesta AI-bolag att behandla den som ett compliance-problem. Vi vÃ¤ljer att se den som en mÃ¶jlighet att bygga fÃ¶rtroende â€“ och en strukturell fÃ¶rdel gentemot aktÃ¶rer som inte fÃ¶rbereder sig.",
-    content: `## Bakgrund: En fÃ¶rordning som fÃ¶rÃ¤ndrar spelplanen
+      "När EU:s AI-förordning träder i full kraft den 2 augusti 2026 kommer de flesta AI-bolag att behandla den som ett compliance-problem. Vi väljer att se den som en möjlighet att bygga förtroende – och en strukturell fördel gentemot aktörer som inte förbereder sig.",
+    content: `## Bakgrund: En förordning som förändrar spelplanen
 
-Den 2 augusti 2026 trÃ¤der EU AI Act i full kraft fÃ¶r hÃ¶grisk-AI-system. FÃ¶r Nexus-OS â€“ en plattform som automatiserar bidragsansÃ¶kningar, skapar digitala produktpass och identifierar greenwashing â€“ innebÃ¤r detta en direkt regulatorisk exponering.
+Den 2 augusti 2026 träder EU AI Act i full kraft för högrisk-AI-system. För Nexus-OS – en plattform som automatiserar bidragsansökningar, skapar digitala produktpass och identifierar greenwashing – innebär detta en direkt regulatorisk exponering.
 
-Men vi ser det annorlunda. Medan konkurrenter panikartade fÃ¶rsÃ¶ker retroaktivt dokumentera sina system, har vi byggt Nexus-OS med ansvarsfullhet som arkitektonisk princip frÃ¥n dag ett.
+Men vi ser det annorlunda. Medan konkurrenter panikartade försöker retroaktivt dokumentera sina system, har vi byggt Nexus-OS med ansvarsfullhet som arkitektonisk princip från dag ett.
 
-## Vad EU AI Act faktiskt krÃ¤ver av oss
+## Vad EU AI Act faktiskt kräver av oss
 
-Nexus-OS klassificeras som ett **hÃ¶grisk-AI-system** enligt Bilaga III, punkt 5 (AI fÃ¶r tillgÃ¥ng till offentliga fÃ¶rmÃ¥ner och tjÃ¤nster) och punkt 8 (AI fÃ¶r rÃ¤ttstillÃ¤mpning och rÃ¤ttsliga fÃ¶rfaranden, analogt med bidragsbedÃ¶mning).
+Nexus-OS klassificeras som ett **högrisk-AI-system** enligt Bilaga III, punkt 5 (AI för tillgång till offentliga förmåner och tjänster) och punkt 8 (AI för rättstillämpning och rättsliga förfaranden, analogt med bidragsbedömning).
 
-Det innebÃ¤r konkret:
+Det innebär konkret:
 
 - **Artikel 9**: Riskhanteringssystem med kontinuerlig uppdatering
-- **Artikel 10**: Datakvalitetsstandarder fÃ¶r trÃ¤nings- och valideringsdata  
-- **Artikel 13**: Transparensdokumentation tillgÃ¤nglig fÃ¶r tillsynsmyndigheter
-- **Artikel 14**: MÃ¤nsklig tillsyn (HITL) fÃ¶r alla beslut som pÃ¥verkar individer
-- **Artikel 50**: Tydlig mÃ¤rkning att anvÃ¤ndaren interagerar med ett AI-system
+- **Artikel 10**: Datakvalitetsstandarder för tränings- och valideringsdata  
+- **Artikel 13**: Transparensdokumentation tillgänglig för tillsynsmyndigheter
+- **Artikel 14**: Mänsklig tillsyn (HITL) för alla beslut som påverkar individer
+- **Artikel 50**: Tydlig märkning att användaren interagerar med ett AI-system
 
-## VÃ¥r implementering: NIF-ramverket
+## Vår implementering: NIF-ramverket
 
-Nexus Integrity Framework (NIF) Ã¤r vÃ¥r operativa svar pÃ¥ EU AI Act. Det bygger pÃ¥ tre pelare:
+Nexus Integrity Framework (NIF) är vår operativa svar på EU AI Act. Det bygger på tre pelare:
 
-**1. HITL Operator Center** â€“ Peter Johansson och godkÃ¤nda operatÃ¶rer granskar alla AI-genererade bidragsrekommendationer och DPP-klassificeringar innan de levereras till kunder. Ingen automatiserad beslut utan mÃ¤nsklig validering.
+**1. HITL Operator Center** – Peter Johansson och godkända operatörer granskar alla AI-genererade bidragsrekommendationer och DPP-klassificeringar innan de levereras till kunder. Ingen automatiserad beslut utan mänsklig validering.
 
-**2. GWD-Alpha Greenwashing Detector** â€“ VÃ¥r transparensmodul flaggar automatiskt pÃ¥stÃ¥enden som inte uppfyller EU:s Green Claims Directive-krav, med konfidensgrad och kÃ¤llhÃ¤nvisning.
+**2. GWD-Alpha Greenwashing Detector** – Vår transparensmodul flaggar automatiskt påståenden som inte uppfyller EU:s Green Claims Directive-krav, med konfidensgrad och källhänvisning.
 
-**3. Riskregister och Misuse-scenarier** â€“ Vi dokumenterar aktivt 12 identifierade risker och 8 missbruksscenarier, med mitigeringsÃ¥tgÃ¤rder och statusspÃ¥rning.
+**3. Riskregister och Misuse-scenarier** – Vi dokumenterar aktivt 12 identifierade risker och 8 missbruksscenarier, med mitigeringsåtgärder och statusspårning.
 
-## VarfÃ¶r detta Ã¤r en konkurrensfÃ¶rdel
+## Varför detta är en konkurrensfördel
 
-Offentliga upphandlare och stora industrifÃ¶retag bÃ¶rjar nu stÃ¤lla krav pÃ¥ AI-leverantÃ¶rer att visa EU AI Act-efterlevnad. De som kan presentera ett verifierat riskregister, HITL-dokumentation och transparensrapporter vinner upphandlingarna.
+Offentliga upphandlare och stora industriföretag börjar nu ställa krav på AI-leverantörer att visa EU AI Act-efterlevnad. De som kan presentera ett verifierat riskregister, HITL-dokumentation och transparensrapporter vinner upphandlingarna.
 
-Vi Ã¤r redo. Ã„r dina leverantÃ¶rer det?`,
+Vi är redo. Är dina leverantörer det?`,
     author: "Peter Johansson",
-    authorRole: "Grundare & HITL-operatÃ¶r, Nexus-OS",
+    authorRole: "Grundare & HITL-operatör, Nexus-OS",
     coAuthor: "Manus AI",
     coAuthorRole: "AI-assistent & Analysmotor",
     category: "AI & Reglering",
@@ -60,46 +60,46 @@ Vi Ã¤r redo. Ã„r dina leverantÃ¶rer det?`,
   },
   {
     slug: "espr-digitala-produktpass-2026",
-    title: "ESPR och Digitala Produktpass: Vad tillverkare mÃ¥ste veta infÃ¶r 2026",
+    title: "ESPR och Digitala Produktpass: Vad tillverkare måste veta inför 2026",
     excerpt:
-      "EU:s Ecodesign for Sustainable Products Regulation (ESPR) trÃ¤der i kraft 2026 och krÃ¤ver digitala produktpass fÃ¶r allt frÃ¥n textilier till elektronik. HÃ¤r Ã¤r en praktisk genomgÃ¥ng av vad det innebÃ¤r fÃ¶r svenska tillverkare.",
+      "EU:s Ecodesign for Sustainable Products Regulation (ESPR) träder i kraft 2026 och kräver digitala produktpass för allt från textilier till elektronik. Här är en praktisk genomgång av vad det innebär för svenska tillverkare.",
     content: `## ESPR i korthet
 
-EU-fÃ¶rordning 2024/1781 â€“ Ecodesign for Sustainable Products Regulation â€“ Ã¤r den mest genomgripande produktlagstiftningen sedan RoHS. Den ersÃ¤tter det gamla Ecodesign-direktivet och utÃ¶kar kraven dramatiskt.
+EU-förordning 2024/1781 – Ecodesign for Sustainable Products Regulation – är den mest genomgripande produktlagstiftningen sedan RoHS. Den ersätter det gamla Ecodesign-direktivet och utökar kraven dramatiskt.
 
-KÃ¤rnan Ã¤r det **Digitala Produktpasset (DPP)**: en maskinlÃ¤sbar datapunkt (QR-kod eller RFID) som lÃ¤nkar till strukturerad information om produktens hela livscykel.
+Kärnan är det **Digitala Produktpasset (DPP)**: en maskinläsbar datapunkt (QR-kod eller RFID) som länkar till strukturerad information om produktens hela livscykel.
 
-## Tidslinje fÃ¶r svenska tillverkare
+## Tidslinje för svenska tillverkare
 
-| Produktkategori | DPP-krav frÃ¥n |
+| Produktkategori | DPP-krav från |
 |---|---|
-| Textilier och klÃ¤der | 2026 |
-| MÃ¶bler | 2027 |
+| Textilier och kläder | 2026 |
+| Möbler | 2027 |
 | Elektronik och ICT | 2027 |
-| StÃ¥l och aluminium | 2028 |
-| Kemikalier och polymerer | 2028â€“2030 |
-| Batterier (separat fÃ¶rordning) | 2027 |
+| Stål och aluminium | 2028 |
+| Kemikalier och polymerer | 2028–2030 |
+| Batterier (separat förordning) | 2027 |
 
-## Vad ett DPP mÃ¥ste innehÃ¥lla
+## Vad ett DPP måste innehålla
 
 Enligt ESPR Annex III ska ett produktpass inkludera:
 
 1. **Produktidentifiering**: GTIN, serienummer, tillverkare, ursprungsland
-2. **MaterialsammansÃ¤ttning**: Kritiska rÃ¥material, farliga Ã¤mnen, Ã¥tervunnet innehÃ¥ll (%)
-3. **Karbonfotavtryck**: kg COâ‚‚e per funktionell enhet, systemgrÃ¤ns, verifieringsmetod
-4. **Reparerbarhet**: Reparerbarhetsindex (EU-skala 1â€“10), tillgÃ¥ng till reservdelar
-5. **End-of-Life**: Demonteringsanvisningar, insamlingsschema, Ã¥tervinnare
+2. **Materialsammansättning**: Kritiska råmaterial, farliga ämnen, återvunnet innehåll (%)
+3. **Karbonfotavtryck**: kg COâ‚‚e per funktionell enhet, systemgräns, verifieringsmetod
+4. **Reparerbarhet**: Reparerbarhetsindex (EU-skala 1–10), tillgång till reservdelar
+5. **End-of-Life**: Demonteringsanvisningar, insamlingsschema, återvinnare
 
 ## Nexus-OS DPP-verktyget
 
-VÃ¥r DPP-skapare guidar dig genom alla obligatoriska datapunkter, genererar JSON-LD-dokumentet i ESPR-kompatibelt format och skapar en QR-kod som lÃ¤nkar till ett publikt produktpass.
+Vår DPP-skapare guidar dig genom alla obligatoriska datapunkter, genererar JSON-LD-dokumentet i ESPR-kompatibelt format och skapar en QR-kod som länkar till ett publikt produktpass.
 
-Dessutom integrerar vi med LCA-databaser (ecoinvent, Agribalyse) fÃ¶r automatisk karbonfotavtrycksberÃ¤kning baserat pÃ¥ din materialdeklaration.
+Dessutom integrerar vi med LCA-databaser (ecoinvent, Agribalyse) för automatisk karbonfotavtrycksberäkning baserat på din materialdeklaration.
 
-Kontakta oss fÃ¶r en gratis pilotdemonstration.`,
+Kontakta oss för en gratis pilotdemonstration.`,
     author: "Peter Johansson",
-    authorRole: "Grundare & HITL-operatÃ¶r, Nexus-OS",
-    category: "HÃ¥llbarhet & Reglering",
+    authorRole: "Grundare & HITL-operatör, Nexus-OS",
+    category: "Hållbarhet & Reglering",
     tags: JSON.parse(JSON.stringify(["ESPR", "DPP", "Digitalt Produktpass", "LCA", "EU-lag"])) as string[],
     readingTime: 6,
     featured: 1,
@@ -107,49 +107,49 @@ Kontakta oss fÃ¶r en gratis pilotdemonstration.`,
   },
   {
     slug: "greenwashing-avsloja-med-ai",
-    title: "Greenwashing: Hur AI identifierar vilseledande hÃ¥llbarhetspÃ¥stÃ¥enden",
+    title: "Greenwashing: Hur AI identifierar vilseledande hållbarhetspåståenden",
     excerpt:
-      "EU:s Green Claims Directive krÃ¤ver att hÃ¥llbarhetspÃ¥stÃ¥enden ska vara verifierbara och specifika. VÃ¥r GWD-Alpha-agent analyserar pÃ¥stÃ¥enden i realtid och flaggar de vanligaste greenwash-teknikerna.",
+      "EU:s Green Claims Directive kräver att hållbarhetspåståenden ska vara verifierbara och specifika. Vår GWD-Alpha-agent analyserar påståenden i realtid och flaggar de vanligaste greenwash-teknikerna.",
     content: `## Problemet med greenwashing
 
-Enligt EU-kommissionens undersÃ¶kning frÃ¥n 2021 Ã¤r 42% av alla miljÃ¶pÃ¥stÃ¥enden pÃ¥ den europeiska marknaden Ã¶verdrivna, falska eller vilseledande. Green Claims Directive (2023/0085/COD) â€“ som fÃ¶rvÃ¤ntas trÃ¤da i kraft 2026 â€“ sÃ¤tter hÃ¥rd press pÃ¥ fÃ¶retag att bevisa sina pÃ¥stÃ¥enden.
+Enligt EU-kommissionens undersökning från 2021 är 42% av alla miljöpåståenden på den europeiska marknaden överdrivna, falska eller vilseledande. Green Claims Directive (2023/0085/COD) – som förväntas träda i kraft 2026 – sätter hård press på företag att bevisa sina påståenden.
 
 ## De vanligaste greenwash-teknikerna
 
 **1. Vaga generaliseringar**
-"MiljÃ¶vÃ¤nlig", "grÃ¶n", "hÃ¥llbar" utan specifikation. KrÃ¤ver: konkret mÃ¤tetal och jÃ¤mfÃ¶relsebas.
+"Miljövänlig", "grön", "hållbar" utan specifikation. Kräver: konkret mätetal och jämförelsebas.
 
-**2. Irrelevanta pÃ¥stÃ¥enden**
-"CFC-fri" (CFCs Ã¤r fÃ¶rbjudna sedan 1987). KrÃ¤ver: pÃ¥stÃ¥endet mÃ¥ste vara relevant och meningsfullt.
+**2. Irrelevanta påståenden**
+"CFC-fri" (CFCs är förbjudna sedan 1987). Kräver: påståendet måste vara relevant och meningsfullt.
 
-**3. Dolda avvÃ¤gningar**
-"Tillverkad av Ã¥tervunnet material" utan att nÃ¤mna att produkten inte kan Ã¥tervinnas. KrÃ¤ver: fullstÃ¤ndig livscykelanalys.
+**3. Dolda avvägningar**
+"Tillverkad av återvunnet material" utan att nämna att produkten inte kan återvinnas. Kräver: fullständig livscykelanalys.
 
 **4. Falsk certifiering**
-Hemmagjorda certifieringssymboler utan tredjepartsverifiering. KrÃ¤ver: ackrediterad certifieringsorgan.
+Hemmagjorda certifieringssymboler utan tredjepartsverifiering. Kräver: ackrediterad certifieringsorgan.
 
-**5. Ã–verdrivna pÃ¥stÃ¥enden**
-"100% koldioxidneutral" baserat pÃ¥ billiga offsetprojekt. KrÃ¤ver: Science Based Targets-metodik.
+**5. Överdrivna påståenden**
+"100% koldioxidneutral" baserat på billiga offsetprojekt. Kräver: Science Based Targets-metodik.
 
 ## Hur GWD-Alpha fungerar
 
-VÃ¥r Greenwashing Detection Agent analyserar pÃ¥stÃ¥enden mot:
+Vår Greenwashing Detection Agent analyserar påståenden mot:
 
 - EU Green Claims Directive-kriterier
-- ISO 14021 (MiljÃ¶mÃ¤rkningar och deklarationer)
+- ISO 14021 (Miljömärkningar och deklarationer)
 - Science Based Targets initiative (SBTi) standarder
 - GRI Sustainability Reporting Standards
 
 Agenten returnerar:
 - Identifierade greenwash-taktiker (lista)
 - Bevisunderlag (vad saknas)
-- Allvarlighetsgrad (KRITISK/HÃ–G/MEDEL/LÃ…G)
-- AI-konfidensgrad (0â€“100%)
-- Rekommendation till HITL-operatÃ¶ren
+- Allvarlighetsgrad (KRITISK/HÖG/MEDEL/LÅG)
+- AI-konfidensgrad (0–100%)
+- Rekommendation till HITL-operatören
 
-Alla flaggade pÃ¥stÃ¥enden granskas av Peter Johansson innan rapport levereras.`,
+Alla flaggade påståenden granskas av Peter Johansson innan rapport levereras.`,
     author: "Peter Johansson",
-    authorRole: "Grundare & HITL-operatÃ¶r, Nexus-OS",
+    authorRole: "Grundare & HITL-operatör, Nexus-OS",
     category: "Greenwashing & Integritet",
     tags: JSON.parse(JSON.stringify(["Greenwashing", "Green Claims Directive", "GWD", "AI-analys", "Transparens"])) as string[],
     readingTime: 5,
@@ -158,301 +158,301 @@ Alla flaggade pÃ¥stÃ¥enden granskas av Peter Johansson innan rapport leverer
   },
   {
     slug: "offentlig-upphandling-hallbarhetskrav",
-    title: "Offentlig upphandling 2026: Nya hÃ¥llbarhetskrav och hur du mÃ¶ter dem",
+    title: "Offentlig upphandling 2026: Nya hållbarhetskrav och hur du möter dem",
     excerpt:
-      "LOU-Ã¤ndringarna 2025 och EU:s direktiv om hÃ¥llbar upphandling innebÃ¤r att kommuner och regioner nu mÃ¥ste stÃ¤lla livscykelkrav. HÃ¤r Ã¤r hur Nexus-OS hjÃ¤lper leverantÃ¶rer att kvalificera sig.",
-    content: `## Upphandlingslandskapet fÃ¶rÃ¤ndras
+      "LOU-ändringarna 2025 och EU:s direktiv om hållbar upphandling innebär att kommuner och regioner nu måste ställa livscykelkrav. Här är hur Nexus-OS hjälper leverantörer att kvalificera sig.",
+    content: `## Upphandlingslandskapet förändras
 
-Sedan 1 januari 2025 gÃ¤ller nya hÃ¥llbarhetskrav i Lagen om offentlig upphandling (LOU). Upphandlande myndigheter med en omsÃ¤ttning Ã¶ver 100 MSEK Ã¤r skyldiga att inkludera livscykelkostnadsanalys (LCC) i sina utvÃ¤rderingsmodeller.
+Sedan 1 januari 2025 gäller nya hållbarhetskrav i Lagen om offentlig upphandling (LOU). Upphandlande myndigheter med en omsättning över 100 MSEK är skyldiga att inkludera livscykelkostnadsanalys (LCC) i sina utvärderingsmodeller.
 
-Parallellt driver EU:s direktiv 2024/1275 (Green Public Procurement) pÃ¥ fÃ¶r att 50% av all offentlig upphandling ska uppfylla GPP-kriterierna senast 2027.
+Parallellt driver EU:s direktiv 2024/1275 (Green Public Procurement) på för att 50% av all offentlig upphandling ska uppfylla GPP-kriterierna senast 2027.
 
-## Vad leverantÃ¶rer behÃ¶ver visa
+## Vad leverantörer behöver visa
 
-FÃ¶r att kvalificera sig i hÃ¥llbara upphandlingar behÃ¶ver leverantÃ¶rer typiskt:
+För att kvalificera sig i hållbara upphandlingar behöver leverantörer typiskt:
 
-| Krav | Vanlig standard | Nexus-OS-stÃ¶d |
+| Krav | Vanlig standard | Nexus-OS-stöd |
 |---|---|---|
 | Koldioxidavtryck per produkt | ISO 14067 / EPD | DPP-verktyget |
-| MiljÃ¶ledningssystem | ISO 14001 / EMAS | VÃ¤gledning + dokumentation |
-| Sociala krav | SA8000 / ILO-konventioner | LeverantÃ¶rskedjeanalys |
-| CirkulÃ¤ritet | EU Ecodesign-index | Reparerbarhetsanalys |
+| Miljöledningssystem | ISO 14001 / EMAS | Vägledning + dokumentation |
+| Sociala krav | SA8000 / ILO-konventioner | Leverantörskedjeanalys |
+| Cirkuläritet | EU Ecodesign-index | Reparerbarhetsanalys |
 | Kemikalier | REACH / RoHS | Materialdeklaration |
 
-## BidragsmÃ¶jligheter fÃ¶r leverantÃ¶rer
+## Bidragsmöjligheter för leverantörer
 
-Att investera i hÃ¥llbarhetsdokumentation Ã¤r inte bara ett krav â€“ det Ã¶ppnar bidragsdÃ¶rrar:
+Att investera i hållbarhetsdokumentation är inte bara ett krav – det öppnar bidragsdörrar:
 
-- **Vinnova CirkulÃ¤r ekonomi**: upp till 2 MSEK fÃ¶r cirkulÃ¤ritetsprojekt
-- **Klimatklivet**: 30â€“70% av investeringskostnad fÃ¶r klimatÃ¥tgÃ¤rder
-- **Energimyndigheten Industriklivet**: fÃ¶r energiintensiva industrier
-- **Horisont Europa**: 2â€“5 MEUR fÃ¶r innovationsprojekt
+- **Vinnova Cirkulär ekonomi**: upp till 2 MSEK för cirkuläritetsprojekt
+- **Klimatklivet**: 30–70% av investeringskostnad för klimatåtgärder
+- **Energimyndigheten Industriklivet**: för energiintensiva industrier
+- **Horisont Europa**: 2–5 MEUR för innovationsprojekt
 
-Nexus-OS matchar automatiskt din profil mot alla relevanta program och genererar ansÃ¶kningsutkast.`,
+Nexus-OS matchar automatiskt din profil mot alla relevanta program och genererar ansökningsutkast.`,
     author: "Peter Johansson",
-    authorRole: "Grundare & HITL-operatÃ¶r, Nexus-OS",
-    category: "Upphandling & AffÃ¤rsutveckling",
-    tags: JSON.parse(JSON.stringify(["Offentlig upphandling", "LOU", "GPP", "HÃ¥llbarhet", "Bidrag"])) as string[],
+    authorRole: "Grundare & HITL-operatör, Nexus-OS",
+    category: "Upphandling & Affärsutveckling",
+    tags: JSON.parse(JSON.stringify(["Offentlig upphandling", "LOU", "GPP", "Hållbarhet", "Bidrag"])) as string[],
     readingTime: 6,
     featured: 0,
     publishedAt: new Date("2026-03-15"),
   },
   {
     slug: "industriell-symbios-skaraborg",
-    title: "Industriell symbios i Skaraborg: Hur avfallsstrÃ¶mmar blir rÃ¥varor",
+    title: "Industriell symbios i Skaraborg: Hur avfallsströmmar blir råvaror",
     excerpt:
-      "I Skaraborg finns en unik koncentration av tillverkande industri â€“ frÃ¥n polymertillverkning till trÃ¤fÃ¶rÃ¤dling. Nexus-OS kartlÃ¤gger hur lokala fÃ¶retags avfallsstrÃ¶mmar kan bli varandras rÃ¥varor och skapar en cirkulÃ¤r industriell symbios.",
-    content: `## Vad Ã¤r industriell symbios?
+      "I Skaraborg finns en unik koncentration av tillverkande industri – från polymertillverkning till träförädling. Nexus-OS kartlägger hur lokala företags avfallsströmmar kan bli varandras råvaror och skapar en cirkulär industriell symbios.",
+    content: `## Vad är industriell symbios?
 
-Industriell symbios innebÃ¤r att fÃ¶retag i ett geografiskt omrÃ¥de utbyter material, energi, vatten och biprodukter pÃ¥ ett sÃ¤tt som skapar ekonomiskt och miljÃ¶mÃ¤ssigt vÃ¤rde fÃ¶r alla parter.
+Industriell symbios innebär att företag i ett geografiskt område utbyter material, energi, vatten och biprodukter på ett sätt som skapar ekonomiskt och miljömässigt värde för alla parter.
 
-Det klassiska exemplet Ã¤r Kalundborg i Danmark, dÃ¤r ett raffinaderi, ett kraftverk, en gipstillverkare och en farmaceutisk industri utbyter Ã¥nga, gips, kvÃ¤ve och slam i ett slutet system.
+Det klassiska exemplet är Kalundborg i Danmark, där ett raffinaderi, ett kraftverk, en gipstillverkare och en farmaceutisk industri utbyter ånga, gips, kväve och slam i ett slutet system.
 
-## Skaraborg â€“ en naturlig symbiosregion
+## Skaraborg – en naturlig symbiosregion
 
-Med IDC West Sweden AB som nav och Ã¶ver 160 delÃ¤garfÃ¶retag i Skaraborg finns en unik mÃ¶jlighet. Nexus-OS har identifierat fÃ¶ljande potentiella symbiosflÃ¶den:
+Med IDC West Sweden AB som nav och över 160 delägarföretag i Skaraborg finns en unik möjlighet. Nexus-OS har identifierat följande potentiella symbiosflöden:
 
-| LeverantÃ¶r | Avfall/Biprodukt | Mottagare | VÃ¤rde |
+| Leverantör | Avfall/Biprodukt | Mottagare | Värde |
 |---|---|---|---|
-| UW-ELAST AB | Polyuretanskrot | Ã…tervinnare | RÃ¥material |
-| Moelven TÃ¶reboda | SÃ¥gspÃ¥n och bark | VÃ¤rmeverk | BiobrÃ¤nsle |
-| ToWe Elektronik | PCB-avfall | MetallÃ¥tervinning | Ã„delmetaller |
-| CEJN AB | MetallspÃ¥n | Gjuteri | SekundÃ¤rstÃ¥l |
-| OFFECCT AB | Textilrester | Isoleringstillverkare | Ã…tervunnen fiber |
+| UW-ELAST AB | Polyuretanskrot | Återvinnare | Råmaterial |
+| Moelven Töreboda | Sågspån och bark | Värmeverk | Biobränsle |
+| ToWe Elektronik | PCB-avfall | Metallåtervinning | Ädelmetaller |
+| CEJN AB | Metallspån | Gjuteri | Sekundärstål |
+| OFFECCT AB | Textilrester | Isoleringstillverkare | Återvunnen fiber |
 
 ## Nexus-OS Symbiosmodul
 
-VÃ¥r symbiosmodul:
+Vår symbiosmodul:
 
-1. **KartlÃ¤gger** alla material- och energiflÃ¶den i ditt fÃ¶retag
-2. **Matchar** avfallsstrÃ¶mmar mot potentiella mottagare i regionen
-3. **BerÃ¤knar** ekonomiskt vÃ¤rde och COâ‚‚-reduktion per symbiosflÃ¶de
-4. **Genererar** avtal och logistikplan fÃ¶r symbiosutbyte
+1. **Kartlägger** alla material- och energiflöden i ditt företag
+2. **Matchar** avfallsströmmar mot potentiella mottagare i regionen
+3. **Beräknar** ekonomiskt värde och COâ‚‚-reduktion per symbiosflöde
+4. **Genererar** avtal och logistikplan för symbiosutbyte
 5. **Rapporterar** till EU:s Industrial Symbiosis Platform
 
-Kontakta oss fÃ¶r en gratis symbiosanalys av ditt fÃ¶retag.`,
+Kontakta oss för en gratis symbiosanalys av ditt företag.`,
     author: "Peter Johansson",
-    authorRole: "Grundare & HITL-operatÃ¶r, Nexus-OS",
-    category: "CirkulÃ¤r Ekonomi",
-    tags: JSON.parse(JSON.stringify(["Industriell symbios", "Skaraborg", "CirkulÃ¤r ekonomi", "AvfallsflÃ¶den", "IDC"])) as string[],
+    authorRole: "Grundare & HITL-operatör, Nexus-OS",
+    category: "Cirkulär Ekonomi",
+    tags: JSON.parse(JSON.stringify(["Industriell symbios", "Skaraborg", "Cirkulär ekonomi", "Avfallsflöden", "IDC"])) as string[],
     readingTime: 5,
     featured: 0,
     publishedAt: new Date("2026-03-20"),
   },
   {
     slug: "csddd-leverantorskedja-ansvar",
-    title: "CSDDD: Hur svenska fÃ¶retag mÃ¥ste kartlÃ¤gga sin leverantÃ¶rskedja",
+    title: "CSDDD: Hur svenska företag måste kartlägga sin leverantörskedja",
     excerpt:
-      "Corporate Sustainability Due Diligence Directive (CSDDD) trÃ¤der i kraft 2027 och krÃ¤ver att stora fÃ¶retag kartlÃ¤gger mÃ¤nskliga rÃ¤ttigheter och miljÃ¶risker i sin leverantÃ¶rskedja. HÃ¤r Ã¤r vad du behÃ¶ver gÃ¶ra nu.",
-    content: `## CSDDD â€“ En ny standard fÃ¶r leverantÃ¶rsansvar
+      "Corporate Sustainability Due Diligence Directive (CSDDD) träder i kraft 2027 och kräver att stora företag kartlägger mänskliga rättigheter och miljörisker i sin leverantörskedja. Här är vad du behöver göra nu.",
+    content: `## CSDDD – En ny standard för leverantörsansvar
 
-EU-direktivet 2022/2464 (Corporate Sustainability Due Diligence Directive) Ã¤r den mest omfattande leverantÃ¶rskedja-lagstiftningen sedan Conflict Minerals Regulation. Den krÃ¤ver att stora fÃ¶retag (250+ anstÃ¤llda eller 50+ MEUR omsÃ¤ttning) aktivt kartlÃ¤gger och mitigerar risker fÃ¶r:
+EU-direktivet 2022/2464 (Corporate Sustainability Due Diligence Directive) är den mest omfattande leverantörskedja-lagstiftningen sedan Conflict Minerals Regulation. Den kräver att stora företag (250+ anställda eller 50+ MEUR omsättning) aktivt kartlägger och mitigerar risker för:
 
-- Barnarbete och tvÃ¥ngsarbete
-- Diskriminering och krÃ¤nkningar av arbetsrÃ¤tt
-- MiljÃ¶skador (vattenfÃ¶roreningar, avskogning, kemikalier)
+- Barnarbete och tvångsarbete
+- Diskriminering och kränkningar av arbetsrätt
+- Miljöskador (vattenföroreningar, avskogning, kemikalier)
 - Korruption och mutor
 
-## Tidslinje fÃ¶r implementering
+## Tidslinje för implementering
 
-| FÃ¶retagsstorlek | Deadline fÃ¶r implementering |
+| Företagsstorlek | Deadline för implementering |
 |---|---|
-| 5000+ anstÃ¤llda | 1 januari 2027 |
-| 1000â€“4999 anstÃ¤llda | 1 januari 2028 |
-| 250â€“999 anstÃ¤llda (finanssektor) | 1 januari 2028 |
-| 250â€“999 anstÃ¤llda (Ã¶vriga) | 1 januari 2029 |
+| 5000+ anställda | 1 januari 2027 |
+| 1000–4999 anställda | 1 januari 2028 |
+| 250–999 anställda (finanssektor) | 1 januari 2028 |
+| 250–999 anställda (övriga) | 1 januari 2029 |
 
-## Vad CSDDD krÃ¤ver av ditt fÃ¶retag
+## Vad CSDDD kräver av ditt företag
 
 **1. Due Diligence Process**
-- KartlÃ¤gg alla leverantÃ¶rer och deras underleverantÃ¶rer (minst 2 nivÃ¥er)
-- Identifiera hÃ¶grisklÃ¤nder och hÃ¶griskbranscher
-- BedÃ¶m faktisk och potentiell pÃ¥verkan pÃ¥ mÃ¤nniskor och miljÃ¶
+- Kartlägg alla leverantörer och deras underleverantörer (minst 2 nivåer)
+- Identifiera högriskländer och högriskbranscher
+- Bedöm faktisk och potentiell påverkan på människor och miljö
 
-**2. Mitigering och Ã…tgÃ¤rdsplan**
-- Etablera Ã¥tgÃ¤rder fÃ¶r att fÃ¶rebygga eller lindra identifierade risker
-- Dokumentera alla Ã¥tgÃ¤rder och deras effektivitet
+**2. Mitigering och Åtgärdsplan**
+- Etablera åtgärder för att förebygga eller lindra identifierade risker
+- Dokumentera alla åtgärder och deras effektivitet
 - Implementera gransknings- och kontrollmekanismer
 
 **3. Transparens och Rapportering**
-- Publicera en Ã¥rlig CSDDD-rapport pÃ¥ din webbplats
-- Rapportera till myndigheter vid allvarliga Ã¶vertrÃ¤delser
-- MÃ¶jliggÃ¶r whistleblower-kanaler fÃ¶r leverantÃ¶rer
+- Publicera en årlig CSDDD-rapport på din webbplats
+- Rapportera till myndigheter vid allvarliga överträdelser
+- Möjliggör whistleblower-kanaler för leverantörer
 
 ## Nexus-OS CSDDD-modul
 
-VÃ¥r CSDDD-verktyg hjÃ¤lper dig att:
+Vår CSDDD-verktyg hjälper dig att:
 
-1. **KartlÃ¤gga leverantÃ¶rer** â€“ Automatisk datainsamling frÃ¥n offentliga register, Dun & Bradstreet, och eget leverantÃ¶rsregister
-2. **RiskbedÃ¶ma** â€“ JÃ¤mfÃ¶r mot ILO-konventioner, UNGC-principer, och miljÃ¶indikatorer
-3. **Generera rapporter** â€“ Strukturerade CSDDD-rapporter i EU-format
-4. **Ã–vervaka** â€“ Kontinuerlig uppdatering av leverantÃ¶rsrisker och mitigering
+1. **Kartlägga leverantörer** – Automatisk datainsamling från offentliga register, Dun & Bradstreet, och eget leverantörsregister
+2. **Riskbedöma** – Jämför mot ILO-konventioner, UNGC-principer, och miljöindikatorer
+3. **Generera rapporter** – Strukturerade CSDDD-rapporter i EU-format
+4. **Övervaka** – Kontinuerlig uppdatering av leverantörsrisker och mitigering
 
-Kontakta oss fÃ¶r en gratis CSDDD-readiness-bedÃ¶mning.`,
+Kontakta oss för en gratis CSDDD-readiness-bedömning.`,
     author: "Peter Johansson",
-    authorRole: "Grundare & HITL-operatÃ¶r, Nexus-OS",
+    authorRole: "Grundare & HITL-operatör, Nexus-OS",
     coAuthor: "Manus AI",
     coAuthorRole: "AI-assistent & Analysmotor",
-    category: "LeverantÃ¶rsansvar & Etik",
-    tags: JSON.parse(JSON.stringify(["CSDDD", "LeverantÃ¶rskedja", "Due Diligence", "MÃ¤nskliga rÃ¤ttigheter", "MiljÃ¶"])) as string[],
+    category: "Leverantörsansvar & Etik",
+    tags: JSON.parse(JSON.stringify(["CSDDD", "Leverantörskedja", "Due Diligence", "Mänskliga rättigheter", "Miljö"])) as string[],
     readingTime: 7,
     featured: 1,
     publishedAt: new Date("2026-03-25"),
   },
   {
     slug: "batteriforordningen-2023-1542",
-    title: "BatterifÃ¶rordningen 2023/1542: Vad tillverkare mÃ¥ste veta om batteripass",
+    title: "Batteriförordningen 2023/1542: Vad tillverkare måste veta om batteripass",
     excerpt:
-      "EU:s nya batterifÃ¶rordning (2023/1542) trÃ¤der i kraft 2027 och krÃ¤ver digitala batteripass fÃ¶r alla batterier Ã¶ver 2 kWh. HÃ¤r Ã¤r en praktisk guide fÃ¶r tillverkare och Ã¥tervinnare.",
-    content: `## BatterifÃ¶rordningen â€“ En global standard
+      "EU:s nya batteriförordning (2023/1542) träder i kraft 2027 och kräver digitala batteripass för alla batterier över 2 kWh. Här är en praktisk guide för tillverkare och återvinnare.",
+    content: `## Batteriförordningen – En global standard
 
-EU-fÃ¶rordning 2023/1542 ersÃ¤tter det gamla batteridirektivet och implementerar UN-standarder fÃ¶r batterisÃ¤kerhet, hÃ¥llbarhet och cirkulÃ¤ritet. Den Ã¤r redan adopterad av flera lÃ¤nder utanfÃ¶r EU, inklusive Schweiz, Norge och FÃ¶renade Arabemiraten.
+EU-förordning 2023/1542 ersätter det gamla batteridirektivet och implementerar UN-standarder för batterisäkerhet, hållbarhet och cirkuläritet. Den är redan adopterad av flera länder utanför EU, inklusive Schweiz, Norge och Förenade Arabemiraten.
 
-## Vad Ã¤r ett batteripass?
+## Vad är ett batteripass?
 
-Ett batteripass Ã¤r ett digitalt dokument (QR-kod eller RFID) som innehÃ¥ller:
+Ett batteripass är ett digitalt dokument (QR-kod eller RFID) som innehåller:
 
 - **Batteriidentifiering**: Tillverkare, modell, serienummer, tillverkningsdatum
-- **Kemisk sammansÃ¤ttning**: Litium, kobolt, nickel, mangan, bly (% per vikt)
-- **Prestanda**: EnergiinnehÃ¥l (Wh), cykellivslÃ¤ngd, temperaturintervall
-- **MiljÃ¶pÃ¥verkan**: COâ‚‚-fotavtryck, andel Ã¥tervunnet material
-- **SÃ¤kerhet**: Certifieringar, testrapporter, varningsmeddelanden
-- **End-of-Life**: Demonteringsanvisningar, Ã¥tervinnare-kontaktuppgifter
+- **Kemisk sammansättning**: Litium, kobolt, nickel, mangan, bly (% per vikt)
+- **Prestanda**: Energiinnehål (Wh), cykellivslängd, temperaturintervall
+- **Miljöpåverkan**: COâ‚‚-fotavtryck, andel återvunnet material
+- **Säkerhet**: Certifieringar, testrapporter, varningsmeddelanden
+- **End-of-Life**: Demonteringsanvisningar, återvinnare-kontaktuppgifter
 
-## Tidslinje fÃ¶r implementering
+## Tidslinje för implementering
 
-| Batterityp | Batteripass frÃ¥n |
+| Batterityp | Batteripass från |
 |---|---|
-| Batterier fÃ¶r elfordon | 1 juli 2027 |
+| Batterier för elfordon | 1 juli 2027 |
 | Industriella batterier (>2 kWh) | 1 juli 2027 |
 | Portabla batterier | 1 januari 2028 |
 | Bilbatterier | 1 januari 2028 |
 
 ## Nexus-OS BatteryPassport Builder
 
-VÃ¥r BatteryPassport Builder guidar dig genom alla obligatoriska datapunkter och genererar EU-kompatibla batteripass. Funktioner:
+Vår BatteryPassport Builder guidar dig genom alla obligatoriska datapunkter och genererar EU-kompatibla batteripass. Funktioner:
 
-1. **Kemisk analysintegration** â€“ Importera frÃ¥n laboratorieresultat eller LCA-databaser
-2. **COâ‚‚-berÃ¤kning** â€“ Automatisk karbonfotavtrycksberÃ¤kning enligt PEF-metodik
-3. **QR-kodgenerering** â€“ LÃ¤nka till ett publikt batteripass
-4. **Ã–verensstÃ¤mmelserapport** â€“ Dokumentation fÃ¶r myndigheter
+1. **Kemisk analysintegration** – Importera från laboratorieresultat eller LCA-databaser
+2. **COâ‚‚-beräkning** – Automatisk karbonfotavtrycksberäkning enligt PEF-metodik
+3. **QR-kodgenerering** – Länka till ett publikt batteripass
+4. **Överensstämmelserapport** – Dokumentation för myndigheter
 
-Kontakta oss fÃ¶r en gratis batteripass-pilot.`,
+Kontakta oss för en gratis batteripass-pilot.`,
     author: "Peter Johansson",
-    authorRole: "Grundare & HITL-operatÃ¶r, Nexus-OS",
-    category: "CirkulÃ¤r Ekonomi & Batterier",
-    tags: JSON.parse(JSON.stringify(["BatterifÃ¶rordning", "2023/1542", "Batteripass", "CirkulÃ¤ritet", "Ã…tervinning"])) as string[],
+    authorRole: "Grundare & HITL-operatör, Nexus-OS",
+    category: "Cirkulär Ekonomi & Batterier",
+    tags: JSON.parse(JSON.stringify(["Batteriförordning", "2023/1542", "Batteripass", "Cirkuläritet", "Återvinning"])) as string[],
     readingTime: 6,
     featured: 1,
     publishedAt: new Date("2026-03-28"),
   },
   {
     slug: "hallbarhetsrapportering-esrs-csrd",
-    title: "HÃ¥llbarhetsrapportering enligt ESRS och CSRD: En praktisk guide fÃ¶r svenska fÃ¶retag",
+    title: "Hållbarhetsrapportering enligt ESRS och CSRD: En praktisk guide för svenska företag",
     excerpt:
-      "Corporate Sustainability Reporting Directive (CSRD) och European Sustainability Reporting Standards (ESRS) fÃ¶rÃ¤ndrar hur fÃ¶retag rapporterar miljÃ¶- och samhÃ¤llspÃ¥verkan. HÃ¤r Ã¤r vad du behÃ¶ver veta fÃ¶r att komma igÃ¥ng.",
-    content: `## CSRD och ESRS â€“ En ny rapporteringsstandard
+      "Corporate Sustainability Reporting Directive (CSRD) och European Sustainability Reporting Standards (ESRS) förändrar hur företag rapporterar miljö- och samhällspåverkan. Här är vad du behöver veta för att komma igång.",
+    content: `## CSRD och ESRS – En ny rapporteringsstandard
 
-CSRD (Direktiv 2022/2464) krÃ¤ver att stora fÃ¶retag rapporterar enligt European Sustainability Reporting Standards (ESRS) â€“ en harmoniserad standard som ersÃ¤tter GRI, SASB och TCFD.
+CSRD (Direktiv 2022/2464) kräver att stora företag rapporterar enligt European Sustainability Reporting Standards (ESRS) – en harmoniserad standard som ersätter GRI, SASB och TCFD.
 
-Skillnaden frÃ¥n tidigare rapportering:
+Skillnaden från tidigare rapportering:
 - **Tvingande**: Inte frivillig, utan lagstadgad
-- **Dubbel vÃ¤sentlighet**: BÃ¥de hur miljÃ¶/samhÃ¤lle pÃ¥verkar fÃ¶retaget OCH hur fÃ¶retaget pÃ¥verkar miljÃ¶/samhÃ¤lle
-- **Verifiering**: Extern revision krÃ¤vs
-- **Digitalt format**: XBRL-format fÃ¶r maskinlÃ¤sning
+- **Dubbel väsentlighet**: Både hur miljö/samhälle påverkar företaget OCH hur företaget påverkar miljö/samhälle
+- **Verifiering**: Extern revision krävs
+- **Digitalt format**: XBRL-format för maskinläsning
 
 ## ESRS-ramverket: 12 standarder
 
-| Standard | FokusomrÃ¥de |
+| Standard | Fokusområde |
 |---|---|
-| E1 | KlimatfÃ¶rÃ¤ndringar |
-| E2 | FÃ¶roreningar |
+| E1 | Klimatförändringar |
+| E2 | Föroreningar |
 | E3 | Vatten och marina resurser |
-| E4 | Biologisk mÃ¥ngfald |
-| E5 | ResursanvÃ¤ndning och cirkulÃ¤ritet |
+| E4 | Biologisk mångfald |
+| E5 | Resursanvändning och cirkuläritet |
 | S1 | Egen arbetskraft |
-| S2 | Arbetskraft i vÃ¤rdekedjan |
-| S3 | PÃ¥verkade samhÃ¤llen |
-| S4 | Konsumenter och slutanvÃ¤ndare |
-| G1 | FÃ¶retagsstyrning |
-| G2 | AffÃ¤rsetik |
-| G3 | Laglig Ã¶verensstÃ¤mmelse |
+| S2 | Arbetskraft i värdekedjan |
+| S3 | Påverkade samhällen |
+| S4 | Konsumenter och slutanvändare |
+| G1 | Företagsstyrning |
+| G2 | Affärsetik |
+| G3 | Laglig överensstämmelse |
 
 ## Nexus-OS ESRS-rapportverktyg
 
-VÃ¥r ESRS-modul hjÃ¤lper dig att:
+Vår ESRS-modul hjälper dig att:
 
-1. **KartlÃ¤gga vÃ¤sentlighetsaspekter** â€“ Genom stakeholder-intervjuer och vÃ¤rdekedjor
-2. **Samla data** â€“ FrÃ¥n dina befintliga system (ERP, HR, miljÃ¶ledning)
-3. **BerÃ¤kna indikatorer** â€“ KPI:er enligt ESRS-metodiken
-4. **Generera rapport** â€“ I XBRL-format fÃ¶r myndighetsinlÃ¤mning
-5. **Verifiera** â€“ Checklista fÃ¶r extern revisor
+1. **Kartlägga väsentlighetsaspekter** – Genom stakeholder-intervjuer och värdekedjor
+2. **Samla data** – Från dina befintliga system (ERP, HR, miljöledning)
+3. **Beräkna indikatorer** – KPI:er enligt ESRS-metodiken
+4. **Generera rapport** – I XBRL-format för myndighetsinlämning
+5. **Verifiera** – Checklista för extern revisor
 
-Kontakta oss fÃ¶r en gratis ESRS-readiness-bedÃ¶mning.`,
+Kontakta oss för en gratis ESRS-readiness-bedömning.`,
     author: "Peter Johansson",
-    authorRole: "Grundare & HITL-operatÃ¶r, Nexus-OS",
+    authorRole: "Grundare & HITL-operatör, Nexus-OS",
     coAuthor: "Manus AI",
     coAuthorRole: "AI-assistent & Analysmotor",
-    category: "HÃ¥llbarhetsrapportering",
-    tags: JSON.parse(JSON.stringify(["CSRD", "ESRS", "HÃ¥llbarhetsrapportering", "VÃ¤sentlighet", "Transparens"])) as string[],
+    category: "Hållbarhetsrapportering",
+    tags: JSON.parse(JSON.stringify(["CSRD", "ESRS", "Hållbarhetsrapportering", "Väsentlighet", "Transparens"])) as string[],
     readingTime: 8,
     featured: 1,
     publishedAt: new Date("2026-04-01"),
   },
   {
     slug: "ai-och-hallbarhet-framtiden",
-    title: "AI och hÃ¥llbarhet: Hur artificiell intelligens accelererar EU:s grÃ¶na omstÃ¤llning",
+    title: "AI och hållbarhet: Hur artificiell intelligens accelererar EU:s gröna omställning",
     excerpt:
-      "AI Ã¤r inte bara ett verktyg fÃ¶r compliance â€“ det Ã¤r en mÃ¶jliggÃ¶rare fÃ¶r den cirkulÃ¤ra ekonomin. Nexus-OS visar hur AI kan automatisera hÃ¥llbarhetsanalys, identifiera greenwashing i realtid och optimera leverantÃ¶rskedjor fÃ¶r minimal miljÃ¶pÃ¥verkan.",
-    content: `## AI som hÃ¥llbarhetsmultiplikator
+      "AI är inte bara ett verktyg för compliance – det är en möjliggörare för den cirkulära ekonomin. Nexus-OS visar hur AI kan automatisera hållbarhetsanalys, identifiera greenwashing i realtid och optimera leverantörskedjor för minimal miljöpåverkan.",
+    content: `## AI som hållbarhetsmultiplikator
 
-EU:s Green Deal och AI Act Ã¤r inte motsatta â€“ de Ã¤r komplementÃ¤ra. AI kan accelerera Ã¶vergÃ¥ngen till en cirkulÃ¤r ekonomi genom att:
+EU:s Green Deal och AI Act är inte motsatta – de är komplementära. AI kan accelerera övergången till en cirkulär ekonomi genom att:
 
-1. **Automatisera datainsamling** â€“ FrÃ¥n miljÃ¶ledningssystem, leverantÃ¶rer och offentliga register
-2. **Identifiera mÃ¶nster** â€“ Greenwashing, miljÃ¶risker, cirkulÃ¤ritetsmÃ¶jligheter
-3. **Optimera flÃ¶den** â€“ Logistik, materialÃ¥tervinning, energianvÃ¤ndning
-4. **Prognostisera** â€“ Framtida regelkrav, marknadsfÃ¶rÃ¤ndringar, risker
+1. **Automatisera datainsamling** – Från miljöledningssystem, leverantörer och offentliga register
+2. **Identifiera mönster** – Greenwashing, miljörisker, cirkuläritetsmöjligheter
+3. **Optimera flöden** – Logistik, materialåtervinning, energianvändning
+4. **Prognostisera** – Framtida regelkrav, marknadsförändringar, risker
 
-## Nexus-OS AI-moduler fÃ¶r hÃ¥llbarhet
+## Nexus-OS AI-moduler för hållbarhet
 
 **GWD-Alpha (Greenwashing Detection)**
-- Analyserar miljÃ¶pÃ¥stÃ¥enden i realtid
-- Flaggar pÃ¥stÃ¥enden som inte uppfyller Green Claims Directive
+- Analyserar miljöpåståenden i realtid
+- Flaggar påståenden som inte uppfyller Green Claims Directive
 - Returnerar bevisunderlag och rekommendation
 
 **DPP-Delta (Digital Product Pass Generator)**
 - Genererar ESPR-kompatibla produktpass
-- BerÃ¤knar karbonfotavtryck automatiskt
-- Skapar QR-koder fÃ¶r konsumenttransparens
+- Beräknar karbonfotavtryck automatiskt
+- Skapar QR-koder för konsumenttransparens
 
 **Symbios-Gamma (Industrial Symbiosis Matcher)**
-- KartlÃ¤gger avfallsstrÃ¶mmar i en region
+- Kartlägger avfallsströmmar i en region
 - Matchar avfall mot potentiella mottagare
-- BerÃ¤knar ekonomisk och miljÃ¶mÃ¤ssig vÃ¤rde
+- Beräknar ekonomisk och miljömässig värde
 
 **CSDDD-Analyzer**
-- KartlÃ¤gger leverantÃ¶rskedjor
-- BedÃ¶mer mÃ¤nskliga rÃ¤ttigheter och miljÃ¶risker
-- Genererar mitigerings-Ã¥tgÃ¤rdsplaner
+- Kartlägger leverantörskedjor
+- Bedömer mänskliga rättigheter och miljörisker
+- Genererar mitigerings-åtgärdsplaner
 
-## Framtiden: Autonoma hÃ¥llbarhetssystem
+## Framtiden: Autonoma hållbarhetssystem
 
-Vi tror pÃ¥ ett framtida scenario dÃ¤r:
+Vi tror på ett framtida scenario där:
 
-- **Realtids-compliance**: AI Ã¶vervakar automatiskt att fÃ¶retag fÃ¶ljer EU-regler
-- **Prediktiv regulering**: AI fÃ¶rutser regelÃ¤ndringar och fÃ¶rbereder fÃ¶retag
-- **CirkulÃ¤r ekonomi pÃ¥ automatik**: AI optimerar material- och energiflÃ¶den mellan fÃ¶retag
+- **Realtids-compliance**: AI övervakar automatiskt att företag följer EU-regler
+- **Prediktiv regulering**: AI förutser regeländringar och förbereder företag
+- **Cirkulär ekonomi på automatik**: AI optimerar material- och energiflöden mellan företag
 - **Transparens som standard**: Alla produkter har digitala pass med full livscykeldata
 
-Det framtida fÃ¶retaget kommer inte att frÃ¥ga "Hur gÃ¶r vi oss kompatibla med reglerna?" utan "Hur anvÃ¤nder vi AI fÃ¶r att bli bÃ¤ttre Ã¤n reglerna krÃ¤ver?"
+Det framtida företaget kommer inte att fråga "Hur gör vi oss kompatibla med reglerna?" utan "Hur använder vi AI för att bli bättre än reglerna kräver?"
 
-Nexus-OS Ã¤r byggt fÃ¶r den framtiden.`,
+Nexus-OS är byggt för den framtiden.`,
     author: "Peter Johansson",
-    authorRole: "Grundare & HITL-operatÃ¶r, Nexus-OS",
+    authorRole: "Grundare & HITL-operatör, Nexus-OS",
     coAuthor: "Manus AI",
     coAuthorRole: "AI-assistent & Analysmotor",
-    category: "AI & HÃ¥llbarhet",
-    tags: JSON.parse(JSON.stringify(["AI", "HÃ¥llbarhet", "CirkulÃ¤r ekonomi", "Green Deal", "Framtid"])) as string[],
+    category: "AI & Hållbarhet",
+    tags: JSON.parse(JSON.stringify(["AI", "Hållbarhet", "Cirkulär ekonomi", "Green Deal", "Framtid"])) as string[],
     readingTime: 9,
     featured: 1,
     publishedAt: new Date("2026-04-05"),

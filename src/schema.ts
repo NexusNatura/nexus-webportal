@@ -85,11 +85,11 @@ export const misuseScenarios = mysqlTable("misuse_scenarios", {
 export type MisuseScenario = typeof misuseScenarios.$inferSelect;
 export type InsertMisuseScenario = typeof misuseScenarios.$inferInsert;
 
-// â”€â”€â”€ BatteryPassport Builder (BPB) â€“ EU BatterifÃ¶rordning 2023/1542 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â”€â”€â”€ BatteryPassport Builder (BPB) – EU Batteriförordning 2023/1542 â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 /**
- * Batteripass â€“ huvudtabell
- * TÃ¤cker obligatoriska datapunkter enligt Annex XIII i EU BatterifÃ¶rordning 2023/1542
+ * Batteripass – huvudtabell
+ * Täcker obligatoriska datapunkter enligt Annex XIII i EU Batteriförordning 2023/1542
  */
 export const batteryPassports = mysqlTable("battery_passports", {
   id: int("id").autoincrement().primaryKey(),
@@ -108,13 +108,13 @@ export const batteryPassports = mysqlTable("battery_passports", {
   serialNumber: varchar("serialNumber", { length: 128 }),
   batchNumber: varchar("batchNumber", { length: 128 }),
   productionDate: varchar("productionDate", { length: 32 }),
-  /** Batterikategori enligt fÃ¶rordningen */
+  /** Batterikategori enligt förordningen */
   batteryCategory: mysqlEnum("batteryCategory", [
     "portable",        // Portabla batterier < 5 kg
-    "light_means",     // LÃ¤tta transportmedel (e-cykel, elscooter)
+    "light_means",     // Lätta transportmedel (e-cykel, elscooter)
     "ev",              // Elfordonsbatterier
     "industrial",      // Industriella batterier >= 2 kWh
-    "sli",             // Start-, belysnings- och tÃ¤ndningsbatterier
+    "sli",             // Start-, belysnings- och tändningsbatterier
   ]).notNull(),
   /** EU-harmoniserat produktnummer (GTIN/EAN) */
   gtin: varchar("gtin", { length: 64 }),
@@ -123,7 +123,7 @@ export const batteryPassports = mysqlTable("battery_passports", {
   chemistry: mysqlEnum("chemistry", [
     "li_nmc",   // Litium-nickel-mangan-kobolt
     "li_lco",   // Litium-koboltoxid
-    "li_lfp",   // Litium-jÃ¤rnfosfat
+    "li_lfp",   // Litium-järnfosfat
     "li_nca",   // Litium-nickel-kobolt-aluminium
     "li_lto",   // Litium-titanatoxid
     "nimh",     // Nickel-metallhydrid
@@ -143,7 +143,7 @@ export const batteryPassports = mysqlTable("battery_passports", {
   expectedLifetimeYears: int("expectedLifetimeYears"),
 
   // â”€â”€ Steg 3: Karbonfotavtryck (Artikel 7) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-  /** kg COâ‚‚e per kWh â€“ obligatoriskt frÃ¥n 2025 fÃ¶r EV/industriella batterier */
+  /** kg COâ‚‚e per kWh – obligatoriskt från 2025 för EV/industriella batterier */
   carbonFootprintKgCo2eKwh: float("carbonFootprintKgCo2eKwh"),
   carbonFootprintSystemBoundary: mysqlEnum("carbonFootprintSystemBoundary", [
     "cradle_to_gate",
@@ -155,41 +155,41 @@ export const batteryPassports = mysqlTable("battery_passports", {
   /** Uppdelning per livscykelfas (JSON) */
   carbonFootprintBreakdown: json("carbonFootprintBreakdown"),
 
-  // â”€â”€ Steg 4: Ã…tervunnet innehÃ¥ll (Artikel 8) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-  /** % Ã¥tervunnet kobolt */
+  // â”€â”€ Steg 4: Återvunnet innehåll (Artikel 8) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+  /** % återvunnet kobolt */
   recycledCobaltPct: float("recycledCobaltPct"),
-  /** % Ã¥tervunnet litium */
+  /** % återvunnet litium */
   recycledLithiumPct: float("recycledLithiumPct"),
-  /** % Ã¥tervunnet nickel */
+  /** % återvunnet nickel */
   recycledNickelPct: float("recycledNickelPct"),
-  /** % Ã¥tervunnet bly */
+  /** % återvunnet bly */
   recycledLeadPct: float("recycledLeadPct"),
-  /** % Ã¥tervunnet mangan */
+  /** % återvunnet mangan */
   recycledManganesePct: float("recycledManganesePct"),
   recycledContentVerifier: varchar("recycledContentVerifier", { length: 255 }),
   recycledContentVerificationDate: varchar("recycledContentVerificationDate", { length: 32 }),
 
   // â”€â”€ Steg 5: Demonteringsanvisningar (Artikel 11) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-  /** Steg-fÃ¶r-steg demonteringsanvisningar (JSON-array) */
+  /** Steg-för-steg demonteringsanvisningar (JSON-array) */
   dismantlingInstructions: json("dismantlingInstructions"),
   /** Erforderliga verktyg */
   requiredTools: text("requiredTools"),
-  /** SÃ¤kerhetsvarningar */
+  /** Säkerhetsvarningar */
   safetyWarnings: text("safetyWarnings"),
-  /** LÃ¤nk till fullstÃ¤ndig servicedokumentation */
+  /** Länk till fullständig servicedokumentation */
   serviceDocumentationUrl: varchar("serviceDocumentationUrl", { length: 512 }),
 
   // â”€â”€ Steg 6: End-of-Life & Insamling (Artikel 60-61) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   /** Insamlingsansvarig PRO (t.ex. Batterikretsen) */
   collectionScheme: varchar("collectionScheme", { length: 255 }),
-  /** NÃ¤rmaste insamlingspunkt (adress/URL) */
+  /** Närmaste insamlingspunkt (adress/URL) */
   collectionPointUrl: varchar("collectionPointUrl", { length: 512 }),
-  /** GodkÃ¤nd Ã¥tervinnare (t.ex. Revac Sverige AB) */
+  /** Godkänd återvinnare (t.ex. Revac Sverige AB) */
   approvedRecycler: varchar("approvedRecycler", { length: 255 }),
   approvedRecyclerCertification: varchar("approvedRecyclerCertification", { length: 128 }),
-  /** Ã…tervinningsmÃ¥l (%) per material */
+  /** Återvinningsmål (%) per material */
   recyclingTargets: json("recyclingTargets"),
-  /** Revac-specifik integration: anlÃ¤ggningskod */
+  /** Revac-specifik integration: anläggningskod */
   revacFacilityCode: varchar("revacFacilityCode", { length: 64 }),
 
   // â”€â”€ Metadata â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
@@ -233,15 +233,15 @@ export type InsertBlogPost = typeof blogPosts.$inferInsert;
 // â”€â”€â”€ Marketplace Listings â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export const marketplaceListings = mysqlTable("marketplace_listings", {
   id: int("id").autoincrement().primaryKey(),
-  /** FK to users.id â€“ the seller */
+  /** FK to users.id – the seller */
   sellerId: int("sellerId").notNull(),
-  /** Display title, e.g. "LCA-data â€“ Silverring 925" */
+  /** Display title, e.g. "LCA-data – Silverring 925" */
   title: varchar("title", { length: 255 }).notNull(),
   /** Short description shown in the listing card */
   description: text("description").notNull(),
-  /** Product category, e.g. "Metall & StÃ¥l" */
+  /** Product category, e.g. "Metall & Stål" */
   category: varchar("category", { length: 64 }).notNull(),
-  /** Price in SEK Ã¶re (integer) â€“ 45000 = 450 SEK */
+  /** Price in SEK öre (integer) – 45000 = 450 SEK */
   priceOre: int("priceOre").notNull(),
   /** Revenue share kept by seller (integer percent, e.g. 70) */
   sellerSharePct: int("sellerSharePct").notNull().default(70),
@@ -268,13 +268,13 @@ export const marketplacePurchases = mysqlTable("marketplace_purchases", {
   id: int("id").autoincrement().primaryKey(),
   /** FK to marketplace_listings.id */
   listingId: int("listingId").notNull(),
-  /** FK to users.id â€“ the buyer */
+  /** FK to users.id – the buyer */
   buyerId: int("buyerId").notNull(),
   /** Stripe PaymentIntent ID for audit trail */
   stripePaymentIntentId: varchar("stripePaymentIntentId", { length: 128 }),
   /** Stripe Checkout Session ID */
   stripeSessionId: varchar("stripeSessionId", { length: 128 }),
-  /** Amount paid in SEK Ã¶re */
+  /** Amount paid in SEK öre */
   amountOre: int("amountOre").notNull(),
   /** "pending" | "paid" | "failed" | "refunded" */
   status: mysqlEnum("status", ["pending", "paid", "failed", "refunded"]).notNull().default("pending"),
@@ -298,9 +298,9 @@ export const agents = mysqlTable("agents", {
   category: mysqlEnum("category", ["grants", "compliance", "dpp", "symbiosis", "design", "circular"]).notNull(),
   /** "per_task" | "monthly" | "both" */
   pricingModel: mysqlEnum("pricingModel", ["per_task", "monthly", "both"]).notNull().default("per_task"),
-  /** Price per task in SEK Ã¶re (e.g. 250000 = 2 500 SEK) */
+  /** Price per task in SEK öre (e.g. 250000 = 2 500 SEK) */
   pricePerTaskOre: int("pricePerTaskOre"),
-  /** Monthly subscription price in SEK Ã¶re */
+  /** Monthly subscription price in SEK öre */
   priceMonthlyOre: int("priceMonthlyOre"),
   /** EU AI Act risk class */
   riskClass: mysqlEnum("riskClass", ["minimal", "limited", "high"]).notNull().default("limited"),
@@ -324,7 +324,7 @@ export const agents = mysqlTable("agents", {
   iconName: varchar("iconName", { length: 64 }).notNull().default("Bot"),
   /** Accent color class for card theming */
   accentColor: varchar("accentColor", { length: 64 }).notNull().default("text-emerald-400"),
-  /** FK to users.id â€“ creator (null for official Nexus-OS agents) */
+  /** FK to users.id – creator (null for official Nexus-OS agents) */
   creatorId: int("creatorId"),
   /** System prompt used by the agent */
   systemPrompt: text("systemPrompt"),
@@ -343,7 +343,7 @@ export const agentPurchases = mysqlTable("agent_purchases", {
   id: int("id").autoincrement().primaryKey(),
   /** FK to agents.id */
   agentId: int("agentId").notNull(),
-  /** FK to users.id â€“ the buyer */
+  /** FK to users.id – the buyer */
   buyerId: int("buyerId").notNull(),
   /** "per_task" | "monthly" */
   purchaseType: mysqlEnum("purchaseType", ["per_task", "monthly"]).notNull(),
@@ -351,7 +351,7 @@ export const agentPurchases = mysqlTable("agent_purchases", {
   stripeSessionId: varchar("stripeSessionId", { length: 128 }),
   /** Stripe PaymentIntent ID */
   stripePaymentIntentId: varchar("stripePaymentIntentId", { length: 128 }),
-  /** Amount paid in SEK Ã¶re */
+  /** Amount paid in SEK öre */
   amountOre: int("amountOre").notNull(),
   /** "pending" | "paid" | "failed" | "refunded" */
   status: mysqlEnum("status", ["pending", "paid", "failed", "refunded"]).notNull().default("pending"),

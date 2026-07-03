@@ -1,5 +1,5 @@
 ﻿/**
- * Stripe singleton â€“ server-side only.
+ * Stripe singleton – server-side only.
  * Import this file from tRPC procedures and webhook handlers.
  */
 import Stripe from "stripe";

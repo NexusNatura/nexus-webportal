@@ -328,12 +328,12 @@ export const batteryRouter = router({
       const passport = rows[0];
       const completeness = calculateCompleteness(passport);
 
-      const prompt = `Du Ã¤r DPP-Delta, en AI-expert pÃ¥ EU BatterifÃ¶rordning 2023/1542 och Digitala Produktpass.
+      const prompt = `Du är DPP-Delta, en AI-expert på EU Batteriförordning 2023/1542 och Digitala Produktpass.
 
-Analysera fÃ¶ljande batteripass och identifiera:
+Analysera följande batteripass och identifiera:
 1. Saknade obligatoriska datapunkter (kritiska gap)
-2. Rekommenderade datapunkter som stÃ¤rker passportets trovÃ¤rdighet
-3. Specifika Ã¥tgÃ¤rder fÃ¶r att uppnÃ¥ full efterlevnad
+2. Rekommenderade datapunkter som stärker passportets trovärdighet
+3. Specifika åtgärder för att uppnå full efterlevnad
 
 Batteripass: ${JSON.stringify({
   category: passport.batteryCategory,
@@ -347,16 +347,16 @@ Batteripass: ${JSON.stringify({
   completeness: completeness,
 }, null, 2)}
 
-Svara pÃ¥ svenska med konkreta, handlingsbara rekommendationer. Fokusera pÃ¥ de tre viktigaste gapen.`;
+Svara på svenska med konkreta, handlingsbara rekommendationer. Fokusera på de tre viktigaste gapen.`;
 
       const response = await invokeLLM({
         messages: [
-          { role: "system", content: "Du Ã¤r DPP-Delta, expert pÃ¥ EU BatterifÃ¶rordning 2023/1542. Ge konkreta, handlingsbara rÃ¥d pÃ¥ svenska." },
+          { role: "system", content: "Du är DPP-Delta, expert på EU Batteriförordning 2023/1542. Ge konkreta, handlingsbara råd på svenska." },
           { role: "user", content: prompt },
         ],
       });
 
-      const analysis = response.choices[0]?.message?.content ?? "Analys ej tillgÃ¤nglig";
+      const analysis = response.choices[0]?.message?.content ?? "Analys ej tillgänglig";
       return { analysis, completeness };
     }),
 

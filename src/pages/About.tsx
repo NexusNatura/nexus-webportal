@@ -1,5 +1,5 @@
 ﻿/*
- * NEXUS-OS About Page â€“ Vision, Team & Kontakt
+ * NEXUS-OS About Page – Vision, Team & Kontakt
  * Design: Nordic Sustainability Intelligence
  */
 
@@ -17,21 +17,21 @@ const team = [
   {
     name: "Peter (Jerker)",
     role: "Grundare & Teknisk Arkitekt",
-    desc: "Bygger NexusCore-plattformen och EU-byrÃ¥kratiagenten. Ansvarar fÃ¶r systemarkitektur, AI-integration och PowerShell-motorn.",
+    desc: "Bygger NexusCore-plattformen och EU-byråkratiagenten. Ansvarar för systemarkitektur, AI-integration och PowerShell-motorn.",
     initials: "PJ",
     color: "oklch(0.28 0.08 155)",
   },
   {
     name: "Paula Pantolin",
-    role: "Branschpartner & PilotfÃ¶retag",
-    desc: "Grundare av Pantolin Smycken. Pilotpartner fÃ¶r DPP-implementering. Bevisade resultat: 89% COâ‚‚-reduktion, 18% premieprissÃ¤ttning.",
+    role: "Branschpartner & Pilotföretag",
+    desc: "Grundare av Pantolin Smycken. Pilotpartner för DPP-implementering. Bevisade resultat: 89% COâ‚‚-reduktion, 18% premieprissättning.",
     initials: "PP",
     color: "oklch(0.62 0.12 55)",
   },
   {
     name: "Marlene",
     role: "Design & Kommunikation",
-    desc: "Ansvarar fÃ¶r visuell identitet, anvÃ¤ndarupplevelse och kommunikation mot kunder och finansiÃ¤rer.",
+    desc: "Ansvarar för visuell identitet, användarupplevelse och kommunikation mot kunder och finansiärer.",
     initials: "ML",
     color: "oklch(0.38 0.09 155)",
   },
@@ -40,18 +40,18 @@ const team = [
 const values = [
   {
     icon: Leaf,
-    title: "HÃ¥llbarhet i praktiken",
-    desc: "Vi mÃ¤ter alltid klimatpÃ¥verkan. Varje DPP, varje ansÃ¶kan och varje symbiosflÃ¶de ska resultera i faktisk COâ‚‚-reduktion â€“ inte bara pÃ¥ papper.",
+    title: "Hållbarhet i praktiken",
+    desc: "Vi mäter alltid klimatpåverkan. Varje DPP, varje ansökan och varje symbiosflöde ska resultera i faktisk COâ‚‚-reduktion – inte bara på papper.",
   },
   {
     icon: Users,
-    title: "Lokal fÃ¶rankring",
-    desc: "Nexus-OS Ã¤r byggt fÃ¶r och med fÃ¶retag i Skaraborg. Vi fÃ¶rstÃ¥r de lokala utmaningarna och har ett nÃ¤tverk av pilotkunder som bevisar konceptet.",
+    title: "Lokal förankring",
+    desc: "Nexus-OS är byggt för och med företag i Skaraborg. Vi förstår de lokala utmaningarna och har ett nätverk av pilotkunder som bevisar konceptet.",
   },
   {
     icon: Target,
     title: "Senior EU-kompetens",
-    desc: "Vi sÃ¤ljer inte bara ett verktyg â€“ vi sÃ¤ljer senior kompetens om EU:s regellandskap. VÃ¥r AI Ã¤r trÃ¤nad pÃ¥ ESPR, AI Act, GDPR och Erasmus+.",
+    desc: "Vi säljer inte bara ett verktyg – vi säljer senior kompetens om EU:s regellandskap. Vår AI är tränad på ESPR, AI Act, GDPR och Erasmus+.",
   },
 ];
 
@@ -64,9 +64,9 @@ export default function About() {
 
   const validate = () => {
     const e: Record<string, string> = {};
-    if (!form.name.trim()) e.name = "Namn krÃ¤vs";
-    if (!form.email.trim() || !/^[^@]+@[^@]+\.[^@]+$/.test(form.email)) e.email = "Giltig e-post krÃ¤vs";
-    if (!form.message.trim()) e.message = "Meddelande krÃ¤vs";
+    if (!form.name.trim()) e.name = "Namn krävs";
+    if (!form.email.trim() || !/^[^@]+@[^@]+\.[^@]+$/.test(form.email)) e.email = "Giltig e-post krävs";
+    if (!form.message.trim()) e.message = "Meddelande krävs";
     return e;
   };
 
@@ -74,7 +74,7 @@ export default function About() {
     const e = validate();
     if (Object.keys(e).length > 0) { setErrors(e); return; }
     setSent(true);
-    toast.success("Meddelande skickat!", { description: `Vi hÃ¶r av oss till ${form.email} inom 1â€“2 arbetsdagar.` });
+    toast.success("Meddelande skickat!", { description: `Vi hör av oss till ${form.email} inom 1–2 arbetsdagar.` });
   };
 
   return (
@@ -86,10 +86,10 @@ export default function About() {
         <div className="absolute inset-0 flex items-center px-4 lg:px-8">
           <div>
             <h2 className="text-3xl font-bold text-white mb-2" style={{ fontFamily: "'Fraunces', serif" }}>
-              En motor â€“ tre marknader
+              En motor – tre marknader
             </h2>
             <p className="text-white/80 max-w-xl text-sm">
-              Nexus-OS hjÃ¤lper lokala SMF att navigera EU:s cirkulÃ¤ra omstÃ¤llning, hitta rÃ¤tt finansiering och bygga digitala produktpass som skapar nya intÃ¤kter.
+              Nexus-OS hjälper lokala SMF att navigera EU:s cirkulära omställning, hitta rätt finansiering och bygga digitala produktpass som skapar nya intäkter.
             </p>
           </div>
         </div>
@@ -100,13 +100,13 @@ export default function About() {
         <div className="max-w-3xl mb-12">
           <div className="nexus-section-divider mb-4" />
           <h3 className="text-2xl font-bold text-foreground mb-4" style={{ fontFamily: "'Fraunces', serif" }}>
-            VÃ¥r vision
+            Vår vision
           </h3>
           <p className="text-muted-foreground leading-relaxed mb-4">
-            EU:s ESPR-fÃ¶rordning gÃ¶r Digitala Produktpass obligatoriska frÃ¥n 2026. De flesta lokala fÃ¶retag saknar infrastruktur, kompetens och resurser fÃ¶r att mÃ¶ta dessa krav. Nexus-OS vÃ¤nder compliance-kostnaden till en ny intÃ¤ktskÃ¤lla.
+            EU:s ESPR-förordning gör Digitala Produktpass obligatoriska från 2026. De flesta lokala företag saknar infrastruktur, kompetens och resurser för att möta dessa krav. Nexus-OS vänder compliance-kostnaden till en ny intäktskälla.
           </p>
           <p className="text-muted-foreground leading-relaxed">
-            Plattformen kombinerar en senior AI-agent fÃ¶r EU-byrÃ¥krati, en digital produktpassbank och en industriell symbiosmotor â€“ allt drivet av samma AI-kÃ¤rna och tillgÃ¤ngligt via en lokal PowerShell-terminal eller denna webbplattform.
+            Plattformen kombinerar en senior AI-agent för EU-byråkrati, en digital produktpassbank och en industriell symbiosmotor – allt drivet av samma AI-kärna och tillgängligt via en lokal PowerShell-terminal eller denna webbplattform.
           </p>
         </div>
 
@@ -156,14 +156,14 @@ export default function About() {
             Kom i kontakt med oss
           </h3>
           <p className="text-muted-foreground text-sm mb-6">
-            Vi sÃ¶ker samarbetspartners, pilotkunder och finansiering. HÃ¶r av dig om du vill veta mer eller utforska ett samarbete.
+            Vi söker samarbetspartners, pilotkunder och finansiering. Hör av dig om du vill veta mer eller utforska ett samarbete.
           </p>
 
           {sent ? (
             <div className="text-center py-8">
               <CheckCircle2 className="w-14 h-14 text-emerald-500 mx-auto mb-3" />
               <h4 className="font-bold text-foreground mb-1" style={{ fontFamily: "'Fraunces', serif" }}>Tack, {form.name}!</h4>
-              <p className="text-sm text-muted-foreground mb-4">Vi hÃ¶r av oss till <strong>{form.email}</strong> inom 1â€“2 arbetsdagar.</p>
+              <p className="text-sm text-muted-foreground mb-4">Vi hör av oss till <strong>{form.email}</strong> inom 1–2 arbetsdagar.</p>
               <Button variant="outline" onClick={() => { setSent(false); setForm({ name: "", email: "", org: "", role: "", message: "" }); }}>
                 Skicka ett till meddelande
               </Button>
@@ -185,7 +185,7 @@ export default function About() {
                   </div>
                   <div>
                     <label className="text-xs font-medium mb-1 block" style={{ color: "oklch(0.28 0.08 155)" }}>Organisation</label>
-                    <Input placeholder="FÃ¶retag / Org" value={form.org} onChange={e => setForm(f => ({ ...f, org: e.target.value }))} />
+                    <Input placeholder="Företag / Org" value={form.org} onChange={e => setForm(f => ({ ...f, org: e.target.value }))} />
                   </div>
                 </div>
                 <div>
@@ -200,7 +200,7 @@ export default function About() {
                   {errors.email && <p className="text-xs text-red-500 mt-0.5">{errors.email}</p>}
                 </div>
                 <div>
-                  <label className="text-xs font-medium mb-1 block" style={{ color: "oklch(0.28 0.08 155)" }}>Jag Ã¤r intresserad som</label>
+                  <label className="text-xs font-medium mb-1 block" style={{ color: "oklch(0.28 0.08 155)" }}>Jag är intresserad som</label>
                   <div className="flex flex-wrap gap-2">
                     {(["pilotkund", "partner", "investerare", "annan"] as ContactRole[]).map(r => (
                       <button
@@ -221,7 +221,7 @@ export default function About() {
                 <div>
                   <label className="text-xs font-medium mb-1 block" style={{ color: "oklch(0.28 0.08 155)" }}>Meddelande *</label>
                   <Textarea
-                    placeholder="Beskriv ditt intresse eller dina frÃ¥gor..."
+                    placeholder="Beskriv ditt intresse eller dina frågor..."
                     value={form.message}
                     onChange={e => { setForm(f => ({ ...f, message: e.target.value })); setErrors(er => ({ ...er, message: "" })); }}
                     rows={4}
@@ -243,7 +243,7 @@ export default function About() {
                     <MapPin className="w-4 h-4 text-[oklch(0.62_0.12_55)] mt-0.5 flex-shrink-0" />
                     <div>
                       <div className="font-medium text-foreground">Plats</div>
-                      <div className="text-muted-foreground">Skaraborg, VÃ¤stra GÃ¶taland</div>
+                      <div className="text-muted-foreground">Skaraborg, Västra Götaland</div>
                     </div>
                   </div>
                   <div className="flex items-start gap-3 bg-white rounded-xl p-4 border border-[oklch(0.28_0.08_155_/_0.15)]">
@@ -256,17 +256,17 @@ export default function About() {
                   <div className="flex items-start gap-3 bg-white rounded-xl p-4 border border-[oklch(0.28_0.08_155_/_0.15)]">
                     <Leaf className="w-4 h-4 text-[oklch(0.62_0.12_55)] mt-0.5 flex-shrink-0" />
                     <div>
-                      <div className="font-medium text-foreground">FokusomrÃ¥den</div>
-                      <div className="text-muted-foreground">CirkulÃ¤r ekonomi, ESPR 2026, DPP, EU-bidrag</div>
+                      <div className="font-medium text-foreground">Fokusområden</div>
+                      <div className="text-muted-foreground">Cirkulär ekonomi, ESPR 2026, DPP, EU-bidrag</div>
                     </div>
                   </div>
                 </div>
                 <div className="bg-[oklch(0.28_0.08_155_/_0.06)] rounded-xl p-4 border border-[oklch(0.28_0.08_155_/_0.15)] text-sm">
-                  <div className="font-semibold text-foreground mb-2" style={{ fontFamily: "'Fraunces', serif" }}>Vi sÃ¶ker aktivt</div>
+                  <div className="font-semibold text-foreground mb-2" style={{ fontFamily: "'Fraunces', serif" }}>Vi söker aktivt</div>
                   <ul className="space-y-1 text-muted-foreground">
                     <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />Pilotkunder i Skaraborg</li>
                     <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />Branschpartners med EU-kompetens</li>
-                    <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />SÃ¥dd-investering / Almi-finansiering</li>
+                    <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />Sådd-investering / Almi-finansiering</li>
                     <li className="flex items-center gap-2"><CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />Vinnova-konsortiumpartners</li>
                   </ul>
                 </div>

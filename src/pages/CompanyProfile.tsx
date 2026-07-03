@@ -1,5 +1,5 @@
 ﻿/*
- * NEXUS-OS Company Profile Page â€“ Personaliserad handlingsplan
+ * NEXUS-OS Company Profile Page – Personaliserad handlingsplan
  * Design: Nordic Sustainability Intelligence
  */
 
@@ -15,35 +15,35 @@ import {
 const industries = [
   "Tillverkning & Industri",
   "Hantverk & Design",
-  "Reparation & Ã…terbruk",
+  "Reparation & Återbruk",
   "Livsmedel & Dryck",
   "Bygg & Fastighet",
   "Teknik & IT",
   "Handel & Logistik",
-  "Utbildning & TjÃ¤nster",
+  "Utbildning & Tjänster",
 ];
 
 const sizes = [
-  { label: "MikrofÃ¶retag (1â€“9 anst.)", value: "micro" },
-  { label: "Litet fÃ¶retag (10â€“49 anst.)", value: "small" },
-  { label: "Medelstort fÃ¶retag (50â€“249 anst.)", value: "medium" },
-  { label: "Startup (< 3 Ã¥r)", value: "startup" },
+  { label: "Mikroföretag (1–9 anst.)", value: "micro" },
+  { label: "Litet företag (10–49 anst.)", value: "small" },
+  { label: "Medelstort företag (50–249 anst.)", value: "medium" },
+  { label: "Startup (< 3 år)", value: "startup" },
 ];
 
 const challenges = [
   { id: "espr", label: "EU:s ESPR/DPP-krav 2026", icon: FileText },
-  { id: "co2", label: "Minska COâ‚‚-utslÃ¤pp", icon: Leaf },
+  { id: "co2", label: "Minska COâ‚‚-utsläpp", icon: Leaf },
   { id: "grants", label: "Hitta finansiering", icon: Euro },
-  { id: "circular", label: "CirkulÃ¤r omstÃ¤llning", icon: Recycle },
+  { id: "circular", label: "Cirkulär omställning", icon: Recycle },
   { id: "digital", label: "Digitalisering", icon: Zap },
-  { id: "lca", label: "LCA & hÃ¥llbarhetsrapport", icon: Star },
+  { id: "lca", label: "LCA & hållbarhetsrapport", icon: Star },
 ];
 
 interface ProfileResult {
   grants: { name: string; match: number; amount: string }[];
   actions: string[];
   dppNeeded: boolean;
-  urgency: "HÃ¶g" | "Medel" | "LÃ¥g";
+  urgency: "Hög" | "Medel" | "Låg";
 }
 
 function generateProfile(industry: string, size: string, selected: string[]): ProfileResult {
@@ -51,30 +51,30 @@ function generateProfile(industry: string, size: string, selected: string[]): Pr
   const actions = [];
 
   if (selected.includes("espr") || selected.includes("circular")) {
-    grants.push({ name: "Vinnova CirkulÃ¤ra ProduktflÃ¶den", match: 91, amount: "2â€“10 MSEK" });
+    grants.push({ name: "Vinnova Cirkulära Produktflöden", match: 91, amount: "2–10 MSEK" });
     grants.push({ name: "Klimatklivet", match: 87, amount: "Upp till 2,5 MSEK" });
-    actions.push("Skapa Digitalt Produktpass fÃ¶r era tre viktigaste produkter");
-    actions.push("GenomfÃ¶r LCA-analys fÃ¶r att kartlÃ¤gga COâ‚‚-fotavtryck");
+    actions.push("Skapa Digitalt Produktpass för era tre viktigaste produkter");
+    actions.push("Genomför LCA-analys för att kartlägga COâ‚‚-fotavtryck");
   }
   if (selected.includes("grants") || size === "micro" || size === "startup") {
-    grants.push({ name: "Almi Verifieringsmedel", match: 94, amount: "50â€“250 000 SEK" });
-    actions.push("Boka mÃ¶te med Almi VÃ¤st fÃ¶r verifieringsmedel (kostnadsfritt)");
+    grants.push({ name: "Almi Verifieringsmedel", match: 94, amount: "50–250 000 SEK" });
+    actions.push("Boka möte med Almi Väst för verifieringsmedel (kostnadsfritt)");
   }
   if (selected.includes("co2")) {
     grants.push({ name: "Klimatklivet", match: 89, amount: "Upp till 2,5 MSEK" });
-    actions.push("Dokumentera nuvarande energifÃ¶rbrukning och utslÃ¤pp");
+    actions.push("Dokumentera nuvarande energiförbrukning och utsläpp");
   }
   if (size === "startup") {
     grants.push({ name: "Vinnova Innovativa Startups", match: 85, amount: "300 000 SEK" });
-    actions.push("Utforska finansieringsmÃ¶jligheter via Almi och Vinnova");
+    actions.push("Utforska finansieringsmöjligheter via Almi och Vinnova");
   }
   if (selected.includes("lca") || selected.includes("espr")) {
-    actions.push("KÃ¶r: nexus 'generate dpp' i NexusCore Terminal");
+    actions.push("Kör: nexus 'generate dpp' i NexusCore Terminal");
   }
-  actions.push("Kontakta Nexus-OS fÃ¶r en kostnadsfri genomgÃ¥ng av din handlingsplan");
+  actions.push("Kontakta Nexus-OS för en kostnadsfri genomgång av din handlingsplan");
 
   const uniqueGrants = grants.filter((g, i, arr) => arr.findIndex(x => x.name === g.name) === i);
-  const urgency: "HÃ¶g" | "Medel" | "LÃ¥g" = selected.includes("espr") ? "HÃ¶g" : selected.length >= 3 ? "Medel" : "LÃ¥g";
+  const urgency: "Hög" | "Medel" | "Låg" = selected.includes("espr") ? "Hög" : selected.length >= 3 ? "Medel" : "Låg";
 
   return {
     grants: uniqueGrants.slice(0, 4),
@@ -101,7 +101,7 @@ export default function CompanyProfile() {
 
   const handleGenerate = () => {
     if (!companyName || !industry || !size) {
-      toast.error("Fyll i alla fÃ¤lt innan du fortsÃ¤tter");
+      toast.error("Fyll i alla fält innan du fortsätter");
       return;
     }
     setGenerating(true);
@@ -113,7 +113,7 @@ export default function CompanyProfile() {
   };
 
   return (
-    <Layout title="FÃ¶retagsprofil" subtitle="Generera din personaliserade handlingsplan">
+    <Layout title="Företagsprofil" subtitle="Generera din personaliserade handlingsplan">
       <div className="bg-white border-b border-border px-4 lg:px-8 py-5">
         <div className="flex items-center gap-2 max-w-2xl">
           {[1, 2, 3, 4].map((s) => (
@@ -144,17 +144,17 @@ export default function CompanyProfile() {
           <div className="animate-fade-in-up">
             <div className="nexus-section-divider mb-4" />
             <h2 className="text-2xl font-bold text-foreground mb-2" style={{ fontFamily: "'Fraunces', serif" }}>
-              BerÃ¤tta om ditt fÃ¶retag
+              Berätta om ditt företag
             </h2>
             <p className="text-muted-foreground mb-6 text-sm">
-              Nexus-OS analyserar din situation och genererar en personaliserad handlingsplan med rÃ¤tt bidrag och Ã¥tgÃ¤rder.
+              Nexus-OS analyserar din situation och genererar en personaliserad handlingsplan med rätt bidrag och åtgärder.
             </p>
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-foreground mb-1.5">FÃ¶retagsnamn</label>
+                <label className="block text-sm font-medium text-foreground mb-1.5">Företagsnamn</label>
                 <input
                   type="text"
-                  placeholder="t.ex. ReparatÃ¶rn KB"
+                  placeholder="t.ex. Reparatörn KB"
                   value={companyName}
                   onChange={e => setCompanyName(e.target.value)}
                   className="w-full px-3 py-2.5 text-sm border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-[oklch(0.28_0.08_155_/_0.30)] focus:border-[oklch(0.28_0.08_155)]"
@@ -164,16 +164,16 @@ export default function CompanyProfile() {
                 <label className="block text-sm font-medium text-foreground mb-1.5">Ort / Region</label>
                 <input
                   type="text"
-                  placeholder="t.ex. TÃ¶reboda, Skaraborg"
+                  placeholder="t.ex. Töreboda, Skaraborg"
                   className="w-full px-3 py-2.5 text-sm border border-border rounded-lg bg-background focus:outline-none focus:ring-2 focus:ring-[oklch(0.28_0.08_155_/_0.30)] focus:border-[oklch(0.28_0.08_155)]"
                 />
               </div>
             </div>
             <Button
               className="mt-6 bg-[oklch(0.28_0.08_155)] text-white gap-2"
-              onClick={() => { if (companyName) setStep(2); else toast.error("Ange fÃ¶retagsnamn"); }}
+              onClick={() => { if (companyName) setStep(2); else toast.error("Ange företagsnamn"); }}
             >
-              FortsÃ¤tt <ChevronRight className="w-4 h-4" />
+              Fortsätt <ChevronRight className="w-4 h-4" />
             </Button>
           </div>
         )}
@@ -184,7 +184,7 @@ export default function CompanyProfile() {
             <h2 className="text-2xl font-bold text-foreground mb-2" style={{ fontFamily: "'Fraunces', serif" }}>
               Bransch och storlek
             </h2>
-            <p className="text-muted-foreground mb-6 text-sm">VÃ¤lj det som bÃ¤st beskriver {companyName}.</p>
+            <p className="text-muted-foreground mb-6 text-sm">Välj det som bäst beskriver {companyName}.</p>
 
             <div className="mb-5">
               <label className="block text-sm font-medium text-foreground mb-3">Bransch</label>
@@ -206,7 +206,7 @@ export default function CompanyProfile() {
             </div>
 
             <div className="mb-6">
-              <label className="block text-sm font-medium text-foreground mb-3">FÃ¶retagsstorlek</label>
+              <label className="block text-sm font-medium text-foreground mb-3">Företagsstorlek</label>
               <div className="space-y-2">
                 {sizes.map(s => (
                   <button
@@ -229,9 +229,9 @@ export default function CompanyProfile() {
               <Button variant="outline" onClick={() => setStep(1)}>Tillbaka</Button>
               <Button
                 className="bg-[oklch(0.28_0.08_155)] text-white gap-2"
-                onClick={() => { if (industry && size) setStep(3); else toast.error("VÃ¤lj bransch och storlek"); }}
+                onClick={() => { if (industry && size) setStep(3); else toast.error("Välj bransch och storlek"); }}
               >
-                FortsÃ¤tt <ChevronRight className="w-4 h-4" />
+                Fortsätt <ChevronRight className="w-4 h-4" />
               </Button>
             </div>
           </div>
@@ -241,9 +241,9 @@ export default function CompanyProfile() {
           <div className="animate-fade-in-up">
             <div className="nexus-section-divider mb-4" />
             <h2 className="text-2xl font-bold text-foreground mb-2" style={{ fontFamily: "'Fraunces', serif" }}>
-              Vilka Ã¤r era utmaningar?
+              Vilka är era utmaningar?
             </h2>
-            <p className="text-muted-foreground mb-6 text-sm">VÃ¤lj alla som stÃ¤mmer â€“ ju fler, desto mer trÃ¤ffsÃ¤ker handlingsplan.</p>
+            <p className="text-muted-foreground mb-6 text-sm">Välj alla som stämmer – ju fler, desto mer träffsäker handlingsplan.</p>
 
             <div className="grid grid-cols-2 gap-3 mb-6">
               {challenges.map(c => {
@@ -291,18 +291,18 @@ export default function CompanyProfile() {
               </div>
               <div>
                 <h2 className="text-2xl font-bold text-foreground" style={{ fontFamily: "'Fraunces', serif" }}>
-                  Handlingsplan fÃ¶r {companyName}
+                  Handlingsplan för {companyName}
                 </h2>
                 <div className="flex items-center gap-2 mt-1">
                   <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${
-                    result.urgency === "HÃ¶g" ? "bg-red-100 text-red-700" :
+                    result.urgency === "Hög" ? "bg-red-100 text-red-700" :
                     result.urgency === "Medel" ? "bg-amber-100 text-amber-700" :
                     "bg-green-100 text-green-700"
                   }`}>
                     Prioritet: {result.urgency}
                   </span>
                   {result.dppNeeded && (
-                    <span className="nexus-badge-copper">DPP krÃ¤vs 2026</span>
+                    <span className="nexus-badge-copper">DPP krävs 2026</span>
                   )}
                 </div>
               </div>
@@ -341,7 +341,7 @@ export default function CompanyProfile() {
               <div className="flex items-center gap-2 mb-4">
                 <ArrowRight className="w-5 h-5 text-[oklch(0.62_0.12_55)]" />
                 <h3 className="font-semibold text-foreground" style={{ fontFamily: "'Fraunces', serif" }}>
-                  NÃ¤sta 30 dagar
+                  Nästa 30 dagar
                 </h3>
               </div>
               <ol className="space-y-3">
@@ -361,7 +361,7 @@ export default function CompanyProfile() {
                 className="bg-[oklch(0.28_0.08_155)] text-white gap-2"
                 onClick={() => {
                   toast.success("Handlingsplan exporterad!", {
-                    description: "Ã–ppna NexusCore Terminal och kÃ¶r: nexus 'scan bidrag' -Profil '" + companyName + "'",
+                    description: "Öppna NexusCore Terminal och kör: nexus 'scan bidrag' -Profil '" + companyName + "'",
                   });
                 }}
               >

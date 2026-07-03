@@ -1,7 +1,7 @@
 ﻿/**
- * AITransparencyBanner â€“ EU AI Act Artikel 50 Efterlevnad
- * Informerar anvÃ¤ndaren om att de interagerar med ett AI-system.
- * Visas vid sessionstart, kan minimeras men Ã¥terkommer efter 30 min inaktivitet.
+ * AITransparencyBanner – EU AI Act Artikel 50 Efterlevnad
+ * Informerar användaren om att de interagerar med ett AI-system.
+ * Visas vid sessionstart, kan minimeras men återkommer efter 30 min inaktivitet.
  */
 
 import { useState, useEffect } from "react";
@@ -13,9 +13,9 @@ const SESSION_KEY = "nexus_ai_transparency_acknowledged";
 const INACTIVITY_TIMEOUT_MS = 30 * 60 * 1000; // 30 minuter
 
 interface AITransparencyBannerProps {
-  /** Vilken AI-modul som Ã¤r aktiv pÃ¥ sidan */
+  /** Vilken AI-modul som är aktiv på sidan */
   activeModule?: "GWD-Alpha" | "Scraper-Beta" | "Grant-Gamma" | "DPP-Delta" | "NexusCore";
-  /** Visa kompakt variant (fÃ¶r sidor med begrÃ¤nsat utrymme) */
+  /** Visa kompakt variant (för sidor med begränsat utrymme) */
   compact?: boolean;
 }
 
@@ -35,7 +35,7 @@ export default function AITransparencyBanner({
     }
   }, []);
 
-  // Ã…tervisa bannern efter 30 min inaktivitet
+  // Återvisa bannern efter 30 min inaktivitet
   useEffect(() => {
     const handleActivity = () => setLastActivity(Date.now());
     window.addEventListener("mousemove", handleActivity);
@@ -65,22 +65,22 @@ export default function AITransparencyBanner({
   if (!visible) return null;
 
   const moduleDescriptions: Record<string, string> = {
-    "GWD-Alpha": "Greenwashing-detektionsanalys med 14 taktiker baserade pÃ¥ EU:s Green Claims Directive",
-    "Scraper-Beta": "Automatiserad datainsamling frÃ¥n TED, Vinnova och offentliga upphandlingsdatabaser",
+    "GWD-Alpha": "Greenwashing-detektionsanalys med 14 taktiker baserade på EU:s Green Claims Directive",
+    "Scraper-Beta": "Automatiserad datainsamling från TED, Vinnova och offentliga upphandlingsdatabaser",
     "Grant-Gamma": "Bidragsmatchning mot EU-, Vinnova- och Almi-program",
-    "DPP-Delta": "Generering av Digitala Produktpass enligt ESPR-fÃ¶rordningen",
-    "NexusCore": "Nexus-OS AI-plattform fÃ¶r hÃ¥llbarhetsanalys och bidragshantering",
+    "DPP-Delta": "Generering av Digitala Produktpass enligt ESPR-förordningen",
+    "NexusCore": "Nexus-OS AI-plattform för hållbarhetsanalys och bidragshantering",
   };
 
   if (compact) {
     return (
       <div className="flex items-center gap-2 px-3 py-1.5 bg-amber-950/40 border border-amber-500/30 rounded-md text-xs text-amber-300">
         <Shield className="w-3 h-3 flex-shrink-0" />
-        <span>AI-system aktiv: {activeModule} â€“ Granska alltid AI-genererade svar.</span>
+        <span>AI-system aktiv: {activeModule} – Granska alltid AI-genererade svar.</span>
         <button
           onClick={handleAcknowledge}
           className="ml-auto text-amber-400 hover:text-amber-200 transition-colors"
-          aria-label="StÃ¤ng AI-transparensmeddelande"
+          aria-label="Stäng AI-transparensmeddelande"
         >
           <X className="w-3 h-3" />
         </button>
@@ -111,8 +111,8 @@ export default function AITransparencyBanner({
             </Badge>
           </div>
           <p className="text-xs text-amber-200/80 leading-relaxed">
-            <strong className="text-amber-300">{activeModule}</strong> Ã¤r ett AI-drivet system.{" "}
-            {moduleDescriptions[activeModule]} Alla rekommendationer och analyser Ã¤r AI-genererade
+            <strong className="text-amber-300">{activeModule}</strong> är ett AI-drivet system.{" "}
+            {moduleDescriptions[activeModule]} Alla rekommendationer och analyser är AI-genererade
             och ska granskas av en kvalificerad person innan beslut fattas.
           </p>
         </div>
@@ -121,14 +121,14 @@ export default function AITransparencyBanner({
           <button
             onClick={() => setExpanded(!expanded)}
             className="text-amber-400/60 hover:text-amber-300 transition-colors p-1"
-            aria-label={expanded ? "DÃ¶lj teknisk information" : "Visa teknisk information"}
+            aria-label={expanded ? "Dölj teknisk information" : "Visa teknisk information"}
           >
             {expanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
           </button>
           <button
             onClick={handleAcknowledge}
             className="text-amber-400/60 hover:text-amber-300 transition-colors p-1"
-            aria-label="StÃ¤ng AI-transparensmeddelande"
+            aria-label="Stäng AI-transparensmeddelande"
           >
             <X className="w-4 h-4" />
           </button>
@@ -152,14 +152,14 @@ export default function AITransparencyBanner({
               </div>
               <div className="bg-black/20 rounded-md p-2.5">
                 <div className="text-[10px] text-amber-400/60 uppercase tracking-wider mb-1">Riskklass</div>
-                <div className="text-xs text-amber-200 font-mono">BegrÃ¤nsad Risk (Art. 50)</div>
+                <div className="text-xs text-amber-200 font-mono">Begränsad Risk (Art. 50)</div>
               </div>
             </div>
           </div>
 
-          {/* TrÃ¤ningsdata och cutoff */}
+          {/* Träningsdata och cutoff */}
           <div>
-            <div className="text-xs font-semibold text-amber-300 mb-2">TrÃ¤ningsdata</div>
+            <div className="text-xs font-semibold text-amber-300 mb-2">Träningsdata</div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="bg-black/20 rounded-md p-2.5">
                 <div className="text-[10px] text-amber-400/60 uppercase tracking-wider mb-1">Cutoff-datum</div>
@@ -172,18 +172,18 @@ export default function AITransparencyBanner({
             </div>
           </div>
 
-          {/* BegrÃ¤nsningar */}
+          {/* Begränsningar */}
           <div>
             <div className="text-xs font-semibold text-amber-300 mb-2 flex items-center gap-1.5">
               <AlertTriangle className="w-3.5 h-3.5" />
-              KÃ¤nda begrÃ¤nsningar
+              Kända begränsningar
             </div>
             <div className="bg-amber-900/20 rounded-md border border-amber-500/20 p-2.5 text-[11px] text-amber-200/70 leading-relaxed space-y-1.5">
-              <p>â€¢ <strong>Hallucination-risk:</strong> AI kan producera felaktiga, ofullstÃ¤ndiga eller fabricerade svar</p>
-              <p>â€¢ <strong>TrÃ¤ningsdatums-cutoff:</strong> Systemet saknar information efter april 2024</p>
-              <p>â€¢ <strong>Greenwashing-analys:</strong> Baseras pÃ¥ tillgÃ¤nglig publik information, ersÃ¤tter inte juridisk rÃ¥dgivning</p>
-              <p>â€¢ <strong>Bidragsmatchning:</strong> Indikativ endast, krÃ¤ver verifiering mot aktuella utlysningskrav</p>
-              <p>â€¢ <strong>Regeluppdateringar:</strong> ESPR, Battery Regulation, CSDDD kan Ã¤ndras â€“ verifiera alltid aktuell lagstiftning</p>
+              <p>”¢ <strong>Hallucination-risk:</strong> AI kan producera felaktiga, ofullständiga eller fabricerade svar</p>
+              <p>”¢ <strong>Träningsdatums-cutoff:</strong> Systemet saknar information efter april 2024</p>
+              <p>”¢ <strong>Greenwashing-analys:</strong> Baseras på tillgänglig publik information, ersätter inte juridisk rådgivning</p>
+              <p>”¢ <strong>Bidragsmatchning:</strong> Indikativ endast, kräver verifiering mot aktuella utlysningskrav</p>
+              <p>”¢ <strong>Regeluppdateringar:</strong> ESPR, Battery Regulation, CSDDD kan ändras – verifiera alltid aktuell lagstiftning</p>
             </div>
           </div>
 
@@ -193,11 +193,11 @@ export default function AITransparencyBanner({
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <div className="bg-black/20 rounded-md p-2.5 text-[10px]">
                 <div className="text-amber-400/60 uppercase tracking-wider mb-1">AI Act (Art. 50)</div>
-                <div className="text-amber-200">Transparentkrav fÃ¶r AI-system</div>
+                <div className="text-amber-200">Transparentkrav för AI-system</div>
               </div>
               <div className="bg-black/20 rounded-md p-2.5 text-[10px]">
                 <div className="text-amber-400/60 uppercase tracking-wider mb-1">ESPR 2026</div>
-                <div className="text-amber-200">Digitala Produktpass-stÃ¶d</div>
+                <div className="text-amber-200">Digitala Produktpass-stöd</div>
               </div>
               <div className="bg-black/20 rounded-md p-2.5 text-[10px]">
                 <div className="text-amber-400/60 uppercase tracking-wider mb-1">Battery Reg. 2023/1542</div>
@@ -205,7 +205,7 @@ export default function AITransparencyBanner({
               </div>
               <div className="bg-black/20 rounded-md p-2.5 text-[10px]">
                 <div className="text-amber-400/60 uppercase tracking-wider mb-1">CSDDD</div>
-                <div className="text-amber-200">LeverantÃ¶rsanalys</div>
+                <div className="text-amber-200">Leverantörsanalys</div>
               </div>
             </div>
           </div>
@@ -214,7 +214,7 @@ export default function AITransparencyBanner({
           <div className="flex items-start gap-2 p-2.5 bg-black/20 rounded-md border border-amber-500/10">
             <Info className="w-3 h-3 text-amber-400/50 flex-shrink-0 mt-0.5" />
             <span className="text-[10px] text-amber-400/50 leading-relaxed">
-              Denna information visas i enlighet med EU AI Act (FÃ¶rordning 2024/1689), Artikel 50.
+              Denna information visas i enlighet med EU AI Act (Förordning 2024/1689), Artikel 50.
               <br />
               <strong>Ansvarig organisation:</strong> Jerker AI AB, Moholm, Sverige
               <br />
@@ -224,10 +224,10 @@ export default function AITransparencyBanner({
         </div>
       )}
 
-      {/* BekrÃ¤ftelseknapp */}
+      {/* Bekräftelseknapp */}
       <div className="flex items-center justify-between px-4 py-2.5 border-t border-amber-500/20 bg-black/10">
         <span className="text-[10px] text-amber-400/50">
-          Bannern Ã¥tervisas automatiskt efter 30 min inaktivitet
+          Bannern återvisas automatiskt efter 30 min inaktivitet
         </span>
         <Button
           size="sm"
@@ -235,7 +235,7 @@ export default function AITransparencyBanner({
           className="h-7 text-xs bg-amber-600/30 hover:bg-amber-600/50 text-amber-200 border border-amber-500/40"
           variant="outline"
         >
-          Jag fÃ¶rstÃ¥r â€“ fortsÃ¤tt
+          Jag förstår – fortsätt
         </Button>
       </div>
     </div>

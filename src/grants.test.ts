@@ -13,7 +13,7 @@ vi.mock("./_core/llm", () => ({
       {
         message: {
           content:
-            "**Matchningsanalys**\n\n1. Vinnova â€“ Innovativa Startups (96%)\n2. Almi â€“ Verifieringsmedel (94%)",
+            "**Matchningsanalys**\n\n1. Vinnova – Innovativa Startups (96%)\n2. Almi – Verifieringsmedel (94%)",
         },
       },
     ],
@@ -33,9 +33,9 @@ describe("grants.matchCompany", () => {
     const ctx = createPublicContext();
     const caller = appRouter.createCaller(ctx);
     const result = await caller.grants.matchCompany({
-      companyDescription: "TillverkningsfÃ¶retag i Skaraborg som tillverkar gummiprodukter av bioPUR.",
+      companyDescription: "Tillverkningsföretag i Skaraborg som tillverkar gummiprodukter av bioPUR.",
       industry: "Tillverkning",
-      size: "6â€“20 anstÃ¤llda",
+      size: "6–20 anställda",
     });
     expect(result).toHaveProperty("analysis");
     expect(typeof result.analysis).toBe("string");
@@ -62,7 +62,7 @@ describe("grants.matchCompany", () => {
     const ctx = createPublicContext();
     const caller = appRouter.createCaller(ctx);
     const result = await caller.grants.matchCompany({
-      companyDescription: "ElektronikfÃ¶retag med fokus pÃ¥ WEEE-efterlevnad och cirkulÃ¤r design.",
+      companyDescription: "Elektronikföretag med fokus på WEEE-efterlevnad och cirkulär design.",
     });
     expect(result).toHaveProperty("analysis");
   });
@@ -73,10 +73,10 @@ describe("grants.generateApplication", () => {
     const ctx = createPublicContext();
     const caller = appRouter.createCaller(ctx);
     const result = await caller.grants.generateApplication({
-      grantName: "Vinnova â€“ Innovativa Startups",
+      grantName: "Vinnova – Innovativa Startups",
       grantProvider: "Vinnova",
-      companyDescription: "AI-plattform fÃ¶r EU-hÃ¥llbarhetsefterlevnad (DPP, bidragsmatchning).",
-      projectIdea: "Bygga en DPP-infrastruktur fÃ¶r SMF i Skaraborg.",
+      companyDescription: "AI-plattform för EU-hållbarhetsefterlevnad (DPP, bidragsmatchning).",
+      projectIdea: "Bygga en DPP-infrastruktur för SMF i Skaraborg.",
     });
     expect(result).toHaveProperty("application");
     expect(typeof result.application).toBe("string");
@@ -102,8 +102,8 @@ describe("grants.generateDPP", () => {
     const result = await caller.grants.generateDPP({
       productName: "EcoChair Pro",
       brand: "OFFECCT",
-      category: "MÃ¶bler",
-      materials: "Ã…tervunnen aluminium, FSC-certifierat trÃ¤",
+      category: "Möbler",
+      materials: "Återvunnen aluminium, FSC-certifierat trä",
       co2: "45",
       recycledContent: "60",
     });

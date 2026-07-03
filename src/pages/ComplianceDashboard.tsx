@@ -1,6 +1,6 @@
 ﻿/**
- * ComplianceDashboard â€“ EU AI Act Efterlevnadsstatus
- * Ger en samlad vy Ã¶ver efterlevnadsstatus mot 2 aug 2026
+ * ComplianceDashboard – EU AI Act Efterlevnadsstatus
+ * Ger en samlad vy över efterlevnadsstatus mot 2 aug 2026
  */
 
 import { useState } from "react";
@@ -52,7 +52,7 @@ const statusColor: Record<string, string> = {
 
 const statusLabel: Record<string, string> = {
   identified: "Identifierad",
-  in_progress: "PÃ¥gÃ¥r",
+  in_progress: "Pågår",
   mitigated: "Mitigerad",
   verified: "Verifierad",
   accepted: "Accepterad",
@@ -62,15 +62,15 @@ const statusLabel: Record<string, string> = {
 // Milstolpar mot 2 aug 2026
 const MILESTONES = [
   { date: "1 jun 2026", label: "AI-transparensbanner live", done: true, article: "Art. 50" },
-  { date: "1 jun 2026", label: "Riskregister upprÃ¤ttat", done: true, article: "Art. 9" },
+  { date: "1 jun 2026", label: "Riskregister upprättat", done: true, article: "Art. 9" },
   { date: "15 jun 2026", label: "Misuse-scenarier dokumenterade", done: true, article: "Art. 9.2b" },
   { date: "1 jul 2026", label: "Systemarkitektur + datadokumentation", done: false, article: "Art. 11" },
-  { date: "1 jul 2026", label: "Ã–vervakningsplan (post-market)", done: false, article: "Art. 72" },
-  { date: "15 jul 2026", label: "Testprotokoll genomfÃ¶rt", done: false, article: "Art. 9.7" },
-  { date: "2 aug 2026", label: "EU-databasregistrering (om hÃ¶grisk)", done: false, article: "Art. 49" },
+  { date: "1 jul 2026", label: "Övervakningsplan (post-market)", done: false, article: "Art. 72" },
+  { date: "15 jul 2026", label: "Testprotokoll genomfört", done: false, article: "Art. 9.7" },
+  { date: "2 aug 2026", label: "EU-databasregistrering (om högrisk)", done: false, article: "Art. 49" },
 ];
 
-// Riskmatris â€“ 5x5 heatmap
+// Riskmatris – 5x5 heatmap
 function RiskHeatmap({ risks }: { risks: { likelihood: number; consequence: number; riskId: string }[] }) {
   const cells: Record<string, string[]> = {};
   risks.forEach(r => {
@@ -130,10 +130,10 @@ function RiskHeatmap({ risks }: { risks: { likelihood: number; consequence: numb
       </div>
       <div className="flex gap-3 mt-2">
         {[
-          { color: "bg-emerald-500/20", label: "LÃ¥g (1â€“3)" },
-          { color: "bg-amber-500/20", label: "Medel (4â€“8)" },
-          { color: "bg-orange-500/30", label: "HÃ¶g (9â€“15)" },
-          { color: "bg-red-500/40", label: "Kritisk (16â€“25)" },
+          { color: "bg-emerald-500/20", label: "Låg (1–3)" },
+          { color: "bg-amber-500/20", label: "Medel (4–8)" },
+          { color: "bg-orange-500/30", label: "Hög (9–15)" },
+          { color: "bg-red-500/40", label: "Kritisk (16–25)" },
         ].map(item => (
           <div key={item.label} className="flex items-center gap-1">
             <div className={`w-3 h-3 rounded ${item.color}`} />
@@ -161,9 +161,9 @@ export default function ComplianceDashboard() {
       await seedRisks.mutateAsync();
       await seedMisuse.mutateAsync();
       await refetch();
-      toast.success("FÃ¶rdefinierade risker och misuse-scenarier inlÃ¤sta");
+      toast.success("Fördefinierade risker och misuse-scenarier inlästa");
     } catch {
-      toast.error("Kunde inte lÃ¤sa in seed-data");
+      toast.error("Kunde inte läsa in seed-data");
     } finally {
       setSeeding(false);
     }
@@ -183,7 +183,7 @@ export default function ComplianceDashboard() {
               </div>
               <div>
                 <h1 className="text-2xl font-bold text-white">EU AI Act Efterlevnad</h1>
-                <p className="text-sm text-slate-400">NexusCore v3.0 Â· BegrÃ¤nsad Risk (Art. 50)</p>
+                <p className="text-sm text-slate-400">NexusCore v3.0 Â· Begränsad Risk (Art. 50)</p>
               </div>
             </div>
           </div>
@@ -197,7 +197,7 @@ export default function ComplianceDashboard() {
                 variant="outline"
               >
                 {seeding ? <RefreshCw className="w-4 h-4 animate-spin mr-2" /> : <Zap className="w-4 h-4 mr-2" />}
-                LÃ¤s in fÃ¶rdefinierade risker
+                Läs in fördefinierade risker
               </Button>
             )}
             <Button size="sm" variant="outline" className="border-slate-700 text-slate-400 hover:text-slate-200">
@@ -227,7 +227,7 @@ export default function ComplianceDashboard() {
               border: "border-cyan-500/30",
             },
             {
-              label: "Ã–ppna risker",
+              label: "Öppna risker",
               value: (summary?.criticalRisks ?? 0).toString(),
               sub: `${summary?.totalRisks ?? 0} totalt`,
               icon: AlertTriangle,
@@ -235,7 +235,7 @@ export default function ComplianceDashboard() {
               border: (summary?.criticalRisks ?? 0) > 0 ? "border-orange-500/30" : "border-emerald-500/30",
             },
             {
-              label: "Ã–ppna misuse-scenarier",
+              label: "Öppna misuse-scenarier",
               value: (summary?.openMisuse ?? 0).toString(),
               sub: `${summary?.misuse?.length ?? 0} totalt`,
               icon: Eye,
@@ -295,14 +295,14 @@ export default function ComplianceDashboard() {
             ) : (
               <div className="flex flex-col items-center justify-center h-full text-center py-8">
                 <BarChart3 className="w-8 h-8 text-slate-600 mb-3" />
-                <p className="text-sm text-slate-500">Inga risker inlÃ¤sta Ã¤nnu</p>
-                <p className="text-xs text-slate-600 mt-1">Klicka "LÃ¤s in fÃ¶rdefinierade risker"</p>
+                <p className="text-sm text-slate-500">Inga risker inlästa ännu</p>
+                <p className="text-xs text-slate-600 mt-1">Klicka "Läs in fördefinierade risker"</p>
               </div>
             )}
           </div>
         </div>
 
-        {/* SnabblÃ¤nkar */}
+        {/* Snabblänkar */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {[
             {

@@ -125,7 +125,21 @@ export const salesRouter = router({
 export const aiRouter = router({
   getMemories: publicProcedure.query(async () => {
     const { agentMemory } = await import("../db/schema");
-    return await db.select().from(agentMemory).orderBy(agentMemory.id); // Simple chronological
+    return await db.select().from(agentMemory).where(eq(agentMemory.status, 'APPROVED')).orderBy(agentMemory.id);
+  }),
+  getPendingMemories: publicProcedure.query(async () => {
+    const { agentMemory } = await import("../db/schema");
+    return await db.select().from(agentMemory).where(eq(agentMemory.status, 'PENDING')).orderBy(agentMemory.id);
+  }),
+  approveMemory: publicProcedure.input(z.object({ id: z.number() })).mutation(async ({ input }) => {
+    const { agentMemory } = await import("../db/schema");
+    await db.update(agentMemory).set({ status: 'APPROVED' }).where(eq(agentMemory.id, input.id));
+    return { success: true };
+  }),
+  rejectMemory: publicProcedure.input(z.object({ id: z.number() })).mutation(async ({ input }) => {
+    const { agentMemory } = await import("../db/schema");
+    await db.delete(agentMemory).where(eq(agentMemory.id, input.id));
+    return { success: true };
   }),
   searchMemories: publicProcedure.input(z.object({ query: z.string() })).query(async ({ input }) => {
     // Dynamiskt importera vår nyskapade VectorService för frontend

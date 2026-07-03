@@ -3,7 +3,7 @@
  * Design: Cyberpunk Terminal / Dark Ops Intelligence Center
  * Color: #0a0e14 base, #00ff9d neon-green (approved), #ff3b5c neon-red (flagged), #ffb800 amber (pending)
  * Typography: JetBrains Mono (data), Space Grotesk (headings), DM Sans (body)
- * Layout: Three-column mission control â€“ Agent Status | Active Workspace | Agent Chat + Decision Queue
+ * Layout: Three-column mission control – Agent Status | Active Workspace | Agent Chat + Decision Queue
  * HITL: Peter is always in control. Agents cannot act on flagged items without approval.
  */
 
@@ -41,9 +41,9 @@ import {
 
 // â”€â”€â”€ Types â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
-type AgentStatus = "AKTIV" | "VÃ„NTAR" | "FLAGGAT" | "OFFLINE";
-type SeverityLevel = "KRITISK" | "HÃ–G" | "MEDEL" | "LÃ…G";
-type DecisionType = "GODKÃ„NN" | "AVVISA" | "ESKALERA";
+type AgentStatus = "AKTIV" | "VÄNTAR" | "FLAGGAT" | "OFFLINE";
+type SeverityLevel = "KRITISK" | "HÖG" | "MEDEL" | "LÅG";
+type DecisionType = "GODKÄNN" | "AVVISA" | "ESKALERA";
 
 interface Agent {
   id: string;
@@ -65,7 +65,7 @@ interface GWDCase {
   tactics: string[];
   evidence: string;
   aiConfidence: number;
-  status: "VÃ„NTAR_BESLUT" | "GODKÃ„ND" | "AVVISAD" | "ESKALERAD";
+  status: "VÄNTAR_BESLUT" | "GODKÄND" | "AVVISAD" | "ESKALERAD";
   timestamp: string;
   url: string;
 }
@@ -74,7 +74,7 @@ interface ScraperJob {
   id: string;
   target: string;
   type: string;
-  status: "AKTIV" | "KLAR" | "FEL" | "KÃ–AR";
+  status: "AKTIV" | "KLAR" | "FEL" | "KÖAR";
   progress: number;
   found: number;
   started: string;
@@ -107,7 +107,7 @@ const AGENTS: Agent[] = [
     role: "Greenwashing Detektion",
     status: "AKTIV",
     tasksCompleted: 47,
-    currentTask: "Analyserar Volvo Cars hÃ¥llbarhetsrapport 2025",
+    currentTask: "Analyserar Volvo Cars hållbarhetsrapport 2025",
     avatarUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030034659/WdTZ7r3vEJjEP43Ws5JWuq/agent-avatar-gwd-ahwEDnW2hcvbCeGwgEi84H.webp",
     lastSeen: "Nu",
     confidence: 94,
@@ -118,7 +118,7 @@ const AGENTS: Agent[] = [
     role: "Webbskrapning & Datainsamling",
     status: "AKTIV",
     tasksCompleted: 213,
-    currentTask: "Skrapar TED-databasen fÃ¶r ESPR-upphandlingar",
+    currentTask: "Skrapar TED-databasen för ESPR-upphandlingar",
     avatarUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030034659/WdTZ7r3vEJjEP43Ws5JWuq/agent-avatar-scraper-PFYdh9mZ3v8acJcay9iPRc.webp",
     lastSeen: "2 min sedan",
     confidence: 88,
@@ -127,9 +127,9 @@ const AGENTS: Agent[] = [
     id: "grant-gamma",
     name: "Grant-Gamma",
     role: "Bidragsmatchning",
-    status: "VÃ„NTAR",
+    status: "VÄNTAR",
     tasksCompleted: 31,
-    currentTask: "VÃ¤ntar pÃ¥ Vinnova API-svar",
+    currentTask: "Väntar på Vinnova API-svar",
     avatarUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030034659/WdTZ7r3vEJjEP43Ws5JWuq/agent-avatar-gwd-ahwEDnW2hcvbCeGwgEi84H.webp",
     lastSeen: "5 min sedan",
     confidence: 76,
@@ -140,7 +140,7 @@ const AGENTS: Agent[] = [
     role: "Digital Produktpass",
     status: "FLAGGAT",
     tasksCompleted: 19,
-    currentTask: "HITL-beslut krÃ¤vs: Paula Pantolin DPP-verifiering",
+    currentTask: "HITL-beslut krävs: Paula Pantolin DPP-verifiering",
     avatarUrl: "https://d2xsxph8kpxj0f.cloudfront.net/310419663030034659/WdTZ7r3vEJjEP43Ws5JWuq/agent-avatar-scraper-PFYdh9mZ3v8acJcay9iPRc.webp",
     lastSeen: "12 min sedan",
     confidence: 62,
@@ -153,34 +153,34 @@ const INITIAL_GWD_CASES: GWDCase[] = [
     company: "GreenTech Nordic AB",
     claim: '"100% koldioxidneutral produktion sedan 2023"',
     severity: "KRITISK",
-    tactics: ["Scope 3-utelÃ¤mning", "KompensationsÃ¶verdrift", "Tidslinje-manipulation"],
-    evidence: "Scope 3-utslÃ¤pp (leverantÃ¶rskedja) saknas helt i rapporten. Koldioxidkompensation via skogsplantering rÃ¤knas som 'noll' utan vetenskaplig grund.",
+    tactics: ["Scope 3-utelämning", "Kompensationsöverdrift", "Tidslinje-manipulation"],
+    evidence: "Scope 3-utsläpp (leverantörskedja) saknas helt i rapporten. Koldioxidkompensation via skogsplantering räknas som 'noll' utan vetenskaplig grund.",
     aiConfidence: 97,
-    status: "VÃ„NTAR_BESLUT",
+    status: "VÄNTAR_BESLUT",
     timestamp: "2026-03-23T14:32:00Z",
     url: "https://greentech-nordic.se/hallbarhet",
   },
   {
     id: "NIF-2026-GWD-046",
     company: "Skaraborg Textil Grupp",
-    claim: '"Ekologisk bomull â€“ 100% naturlig"',
-    severity: "HÃ–G",
+    claim: '"Ekologisk bomull – 100% naturlig"',
+    severity: "HÖG",
     tactics: ["Vag terminologi", "Certifieringsbrist"],
-    evidence: "Ingen GOTS- eller OCS-certifiering. 'Ekologisk' Ã¤r ej definierat. VattenfÃ¶rbrukning 15 000L/kg bomull ej redovisad.",
+    evidence: "Ingen GOTS- eller OCS-certifiering. 'Ekologisk' är ej definierat. Vattenförbrukning 15 000L/kg bomull ej redovisad.",
     aiConfidence: 84,
-    status: "VÃ„NTAR_BESLUT",
+    status: "VÄNTAR_BESLUT",
     timestamp: "2026-03-23T13:15:00Z",
     url: "https://skaraborg-textil.se/produkter",
   },
   {
     id: "NIF-2026-GWD-045",
-    company: "Moholm StÃ¥l & Metall",
-    claim: '"Ã…tervunnet stÃ¥l â€“ cirkulÃ¤r ekonomi"',
+    company: "Moholm Stål & Metall",
+    claim: '"Återvunnet stål – cirkulär ekonomi"',
     severity: "MEDEL",
     tactics: ["Delvis sanning"],
-    evidence: "23% Ã¥tervunnet material, ej 100% som antyds. Resterande 77% primÃ¤rstÃ¥l ej kommunicerat.",
+    evidence: "23% återvunnet material, ej 100% som antyds. Resterande 77% primärstål ej kommunicerat.",
     aiConfidence: 71,
-    status: "GODKÃ„ND",
+    status: "GODKÄND",
     timestamp: "2026-03-23T11:00:00Z",
     url: "https://moholm-stal.se",
   },
@@ -189,7 +189,7 @@ const INITIAL_GWD_CASES: GWDCase[] = [
 const INITIAL_SCRAPER_JOBS: ScraperJob[] = [
   {
     id: "JOB-2026-0891",
-    target: "TED Europa â€“ ESPR-upphandlingar",
+    target: "TED Europa – ESPR-upphandlingar",
     type: "Bidragsskrapning",
     status: "AKTIV",
     progress: 67,
@@ -199,7 +199,7 @@ const INITIAL_SCRAPER_JOBS: ScraperJob[] = [
   },
   {
     id: "JOB-2026-0890",
-    target: "Vinnova.se â€“ Ã–ppna utlysningar",
+    target: "Vinnova.se – Öppna utlysningar",
     type: "Bidragsskrapning",
     status: "KLAR",
     progress: 100,
@@ -209,7 +209,7 @@ const INITIAL_SCRAPER_JOBS: ScraperJob[] = [
   },
   {
     id: "JOB-2026-0889",
-    target: "NaturvÃ¥rdsverket â€“ MiljÃ¶bidrag",
+    target: "Naturvårdsverket – Miljöbidrag",
     type: "Bidragsskrapning",
     status: "KLAR",
     progress: 100,
@@ -219,13 +219,13 @@ const INITIAL_SCRAPER_JOBS: ScraperJob[] = [
   },
   {
     id: "JOB-2026-0888",
-    target: "Skaraborg.se â€“ HÃ¥llbarhetsrapporter",
+    target: "Skaraborg.se – Hållbarhetsrapporter",
     type: "Greenwash-analys",
-    status: "KÃ–AR",
+    status: "KÖAR",
     progress: 0,
     found: 0,
-    started: "â€“",
-    eta: "VÃ¤ntar",
+    started: "–",
+    eta: "Väntar",
   },
 ];
 
@@ -235,7 +235,7 @@ const INITIAL_MESSAGES: ChatMessage[] = [
     sender: "agent",
     agentId: "gwd-alpha",
     agentName: "GWD-Alpha",
-    text: "Systemstart klar. Jag har laddat 14 detektionstaktiker och Ã¤r redo fÃ¶r analys. VÃ¤ntar pÃ¥ dina instruktioner, Peter.",
+    text: "Systemstart klar. Jag har laddat 14 detektionstaktiker och är redo för analys. Väntar på dina instruktioner, Peter.",
     timestamp: "14:00:01",
     type: "info",
   },
@@ -244,7 +244,7 @@ const INITIAL_MESSAGES: ChatMessage[] = [
     sender: "agent",
     agentId: "scraper-beta",
     agentName: "Scraper-Beta",
-    text: "TED-skrapning pÃ¥bÃ¶rjad. Hittills 23 relevanta upphandlingar med ESPR-koppling. Estimerad klar tid: 8 minuter.",
+    text: "TED-skrapning påbörjad. Hittills 23 relevanta upphandlingar med ESPR-koppling. Estimerad klar tid: 8 minuter.",
     timestamp: "14:20:15",
     type: "info",
   },
@@ -253,7 +253,7 @@ const INITIAL_MESSAGES: ChatMessage[] = [
     sender: "agent",
     agentId: "gwd-alpha",
     agentName: "GWD-Alpha",
-    text: "âš ï¸ KRITISK FLAGGA: GreenTech Nordic AB â€“ Ã„rendenr NIF-2026-GWD-047. AI-konfidensgrad 97%. Tre greenwash-taktiker identifierade. KrÃ¤ver ditt beslut innan rapport genereras.",
+    text: "âš ï¸ KRITISK FLAGGA: GreenTech Nordic AB – Ärendenr NIF-2026-GWD-047. AI-konfidensgrad 97%. Tre greenwash-taktiker identifierade. Kräver ditt beslut innan rapport genereras.",
     timestamp: "14:32:07",
     type: "alert",
   },
@@ -262,16 +262,16 @@ const INITIAL_MESSAGES: ChatMessage[] = [
     sender: "agent",
     agentId: "dpp-delta",
     agentName: "DPP-Delta",
-    text: "Paula Pantolins DPP-verifiering pausad. Jag Ã¤r osÃ¤ker pÃ¥ hur COâ‚‚-reduktionen pÃ¥ 89% ska klassificeras â€“ Ã¤r det Scope 1+2 eller inkluderar det Scope 3? BehÃ¶ver din expertbedÃ¶mning.",
+    text: "Paula Pantolins DPP-verifiering pausad. Jag är osäker på hur COâ‚‚-reduktionen på 89% ska klassificeras – är det Scope 1+2 eller inkluderar det Scope 3? Behöver din expertbedömning.",
     timestamp: "14:45:33",
     type: "decision",
   },
 ];
 
 const SYSTEM_METRICS: SystemMetric[] = [
-  { label: "Ã„renden idag", value: "47", trend: "up", color: "#00ff9d" },
+  { label: "Ärenden idag", value: "47", trend: "up", color: "#00ff9d" },
   { label: "Flaggade", value: "3", trend: "stable", color: "#ffb800" },
-  { label: "GodkÃ¤nda", value: "41", trend: "up", color: "#00ff9d" },
+  { label: "Godkända", value: "41", trend: "up", color: "#00ff9d" },
   { label: "Avvisade", value: "3", trend: "stable", color: "#ff3b5c" },
   { label: "AI-konfidens", value: "89%", trend: "up", color: "#00ff9d" },
   { label: "Aktiva jobb", value: "1", trend: "stable", color: "#ffb800" },
@@ -366,29 +366,29 @@ export default function OperatorDashboard() {
   const [showIssueForm, setShowIssueForm] = useState(false);
   const [issueTitle, setIssueTitle] = useState("");
   const [issueDescription, setIssueDescription] = useState("");
-  const [issueSeverity, setIssueSeverity] = useState<"lÃ¥g" | "medel" | "hÃ¶g" | "kritisk">("medel");
+  const [issueSeverity, setIssueSeverity] = useState<"låg" | "medel" | "hög" | "kritisk">("medel");
   const [issueSubmitting, setIssueSubmitting] = useState(false);
 
   const notifyOwnerMutation = trpc.system.notifyOwner.useMutation();
 
   const handleSubmitIssue = async () => {
     if (!issueTitle.trim()) {
-      alert("Ange en titel fÃ¶r Ã¤rendet");
+      alert("Ange en titel för ärendet");
       return;
     }
     setIssueSubmitting(true);
     try {
       await notifyOwnerMutation.mutateAsync({
-        title: `[${issueSeverity.toUpperCase()}] Nytt Ã¤rende frÃ¥n Operator: ${issueTitle}`,
-        content: `Ã„rendetyp: ${issueSeverity}\n\nBeskrivning:\n${issueDescription || "(Ingen beskrivning)"}\n\nTid: ${new Date().toLocaleString("sv-SE")}`,
+        title: `[${issueSeverity.toUpperCase()}] Nytt ärende från Operator: ${issueTitle}`,
+        content: `Ärendetyp: ${issueSeverity}\n\nBeskrivning:\n${issueDescription || "(Ingen beskrivning)"}\n\nTid: ${new Date().toLocaleString("sv-SE")}`,
       });
-      alert("Ã„rendet har skickats! Peter granskar det snart.");
+      alert("Ärendet har skickats! Peter granskar det snart.");
       setShowIssueForm(false);
       setIssueTitle("");
       setIssueDescription("");
       setIssueSeverity("medel");
     } catch (err) {
-      alert("Kunde inte skicka Ã¤rendet. FÃ¶rsÃ¶k igen.");
+      alert("Kunde inte skicka ärendet. Försök igen.");
     } finally {
       setIssueSubmitting(false);
     }
@@ -423,7 +423,7 @@ export default function OperatorDashboard() {
         sender: "agent",
         agentId: activeAgentId,
         agentName: "System",
-        text: "âš ï¸ Agenten Ã¤r tillfÃ¤lligt otillgÃ¤nglig. Kontrollera nÃ¤tverksanslutningen.",
+        text: "âš ï¸ Agenten är tillfälligt otillgänglig. Kontrollera nätverksanslutningen.",
         timestamp: new Date().toLocaleTimeString("sv-SE", { hour: "2-digit", minute: "2-digit", second: "2-digit" }),
         type: "alert",
       }]);
@@ -446,7 +446,7 @@ export default function OperatorDashboard() {
           sender: "agent",
           agentId: "scraper-beta",
           agentName: "Scraper-Beta",
-          text: "TED-skrapning 67% klar. Hittills 23 trÃ¤ffar. Noterar Ã¶kad aktivitet kring ESPR-batteridirektivet â€“ 8 nya upphandlingar sedan igÃ¥r.",
+          text: "TED-skrapning 67% klar. Hittills 23 träffar. Noterar ökad aktivitet kring ESPR-batteridirektivet – 8 nya upphandlingar sedan igår.",
           timestamp: new Date().toLocaleTimeString("sv-SE", { hour: "2-digit", minute: "2-digit", second: "2-digit" }),
           type: "info",
         }]);
@@ -457,13 +457,13 @@ export default function OperatorDashboard() {
       setNewCaseAlert(true);
       setGwdCases(prev => [{
         id: "NIF-2026-GWD-048",
-        company: "LidkÃ¶ping Energi AB",
-        claim: '"Fossilfri energi â€“ 100% fÃ¶rnybar"',
-        severity: "HÃ–G",
-        tactics: ["Geografisk avgrÃ¤nsning", "TidsbegrÃ¤nsad sanning"],
-        evidence: "PÃ¥stÃ¥endet gÃ¤ller enbart sommarhalvÃ¥ret. Vinterproduktion 34% fossil gas. Ej kommunicerat.",
+        company: "Lidköping Energi AB",
+        claim: '"Fossilfri energi – 100% förnybar"',
+        severity: "HÖG",
+        tactics: ["Geografisk avgränsning", "Tidsbegränsad sanning"],
+        evidence: "Påståendet gäller enbart sommarhalvåret. Vinterproduktion 34% fossil gas. Ej kommunicerat.",
         aiConfidence: 88,
-        status: "VÃ„NTAR_BESLUT",
+        status: "VÄNTAR_BESLUT",
         timestamp: new Date().toISOString(),
         url: "https://lidkoping-energi.se",
       }, ...prev]);
@@ -473,7 +473,7 @@ export default function OperatorDashboard() {
         sender: "agent",
         agentId: "gwd-alpha",
         agentName: "GWD-Alpha",
-        text: "ðŸ†• Nytt Ã¤rende: NIF-2026-GWD-048 â€“ LidkÃ¶ping Energi AB. HÃ¶g allvarlighetsgrad. Geografisk avgrÃ¤nsning och tidsbegrÃ¤nsad sanning detekterade. Konfidensgrad 88%.",
+        text: "ðŸ†• Nytt ärende: NIF-2026-GWD-048 – Lidköping Energi AB. Hög allvarlighetsgrad. Geografisk avgränsning och tidsbegränsad sanning detekterade. Konfidensgrad 88%.",
         timestamp: new Date().toLocaleTimeString("sv-SE", { hour: "2-digit", minute: "2-digit", second: "2-digit" }),
         type: "alert",
       }]);
@@ -498,7 +498,7 @@ export default function OperatorDashboard() {
 
     // Build context from selected case if available
     const context = selectedCase
-      ? `Aktuellt Ã¤rende: ${selectedCase.id} | FÃ¶retag: ${selectedCase.company} | PÃ¥stÃ¥ende: ${selectedCase.claim} | Allvarlighetsgrad: ${selectedCase.severity} | AI-konfidens: ${selectedCase.aiConfidence}% | Detekterade taktiker: ${selectedCase.tactics.join(", ")} | Bevisunderlag: ${selectedCase.evidence}`
+      ? `Aktuellt ärende: ${selectedCase.id} | Företag: ${selectedCase.company} | Påstående: ${selectedCase.claim} | Allvarlighetsgrad: ${selectedCase.severity} | AI-konfidens: ${selectedCase.aiConfidence}% | Detekterade taktiker: ${selectedCase.tactics.join(", ")} | Bevisunderlag: ${selectedCase.evidence}`
       : undefined;
 
     agentChatMutation.mutate({
@@ -531,7 +531,7 @@ export default function OperatorDashboard() {
     setMessages(prev => [...prev, {
       id: `m${Date.now()}`,
       sender: "peter",
-      text: `âœ… Beslut fattat fÃ¶r ${caseId}: ${type}. ${decisionNote ? `Notering: ${decisionNote}` : ""}`,
+      text: `âœ… Beslut fattat för ${caseId}: ${type}. ${decisionNote ? `Notering: ${decisionNote}` : ""}`,
       timestamp: new Date().toLocaleTimeString("sv-SE", { hour: "2-digit", minute: "2-digit", second: "2-digit" }),
       type: "decision",
     }]);
@@ -541,7 +541,7 @@ export default function OperatorDashboard() {
     if (selectedCase?.id === caseId) setSelectedCase(null);
   };
 
-  const pendingCases = gwdCases.filter(c => c.status === "VÃ„NTAR_BESLUT");
+  const pendingCases = gwdCases.filter(c => c.status === "VÄNTAR_BESLUT");
 
   return (
     <div
@@ -552,7 +552,7 @@ export default function OperatorDashboard() {
         color: "#c9d1d9",
       }}
     >
-      {/* EU AI Act Art. 50 â€“ AI Transparency Banner */}
+      {/* EU AI Act Art. 50 – AI Transparency Banner */}
       <div className="px-4 pt-3">
         <AITransparencyBanner activeModule="GWD-Alpha" />
       </div>
@@ -585,7 +585,7 @@ export default function OperatorDashboard() {
             className="flex items-center gap-1.5 px-2 py-1 rounded border border-[#ffb800]/20 bg-[#ffb800]/5 hover:bg-[#ffb800]/10 transition-colors"
           >
             <FileText className="w-3 h-3 text-[#ffb800]" />
-            <span className="text-[#ffb800] text-[10px] font-mono font-bold">NYTT Ã„RENDE</span>
+            <span className="text-[#ffb800] text-[10px] font-mono font-bold">NYTT ÄRENDE</span>
           </button>
           <div className="flex items-center gap-1.5 px-2 py-1 rounded border border-[#00ff9d]/20 bg-[#00ff9d]/5">
             <Shield className="w-3 h-3 text-[#00ff9d]" />
@@ -597,7 +597,7 @@ export default function OperatorDashboard() {
       {/* Main 3-column layout */}
       <div className="flex flex-1 overflow-hidden" style={{ height: "calc(100vh - 41px)" }}>
 
-        {/* LEFT COLUMN â€“ Agent Status */}
+        {/* LEFT COLUMN – Agent Status */}
         <aside
           className="w-64 flex-shrink-0 flex flex-col border-r overflow-y-auto"
           style={{ borderColor: "#1e2d3d", background: "#0d1117" }}
@@ -657,13 +657,13 @@ export default function OperatorDashboard() {
               <span className="text-[10px] font-mono font-bold text-[#3d5a80] uppercase tracking-widest">Beslutslogg</span>
             </div>
             {decisionLog.length === 0 ? (
-              <p className="text-[10px] text-[#1e4d6b] font-mono">Inga beslut Ã¤nnu</p>
+              <p className="text-[10px] text-[#1e4d6b] font-mono">Inga beslut ännu</p>
             ) : (
               <div className="space-y-1.5">
                 {decisionLog.slice(0, 4).map((d, i) => (
                   <div key={i} className="flex items-center gap-2">
                     <span className="text-[9px] font-mono text-[#3d5a80]">{d.time}</span>
-                    <span className={`text-[9px] font-mono font-bold ${d.decision === "GODKÃ„NN" ? "text-[#00ff9d]" : d.decision === "AVVISA" ? "text-[#ff3b5c]" : "text-[#ffb800]"}`}>
+                    <span className={`text-[9px] font-mono font-bold ${d.decision === "GODKÄNN" ? "text-[#00ff9d]" : d.decision === "AVVISA" ? "text-[#ff3b5c]" : "text-[#ffb800]"}`}>
                       {d.decision}
                     </span>
                     <span className="text-[9px] font-mono text-[#1e4d6b] truncate">{d.id.split("-").pop()}</span>
@@ -674,14 +674,14 @@ export default function OperatorDashboard() {
           </div>
         </aside>
 
-        {/* CENTER COLUMN â€“ Active Workspace */}
+        {/* CENTER COLUMN – Active Workspace */}
         <main className="flex-1 flex flex-col overflow-hidden">
           {/* Tab bar */}
           <div className="flex items-center border-b px-4 gap-1" style={{ borderColor: "#1e2d3d", background: "#0d1117" }}>
             {[
               { key: "gwd", label: "Greenwash-analys", icon: AlertTriangle, count: pendingCases.length },
               { key: "scraper", label: "Skrapningsjobb", icon: Globe, count: scraperJobs.filter(j => j.status === "AKTIV").length },
-              { key: "metrics", label: "SystemmÃ¤tare", icon: BarChart3, count: 0 },
+              { key: "metrics", label: "Systemmätare", icon: BarChart3, count: 0 },
             ].map(({ key, label, icon: Icon, count }) => (
               <button
                 key={key}
@@ -706,7 +706,7 @@ export default function OperatorDashboard() {
             {newCaseAlert && (
               <div className="ml-auto flex items-center gap-2 px-3 py-1 rounded border border-[#ff3b5c]/40 bg-[#ff3b5c]/10 animate-pulse">
                 <AlertCircle className="w-3 h-3 text-[#ff3b5c]" />
-                <span className="text-[10px] font-mono text-[#ff3b5c] font-bold">NYTT Ã„RENDE</span>
+                <span className="text-[10px] font-mono text-[#ff3b5c] font-bold">NYTT ÄRENDE</span>
               </div>
             )}
           </div>
@@ -721,7 +721,7 @@ export default function OperatorDashboard() {
                 <div className="w-72 flex-shrink-0 space-y-2">
                   <div className="flex items-center justify-between mb-3">
                     <span className="text-[10px] font-mono font-bold text-[#3d5a80] uppercase tracking-widest">
-                      Ã„renden ({gwdCases.length})
+                      Ärenden ({gwdCases.length})
                     </span>
                     <div className="flex items-center gap-1">
                       <Filter className="w-3 h-3 text-[#3d5a80]" />
@@ -746,8 +746,8 @@ export default function OperatorDashboard() {
                       <div className="text-[10px] text-[#3d5a80] line-clamp-2 mb-2">{c.claim}</div>
                       <div className="flex items-center justify-between">
                         <span className={`text-[9px] font-mono font-bold ${
-                          c.status === "VÃ„NTAR_BESLUT" ? "text-[#ffb800]" :
-                          c.status === "GODKÃ„ND" ? "text-[#00ff9d]" :
+                          c.status === "VÄNTAR_BESLUT" ? "text-[#ffb800]" :
+                          c.status === "GODKÄND" ? "text-[#00ff9d]" :
                           c.status === "AVVISAD" ? "text-[#ff3b5c]" : "text-orange-400"
                         }`}>
                           {c.status.replace("_", " ")}
@@ -832,25 +832,25 @@ export default function OperatorDashboard() {
                       </div>
 
                       {/* HITL Decision Panel */}
-                      {selectedCase.status === "VÃ„NTAR_BESLUT" && (
+                      {selectedCase.status === "VÄNTAR_BESLUT" && (
                         <div
                           className="p-4 rounded border"
                           style={{ borderColor: "#00ff9d33", background: "#00ff9d08" }}
                         >
                           <div className="flex items-center gap-2 mb-3">
                             <Shield className="w-3.5 h-3.5 text-[#00ff9d]" />
-                            <span className="text-[10px] font-mono font-bold text-[#00ff9d] uppercase tracking-widest">HITL Beslutspanel â€“ KrÃ¤ver Din BedÃ¶mning</span>
+                            <span className="text-[10px] font-mono font-bold text-[#00ff9d] uppercase tracking-widest">HITL Beslutspanel – Kräver Din Bedömning</span>
                           </div>
                           <p className="text-xs text-[#3d5a80] mb-4">
-                            AI-agenten kan inte agera utan ditt godkÃ¤nnande. Ditt beslut loggas med timestamp och motivering.
+                            AI-agenten kan inte agera utan ditt godkännande. Ditt beslut loggas med timestamp och motivering.
                           </p>
                           <div className="flex gap-3">
                             <button
-                              onClick={() => initiateDecision(selectedCase.id, "GODKÃ„NN")}
+                              onClick={() => initiateDecision(selectedCase.id, "GODKÄNN")}
                               className="flex items-center gap-2 px-4 py-2 rounded border border-[#00ff9d]/40 bg-[#00ff9d]/10 text-[#00ff9d] text-xs font-mono font-bold hover:bg-[#00ff9d]/20 transition-all"
                             >
                               <CheckCircle className="w-3.5 h-3.5" />
-                              GODKÃ„NN FLAGGA
+                              GODKÄNN FLAGGA
                             </button>
                             <button
                               onClick={() => initiateDecision(selectedCase.id, "AVVISA")}
@@ -870,19 +870,19 @@ export default function OperatorDashboard() {
                         </div>
                       )}
 
-                      {selectedCase.status !== "VÃ„NTAR_BESLUT" && (
+                      {selectedCase.status !== "VÄNTAR_BESLUT" && (
                         <div className="p-4 rounded border" style={{
-                          borderColor: selectedCase.status === "GODKÃ„ND" ? "#00ff9d33" : "#ff3b5c33",
-                          background: selectedCase.status === "GODKÃ„ND" ? "#00ff9d08" : "#ff3b5c08",
+                          borderColor: selectedCase.status === "GODKÄND" ? "#00ff9d33" : "#ff3b5c33",
+                          background: selectedCase.status === "GODKÄND" ? "#00ff9d08" : "#ff3b5c08",
                         }}>
                           <div className="flex items-center gap-2">
-                            {selectedCase.status === "GODKÃ„ND" ? (
+                            {selectedCase.status === "GODKÄND" ? (
                               <CheckCircle className="w-4 h-4 text-[#00ff9d]" />
                             ) : (
                               <XCircle className="w-4 h-4 text-[#ff3b5c]" />
                             )}
                             <span className="text-sm font-mono font-bold" style={{
-                              color: selectedCase.status === "GODKÃ„ND" ? "#00ff9d" : "#ff3b5c"
+                              color: selectedCase.status === "GODKÄND" ? "#00ff9d" : "#ff3b5c"
                             }}>
                               Beslut fattat: {selectedCase.status}
                             </span>
@@ -894,7 +894,7 @@ export default function OperatorDashboard() {
                     <div className="flex items-center justify-center h-full">
                       <div className="text-center">
                         <Hexagon className="w-12 h-12 text-[#1e2d3d] mx-auto mb-3" />
-                        <p className="text-[#3d5a80] text-sm font-mono">VÃ¤lj ett Ã¤rende fÃ¶r att granska</p>
+                        <p className="text-[#3d5a80] text-sm font-mono">Välj ett ärende för att granska</p>
                       </div>
                     </div>
                   )}
@@ -966,7 +966,7 @@ export default function OperatorDashboard() {
                       <div className="flex items-center gap-1 mt-2">
                         <TrendingUp className={`w-3 h-3 ${m.trend === "up" ? "text-[#00ff9d]" : m.trend === "down" ? "text-[#ff3b5c]" : "text-[#3d5a80]"}`} />
                         <span className="text-[10px] font-mono text-[#3d5a80]">
-                          {m.trend === "up" ? "Ã–kar" : m.trend === "down" ? "Minskar" : "Stabilt"}
+                          {m.trend === "up" ? "Ökar" : m.trend === "down" ? "Minskar" : "Stabilt"}
                         </span>
                       </div>
                     </div>
@@ -975,7 +975,7 @@ export default function OperatorDashboard() {
                 <div className="p-4 rounded border" style={{ borderColor: "#1e2d3d", background: "#111827" }}>
                   <div className="flex items-center gap-2 mb-4">
                     <Activity className="w-3.5 h-3.5 text-[#3d5a80]" />
-                    <span className="text-[10px] font-mono font-bold text-[#3d5a80] uppercase tracking-widest">SystemhÃ¤lsa</span>
+                    <span className="text-[10px] font-mono font-bold text-[#3d5a80] uppercase tracking-widest">Systemhälsa</span>
                   </div>
                   <div className="space-y-3">
                     {[
@@ -998,7 +998,7 @@ export default function OperatorDashboard() {
           </div>
         </main>
 
-        {/* RIGHT COLUMN â€“ Agent Chat */}
+        {/* RIGHT COLUMN – Agent Chat */}
         <aside
           className="w-80 flex-shrink-0 flex flex-col border-l"
           style={{ borderColor: "#1e2d3d", background: "#0d1117" }}
@@ -1127,7 +1127,7 @@ export default function OperatorDashboard() {
           <div className="bg-[#0a0e14] border border-[#1e2d3d] rounded-lg p-6 max-w-md w-full">
             <div className="flex items-center gap-2 mb-4">
               <FileText className="w-4 h-4 text-[#ffb800]" />
-              <h3 className="text-sm font-mono font-bold text-white uppercase tracking-widest">Nytt Ã¤rende</h3>
+              <h3 className="text-sm font-mono font-bold text-white uppercase tracking-widest">Nytt ärende</h3>
             </div>
             <div className="mb-4">
               <label className="text-[10px] font-mono text-[#3d5a80] uppercase tracking-widest block mb-2">
@@ -1150,9 +1150,9 @@ export default function OperatorDashboard() {
                 onChange={(e) => setIssueSeverity(e.target.value as any)}
                 className="w-full bg-[#111827] border border-[#1e2d3d] rounded px-3 py-2 text-xs font-mono text-[#c9d1d9] focus:outline-none focus:border-[#ffb800]/40 transition-colors"
               >
-                <option value="lÃ¥g">LÃ¥g</option>
+                <option value="låg">Låg</option>
                 <option value="medel">Medel</option>
-                <option value="hÃ¶g">HÃ¶g</option>
+                <option value="hög">Hög</option>
                 <option value="kritisk">Kritisk</option>
               </select>
             </div>
@@ -1163,7 +1163,7 @@ export default function OperatorDashboard() {
               <textarea
                 value={issueDescription}
                 onChange={(e) => setIssueDescription(e.target.value)}
-                placeholder="Beskriv Ã¤rendet i detalj..."
+                placeholder="Beskriv ärendet i detalj..."
                 rows={4}
                 className="w-full bg-[#111827] border border-[#1e2d3d] rounded px-3 py-2 text-xs font-mono text-[#c9d1d9] placeholder-[#1e4d6b] focus:outline-none focus:border-[#ffb800]/40 resize-none transition-colors"
               />
@@ -1174,7 +1174,7 @@ export default function OperatorDashboard() {
                 disabled={issueSubmitting}
                 className="flex-1 py-2 rounded border border-[#ffb800]/40 bg-[#ffb800]/10 text-[#ffb800] text-xs font-mono font-bold hover:bg-[#ffb800]/20 transition-all disabled:opacity-50"
               >
-                {issueSubmitting ? "Skickar..." : "Skicka Ã¤rende"}
+                {issueSubmitting ? "Skickar..." : "Skicka ärende"}
               </button>
               <button
                 onClick={() => { setShowIssueForm(false); setIssueTitle(""); setIssueDescription(""); }}
@@ -1197,15 +1197,15 @@ export default function OperatorDashboard() {
             <div className="flex items-center gap-3 mb-4">
               <Shield className="w-5 h-5 text-[#00ff9d]" />
               <h3 className="text-sm font-bold text-white" style={{ fontFamily: "'Space Grotesk', sans-serif" }}>
-                BekrÃ¤fta HITL-beslut
+                Bekräfta HITL-beslut
               </h3>
             </div>
             <div className="p-3 rounded border border-[#1e2d3d] bg-[#111827] mb-4">
-              <div className="text-[10px] font-mono text-[#3d5a80] mb-1">Ã„rende</div>
+              <div className="text-[10px] font-mono text-[#3d5a80] mb-1">Ärende</div>
               <div className="text-sm font-mono text-white">{pendingDecision.caseId}</div>
               <div className="text-[10px] font-mono mt-2 text-[#3d5a80] mb-1">Beslut</div>
               <div className={`text-sm font-mono font-bold ${
-                pendingDecision.type === "GODKÃ„NN" ? "text-[#00ff9d]" :
+                pendingDecision.type === "GODKÄNN" ? "text-[#00ff9d]" :
                 pendingDecision.type === "AVVISA" ? "text-[#ff3b5c]" : "text-[#ffb800]"
               }`}>
                 {pendingDecision.type}
@@ -1218,7 +1218,7 @@ export default function OperatorDashboard() {
               <textarea
                 value={decisionNote}
                 onChange={(e) => setDecisionNote(e.target.value)}
-                placeholder="Beskriv din bedÃ¶mning..."
+                placeholder="Beskriv din bedömning..."
                 rows={3}
                 className="w-full bg-[#111827] border border-[#1e2d3d] rounded px-3 py-2 text-xs font-mono text-[#c9d1d9] placeholder-[#1e4d6b] focus:outline-none focus:border-[#00ff9d]/40 resize-none transition-colors"
               />
@@ -1228,7 +1228,7 @@ export default function OperatorDashboard() {
                 onClick={confirmDecision}
                 className="flex-1 py-2 rounded border border-[#00ff9d]/40 bg-[#00ff9d]/10 text-[#00ff9d] text-xs font-mono font-bold hover:bg-[#00ff9d]/20 transition-all"
               >
-                BekrÃ¤fta
+                Bekräfta
               </button>
               <button
                 onClick={() => { setShowDecisionModal(false); setPendingDecision(null); }}

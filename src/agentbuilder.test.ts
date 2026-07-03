@@ -69,7 +69,7 @@ vi.mock("./server/_core/llm", () => ({
 }));
 
 // â”€â”€â”€ Input Validation Tests â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-describe("AgentBuilder â€“ input validation", () => {
+describe("AgentBuilder – input validation", () => {
   describe("createDraft schema", () => {
     const createDraftSchema = z.object({
       name: z.string().min(2).max(80),
@@ -240,7 +240,7 @@ describe("AgentBuilder â€“ input validation", () => {
 });
 
 // â”€â”€â”€ Business Logic Tests â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-describe("AgentBuilder â€“ business logic", () => {
+describe("AgentBuilder – business logic", () => {
   describe("slug validation rules", () => {
     const slugRegex = /^[a-z0-9-]+$/;
 
@@ -293,7 +293,7 @@ describe("AgentBuilder â€“ business logic", () => {
       expect(result.success).toBe(true);
     });
 
-    it("rejects price below minimum (100 Ã¶re = 1 SEK)", () => {
+    it("rejects price below minimum (100 öre = 1 SEK)", () => {
       const result = pricingSchema.safeParse({
         pricingModel: "per_task",
         pricePerTaskOre: 50,

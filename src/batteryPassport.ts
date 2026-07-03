@@ -1,5 +1,5 @@
 ﻿/**
- * BatteryPassport Router â€“ EU BatterifÃ¶rordning 2023/1542 (ESPR)
+ * BatteryPassport Router – EU Batteriförordning 2023/1542 (ESPR)
  * Handles creation, retrieval, and JSON-LD generation for battery passports
  */
 import { z } from "zod";
@@ -13,7 +13,7 @@ import { invokeLLM } from "../_core/llm";
 // â”€â”€â”€ Shared Zod schemas â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 const batteryPassportDraftSchema = z.object({
-  // Step 1 â€“ Basic info
+  // Step 1 – Basic info
   productName: z.string().max(255).optional(),
   modelNumber: z.string().max(128).optional(),
   manufacturerName: z.string().max(255).optional(),
@@ -25,7 +25,7 @@ const batteryPassportDraftSchema = z.object({
   batteryCategory: z.enum(["portable", "light_means", "ev", "industrial", "sli"]).optional(),
   gtin: z.string().max(64).optional(),
 
-  // Step 2 â€“ Chemistry
+  // Step 2 – Chemistry
   chemistry: z.enum(["li_nmc", "li_lco", "li_lfp", "li_nca", "li_lto", "nimh", "nicd", "lead_acid", "sodium", "other"]).optional(),
   nominalCapacityAh: z.number().positive().optional(),
   nominalVoltageV: z.number().positive().optional(),
@@ -37,13 +37,13 @@ const batteryPassportDraftSchema = z.object({
   expectedLifecycleCycles: z.number().int().positive().optional(),
   expectedLifetimeYears: z.number().int().positive().optional(),
 
-  // Step 3 â€“ Carbon footprint
+  // Step 3 – Carbon footprint
   carbonFootprintKgCo2eKwh: z.number().positive().optional(),
   carbonFootprintSystemBoundary: z.enum(["cradle_to_gate", "cradle_to_grave", "gate_to_gate"]).optional(),
   carbonFootprintVerificationMethod: z.string().max(255).optional(),
   carbonFootprintThirdPartyVerifier: z.string().max(255).optional(),
 
-  // Step 4 â€“ Recycled content
+  // Step 4 – Recycled content
   recycledCobaltPct: z.number().min(0).max(100).optional(),
   recycledLithiumPct: z.number().min(0).max(100).optional(),
   recycledNickelPct: z.number().min(0).max(100).optional(),
@@ -51,12 +51,12 @@ const batteryPassportDraftSchema = z.object({
   recycledManganesePct: z.number().min(0).max(100).optional(),
   recycledContentVerifier: z.string().max(255).optional(),
 
-  // Step 5 â€“ Dismantling
+  // Step 5 – Dismantling
   requiredTools: z.string().optional(),
   safetyWarnings: z.string().optional(),
   serviceDocumentationUrl: z.string().url().optional(),
 
-  // Step 6 â€“ End-of-life
+  // Step 6 – End-of-life
   collectionScheme: z.string().max(255).optional(),
   collectionPointUrl: z.string().url().optional(),
   approvedRecycler: z.string().max(255).optional(),
@@ -189,7 +189,7 @@ export const batteryPassportRouter = router({
       if (!passport.manufacturerName || !passport.serialNumber || !passport.batteryCategory) {
         throw new TRPCError({
           code: "BAD_REQUEST",
-          message: "Obligatoriska fÃ¤lt saknas: tillverkare, serienummer, batterikategori.",
+          message: "Obligatoriska fält saknas: tillverkare, serienummer, batterikategori.",
         });
       }
 
@@ -273,7 +273,7 @@ Return ONLY valid JSON-LD (no markdown, no explanation). Use the ESPR schema.`;
       if (!passport.jsonLdDocument) {
         throw new TRPCError({
           code: "BAD_REQUEST",
-          message: "JSON-LD-dokumentet mÃ¥ste genereras innan publicering.",
+          message: "JSON-LD-dokumentet måste genereras innan publicering.",
         });
       }
 

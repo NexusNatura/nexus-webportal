@@ -3,32 +3,40 @@ import { trpc } from "../lib/trpc";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Brain, Play, Search, Activity, Loader2, Database, Clock } from "lucide-react";
+import { Brain, Play, Search, Activity, Loader2, Database, Clock, CheckCircle2, XCircle, ShieldAlert } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 
 export default function AgentDashboard() {
   const [searchQuery, setSearchQuery] = useState("");
   const [hasSearched, setHasSearched] = useState(false);
 
-  // tRPC Queries med refetch interval för "real-time" känsla
-  const { data: memories, isLoading: loadingMemories } = trpc.ai.getMemories.useQuery(undefined, {
-    enabled: !hasSearched, // Endast hämta alla om vi inte sökt
+  // tRPC Queries
+  const { data: memories, isLoading: loadingMemories, refetch: refetchMemories } = trpc.ai.getMemories.useQuery(undefined, {
+    enabled: !hasSearched,
     refetchInterval: 5000 
   });
   
   const { data: searchResults, isLoading: loadingSearch, refetch: executeSearch } = trpc.ai.searchMemories.useQuery(
     { query: searchQuery }, 
-    { enabled: false } // Körs bara manuellt
+    { enabled: false }
   );
 
   const { data: jobs, isLoading: loadingJobs, refetch: refetchJobs } = trpc.ai.getJobs.useQuery(undefined, {
     refetchInterval: 2000
   });
 
-  const enqueueJob = trpc.ai.enqueueJob.useMutation({
-    onSuccess: () => {
-      refetchJobs();
-    }
+  const { data: pendingMemories, isLoading: loadingPending, refetch: refetchPending } = trpc.ai.getPendingMemories.useQuery(undefined, {
+    refetchInterval: 5000
+  });
+
+  const enqueueJob = trpc.ai.enqueueJob.useMutation({ onSuccess: () => refetchJobs() });
+  
+  const approveMemory = trpc.ai.approveMemory.useMutation({ 
+    onSuccess: () => { refetchPending(); refetchMemories(); } 
+  });
+  
+  const rejectMemory = trpc.ai.rejectMemory.useMutation({ 
+    onSuccess: () => { refetchPending(); } 
   });
 
   const handleSearch = () => {
@@ -38,10 +46,6 @@ export default function AgentDashboard() {
     }
     setHasSearched(true);
     executeSearch();
-  };
-
-  const handleStartJob = () => {
-    enqueueJob.mutate();
   };
 
   const displayedMemories = hasSearched ? searchResults : memories;
@@ -55,10 +59,66 @@ export default function AgentDashboard() {
             System 2: Agent Dashboard
           </h1>
           <p className="text-muted-foreground mt-2">
-            Övervaka agenternas Långtidsminne och Asynkrona Jobb-kö.
+            Övervaka agenternas Långtidsminne, Reflector-kö och Asynkrona Jobb.
           </p>
         </div>
       </div>
+
+      {/* Reflector-Driven Consolidation Queue */}
+      <Card className="border-amber-500/30 shadow-md backdrop-blur-sm bg-amber-950/10">
+        <CardHeader className="pb-3">
+          <CardTitle className="flex items-center gap-2 text-amber-500">
+            <ShieldAlert className="h-5 w-5" />
+            Reflector-Kö (Godkännande krävs)
+          </CardTitle>
+          <CardDescription>
+            Granska och godkänn agenternas nya insikter innan de sparas i Vektor-minnet permanent.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="space-y-3">
+            {loadingPending ? (
+              <div className="flex justify-center p-4"><Loader2 className="h-6 w-6 animate-spin text-amber-500/50" /></div>
+            ) : pendingMemories && pendingMemories.length > 0 ? (
+              pendingMemories.map((mem: any) => (
+                <div key={mem.id} className="p-4 rounded-lg bg-background border border-amber-500/20 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                  <div className="flex-1">
+                    <Badge variant="outline" className="text-xs bg-amber-500/10 text-amber-500 border-amber-500/20 mb-2">
+                      {mem.agentName || mem.agent_name || 'Agent'} - PENDING
+                    </Badge>
+                    <p className="text-sm font-medium leading-relaxed">{mem.content}</p>
+                  </div>
+                  <div className="flex items-center gap-2 shrink-0">
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      className="border-emerald-500/50 hover:bg-emerald-500/20 text-emerald-500"
+                      onClick={() => approveMemory.mutate({ id: mem.id })}
+                      disabled={approveMemory.isPending || rejectMemory.isPending}
+                    >
+                      <CheckCircle2 className="h-4 w-4 mr-1" /> Godkänn
+                    </Button>
+                    <Button 
+                      size="sm" 
+                      variant="outline" 
+                      className="border-red-500/50 hover:bg-red-500/20 text-red-500"
+                      onClick={() => rejectMemory.mutate({ id: mem.id })}
+                      disabled={approveMemory.isPending || rejectMemory.isPending}
+                    >
+                      <XCircle className="h-4 w-4 mr-1" /> Förkasta
+                    </Button>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="text-center p-6 text-muted-foreground text-sm flex flex-col items-center border border-dashed border-border/50 rounded-lg">
+                <CheckCircle2 className="h-8 w-8 mb-2 opacity-20" />
+                Inga insikter väntar på godkännande. Du är ikapp!
+              </div>
+            )}
+          </div>
+        </CardContent>
+      </Card>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         
@@ -67,10 +127,10 @@ export default function AgentDashboard() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Brain className="h-5 w-5 text-purple-400" />
-              Långtidsminne (Vector DB)
+              Långtidsminne (Godkända)
             </CardTitle>
             <CardDescription>
-              Agenternas semantiska kunskapsbas.
+              Agenternas verifierade semantiska kunskapsbas.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">
@@ -118,11 +178,10 @@ export default function AgentDashboard() {
                 ))
               ) : (
                 <div className="text-center p-8 text-muted-foreground text-sm">
-                  Inga minnen hittades.
+                  Inga godkända minnen hittades.
                 </div>
               )}
             </div>
-
           </CardContent>
         </Card>
 
@@ -139,7 +198,7 @@ export default function AgentDashboard() {
                   Bakgrunds-kö för Deep Research.
                 </CardDescription>
               </div>
-              <Button onClick={handleStartJob} disabled={enqueueJob.isPending} className="bg-blue-600 hover:bg-blue-700">
+              <Button onClick={() => enqueueJob.mutate()} disabled={enqueueJob.isPending} className="bg-blue-600 hover:bg-blue-700">
                 {enqueueJob.isPending ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Play className="h-4 w-4 mr-2" />}
                 Kör Deep Research
               </Button>

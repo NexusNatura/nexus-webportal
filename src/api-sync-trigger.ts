@@ -12,7 +12,7 @@ import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { runDailySync } from "@/server/scheduled-sync";
 
-// â”€â”€â”€ SÃ¤kerhetskontroll â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+// â”€â”€â”€ Säkerhetskontroll â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 function isAuthorized(request: NextRequest): boolean {
   const authHeader = request.headers.get("Authorization");
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
@@ -24,24 +24,24 @@ function isAuthorized(request: NextRequest): boolean {
 
 // â”€â”€â”€ Handler â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 export async function POST(request: NextRequest) {
-  // 1. Kontrollera att anropet Ã¤r auktoriserat
+  // 1. Kontrollera att anropet är auktoriserat
   if (!isAuthorized(request)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  // 2. FÃ¶rhindra att Vercel timear ut â€“ streama ett tidigt svar
-  //    (Vercel Hobby har 10s timeout, Pro har 60s â€“ sÃ¤tt maxDuration i vercel.json)
-  console.log("[Sync Trigger] Auktoriserad begÃ¤ran mottagen");
+  // 2. Förhindra att Vercel timear ut – streama ett tidigt svar
+  //    (Vercel Hobby har 10s timeout, Pro har 60s – sätt maxDuration i vercel.json)
+  console.log("[Sync Trigger] Auktoriserad begäran mottagen");
 
   const startTime = Date.now();
 
   try {
-    // 3. KÃ¶r synken
+    // 3. Kör synken
     const results = await runDailySync();
 
     const duration = ((Date.now() - startTime) / 1000).toFixed(2);
 
-    console.log(`[Sync Trigger] SlutfÃ¶rd pÃ¥ ${duration}s`, results);
+    console.log(`[Sync Trigger] Slutförd på ${duration}s`, results);
 
     return NextResponse.json(
       {
@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
       { status: 200 }
     );
   } catch (error) {
-    const message = error instanceof Error ? error.message : "OkÃ¤nt fel";
+    const message = error instanceof Error ? error.message : "Okänt fel";
     console.error("[Sync Trigger] Fel:", message);
 
     return NextResponse.json(

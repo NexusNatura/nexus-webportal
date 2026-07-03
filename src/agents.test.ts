@@ -12,14 +12,14 @@ const mockAgents = [
     slug: "grant-gamma-pro",
     name: "Grant-Gamma Pro",
     tagline: "Senior EU-bidragsspecialist",
-    description: "KartlÃ¤gger EU-program",
+    description: "Kartlägger EU-program",
     category: "grants",
     pricingModel: "both",
     pricePerTaskOre: 250000,
     priceMonthlyOre: 189000,
     riskClass: "limited",
     securityLevel: "standard",
-    capabilities: ["EU-programkartlÃ¤ggning"],
+    capabilities: ["EU-programkartläggning"],
     useCases: ["SMF"],
     benchmarkScore: 91,
     avgResponseTimeSec: 45,
@@ -59,7 +59,7 @@ const mockAgents = [
     id: 3,
     slug: "coming-soon-agent",
     name: "Coming Soon Agent",
-    tagline: "Snart tillgÃ¤nglig",
+    tagline: "Snart tillgänglig",
     description: "Inte redo",
     category: "circular",
     pricingModel: "per_task",
@@ -175,7 +175,7 @@ describe("agents.getListing", () => {
   });
 });
 
-describe("agents.createCheckout â€“ auth guard", () => {
+describe("agents.createCheckout – auth guard", () => {
   it("throws UNAUTHORIZED when user is not logged in", async () => {
     // protectedProcedure should throw if ctx.user is null
     const error = new TRPCError({ code: "UNAUTHORIZED", message: "Please login (10001)" });
@@ -188,9 +188,9 @@ describe("agents.createCheckout â€“ auth guard", () => {
     if (comingSoon?.status === "coming_soon") {
       const error = new TRPCError({
         code: "BAD_REQUEST",
-        message: "Denna agent Ã¤r inte tillgÃ¤nglig fÃ¶r kÃ¶p Ã¤nnu.",
+        message: "Denna agent är inte tillgänglig för köp ännu.",
       });
-      expect(error.message).toContain("inte tillgÃ¤nglig");
+      expect(error.message).toContain("inte tillgänglig");
     }
   });
 
@@ -202,14 +202,14 @@ describe("agents.createCheckout â€“ auth guard", () => {
     if (!amountOre) {
       const error = new TRPCError({
         code: "BAD_REQUEST",
-        message: `Denna agent stÃ¶djer inte prismodellen "monthly".`,
+        message: `Denna agent stödjer inte prismodellen "monthly".`,
       });
       expect(error.code).toBe("BAD_REQUEST");
     }
   });
 });
 
-describe("agents.requestNotify â€“ auth guard", () => {
+describe("agents.requestNotify – auth guard", () => {
   it("throws UNAUTHORIZED when user is not logged in", () => {
     const error = new TRPCError({ code: "UNAUTHORIZED", message: "Please login (10001)" });
     expect(error.code).toBe("UNAUTHORIZED");
@@ -224,7 +224,7 @@ describe("agents.requestNotify â€“ auth guard", () => {
   });
 });
 
-describe("agents â€“ data integrity", () => {
+describe("agents – data integrity", () => {
   it("all official agents have benchmarkScore set", () => {
     const official = mockAgents.filter((a) => a.isOfficial);
     official.forEach((a) => {

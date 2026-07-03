@@ -1,7 +1,7 @@
 ﻿/**
- * CIRCULAR EXCELLENCE â€“ Utbildningsprogram
+ * CIRCULAR EXCELLENCE – Utbildningsprogram
  * Design: Nordic Sustainability Intelligence
- * Full interaktivt lektionslÃ¤ge med framstegsspÃ¥rning, quiz och AI-assistent
+ * Full interaktivt lektionsläge med framstegsspårning, quiz och AI-assistent
  */
 
 import { useState, useEffect } from "react";
@@ -188,7 +188,7 @@ function CourseCard({
             onClick={onStart}
           >
             {hasStarted ? (
-              <><BookOpen className="w-4 h-4" />FortsÃ¤tt kurs</>
+              <><BookOpen className="w-4 h-4" />Fortsätt kurs</>
             ) : (
               <><Play className="w-4 h-4" />{path.free ? "Starta gratis" : "Starta kurs"}</>
             )}
@@ -206,7 +206,7 @@ function CourseCard({
 
       {expanded && (
         <div className="border-t border-[var(--sand-border)] px-6 py-4 bg-[var(--sand-light)]">
-          <h4 className="text-xs font-bold text-[var(--forest-deep)] uppercase tracking-wide mb-3">KursinnehÃ¥ll</h4>
+          <h4 className="text-xs font-bold text-[var(--forest-deep)] uppercase tracking-wide mb-3">Kursinnehåll</h4>
           <div className="space-y-2">
             {path.modules_list.map((mod, i) => {
               const lessonId = `${path.id}-${i}`;
@@ -229,7 +229,7 @@ function CourseCard({
             })}
           </div>
           <div className="mt-4 pt-3 border-t border-[var(--sand-border)]">
-            <h4 className="text-xs font-bold text-[var(--forest-deep)] uppercase tracking-wide mb-2">Du lÃ¤r dig</h4>
+            <h4 className="text-xs font-bold text-[var(--forest-deep)] uppercase tracking-wide mb-2">Du lär dig</h4>
             <div className="grid grid-cols-1 gap-1.5">
               {path.outcomes.map((outcome) => (
                 <div key={outcome} className="flex items-start gap-2 text-xs text-[var(--text-body)]">
@@ -293,8 +293,8 @@ export default function CircularExcellence() {
       if (nextLesson) {
         setActiveLessonIndex(nextIndex);
       } else {
-        toast.info("NÃ¤sta lektion krÃ¤ver Professional-plan.", {
-          description: "Uppgradera fÃ¶r att lÃ¥sa upp alla lektioner.",
+        toast.info("Nästa lektion kräver Professional-plan.", {
+          description: "Uppgradera för att låsa upp alla lektioner.",
         });
       }
     }
@@ -327,14 +327,14 @@ export default function CircularExcellence() {
               </Badge>
               <h1 className="font-display text-4xl md:text-5xl font-bold mb-4 leading-tight">
                 Bli certifierad<br />
-                <span className="text-[var(--copper-light)]">cirkulÃ¤r specialist</span>
+                <span className="text-[var(--copper-light)]">cirkulär specialist</span>
               </h1>
               <p className="text-white/75 text-lg max-w-xl mb-8 leading-relaxed">
                 Fyra praktiska kurser med interaktiva lektioner, quiz och AI-driven kursassistent.
-                Certifieringen stÃ¤rker din ansÃ¶kan till Vinnova, Almi och EU-finansiering.
+                Certifieringen stärker din ansökan till Vinnova, Almi och EU-finansiering.
               </p>
               <div className="flex flex-wrap gap-6 text-sm text-white/60">
-                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> FÃ¶rsta kursen gratis</span>
+                <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> Första kursen gratis</span>
                 <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> AI-kursassistent i varje lektion</span>
                 <span className="flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> Quiz och certifiering</span>
               </div>
@@ -348,7 +348,7 @@ export default function CircularExcellence() {
                 {[
                   { icon: Users, value: "240+", label: "Deltagare hittills" },
                   { icon: BookOpen, value: "4", label: "Kurser" },
-                  { icon: Award, value: "3", label: "CertifieringsnivÃ¥er" },
+                  { icon: Award, value: "3", label: "Certifieringsnivåer" },
                   { icon: CheckCircle2, value: `${totalCompleted}`, label: "Dina avklarade lektioner" },
                 ].map(({ icon: Icon, value, label }) => (
                   <div key={label} className="flex items-center gap-2">
@@ -364,7 +364,7 @@ export default function CircularExcellence() {
           <div className="container py-10">
             {/* Learning paths */}
             <h2 className="font-display text-2xl font-bold text-[var(--forest-deep)] mb-6">
-              VÃ¤lj din utbildningsvÃ¤g
+              Välj din utbildningsväg
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
               {LEARNING_PATHS.map((path) => (
@@ -403,7 +403,7 @@ export default function CircularExcellence() {
                   </div>
                   <p className="text-xs text-[var(--text-muted)] mb-3">{cert.description}</p>
                   <div className="text-xs text-[var(--text-muted)]">
-                    <span className="font-medium">KrÃ¤ver: </span>
+                    <span className="font-medium">Kräver: </span>
                     {cert.requires.join(", ")}
                   </div>
                 </div>
@@ -413,9 +413,9 @@ export default function CircularExcellence() {
             {/* CTA */}
             <div className="bg-[var(--forest-deep)] rounded-2xl p-8 text-white text-center">
               <GraduationCap className="w-12 h-12 text-[var(--copper-light)] mx-auto mb-4" />
-              <h3 className="font-display text-2xl font-bold mb-2">BÃ¶rja med ESPR-grunden â€“ helt gratis</h3>
+              <h3 className="font-display text-2xl font-bold mb-2">Börja med ESPR-grunden – helt gratis</h3>
               <p className="text-white/70 text-sm mb-6 max-w-md mx-auto">
-                Fyra interaktiva lektioner med quiz och AI-kursassistent. Ingen registrering krÃ¤vs.
+                Fyra interaktiva lektioner med quiz och AI-kursassistent. Ingen registrering krävs.
               </p>
               <Button
                 className="bg-[var(--copper)] hover:bg-[var(--copper-dark)] text-white border-0"
@@ -466,7 +466,7 @@ export default function CircularExcellence() {
         ) : (
           <div className="flex items-center justify-center h-64">
             <div className="text-center">
-              <p className="text-[var(--text-muted)] mb-4">Lektion ej tillgÃ¤nglig</p>
+              <p className="text-[var(--text-muted)] mb-4">Lektion ej tillgänglig</p>
               <Button onClick={() => setView("catalog")}>Tillbaka till kurser</Button>
             </div>
           </div>
