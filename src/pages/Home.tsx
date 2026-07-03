@@ -27,13 +27,14 @@ import {
   Sparkles,
   ShieldCheck,
   Globe,
+  Scale
 } from "lucide-react";
 
 // Clean, Apple-like placeholder images or keep existing but with soft shadows
 const HERO_IMG = "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop";
 const DPP_IMG = "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=800&auto=format&fit=crop";
 const GRANTS_IMG = "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?q=80&w=800&auto=format&fit=crop";
-const SYMBIOSIS_IMG = "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?q=80&w=800&auto=format&fit=crop";
+const COMPLIANCE_IMG = "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=800&auto=format&fit=crop";
 
 const stats = [
   { value: "2026", label: "ESPR träder i kraft", icon: Clock },
@@ -44,49 +45,31 @@ const stats = [
 
 const features = [
   {
+    href: "/efterlevnad", // TBD: länk till Compliance
+    img: COMPLIANCE_IMG,
+    badge: "EU AI Act & ESPR",
+    title: "EU-Regelefterlevnad",
+    desc: "Undvik böter och dyra konsulter. Vår plattform håller dig automatisk uppdaterad med de senaste EU-kraven, bygger riskregister och skyddar din marknadsandel.",
+    cta: "Klara kraven",
+    icon: Scale,
+  },
+  {
     href: "/bidrag",
     img: GRANTS_IMG,
-    badge: "AI-matchning",
-    title: "EU Bidragsspecialist",
-    desc: "Senior AI-agent som kartlägger alla relevanta EU-, Vinnova- och Almi-program för ditt företag. Genererar färdiga ansökningsutkast automatiskt.",
+    badge: "Finansiering",
+    title: "Bidragsspecialisten",
+    desc: "Mindre företag missar miljoner i bidrag. Vår AI kartlägger alla relevanta EU-, Vinnova- och Almi-program för din verksamhet och skriver ansökningarna åt dig.",
     cta: "Hitta bidrag",
     icon: Search,
   },
   {
     href: "/produktpass",
     img: DPP_IMG,
-    badge: "ESPR 2026",
-    title: "Digitalt Produktpass",
-    desc: "Skapa, förvalta och monetarisera EU-kompatibla DPP:er med inbyggd LCA-analys. Sälj din produktdata som en resurs till producenter och återvinnare.",
+    badge: "Framtidens Krav",
+    title: "Digitala Produktpass",
+    desc: "Skapa, förvalta och monetarisera EU-kompatibla DPP (Digital Product Passports) med inbyggd LCA-analys. Vänd ett lagkrav till en ny intäktskälla.",
     cta: "Skapa produktpass",
     icon: FileText,
-  },
-  {
-    href: "/symbios",
-    img: SYMBIOSIS_IMG,
-    badge: "Lokalt nätverk",
-    title: "Industriell Symbios",
-    desc: "Identifiera hur lokala företags avfallsströmmar kan bli varandras resurser. AI-driven analys av Skaraborg-regionens cirkulära potential.",
-    cta: "Skanna flöden",
-    icon: Recycle,
-  },
-  {
-    href: "/cirkulara-verktyg",
-    img: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=800&auto=format&fit=crop",
-    badge: "Kalkylator",
-    title: "Cirkulära Verktyg",
-    desc: "Beräkna Material Circularity Indicator (MCI) och se exakt hur mycket koldioxidutsläpp du kan spara genom att införa cirkulära produktionsmetoder.",
-    cta: "Räkna ut CO2e",
-    icon: Factory,
-  },
-  {
-    href: "/smarta-blanketter",
-    img: "https://images.unsplash.com/photo-1618044733300-9472054094ee?q=80&w=800&auto=format&fit=crop",
-    badge: "Auto-fill AI",
-    title: "Intelligenta Blanketter",
-    desc: "Sluta slösa tid på byråkrati. Vår AI läser av företagets data och fyller automatiskt i komplexa EU- och myndighetsblanketter åt dig.",
-    cta: "Testa Blanketter",
-    icon: ShieldCheck,
   },
 ];
 
@@ -127,15 +110,15 @@ const segments = [
   {
     id: "smf",
     icon: Building2,
-    label: "Lokala SMF",
-    tagline: "Från compliance-kostnad till konkurrensfördel",
-    problem: "EU:s ESPR-krav 2026 innebär att du måste dokumentera materialinnehåll, CO2-avtryck och reparerbarhet för varje produkt – annars kan du inte sälja på EU-marknaden.",
+    label: "Små & Medelstora Företag (SMF)",
+    tagline: "Från compliance-börda till konkurrensfördel",
+    problem: "Regeltsunamin från EU, som ESPR och AI Act, slår hårt mot mindre företag. Istället för att betala 1500 kr/h för konsulter ger vi dig ett system som löser allt automatiskt.",
     value: [
-      { icon: Search, text: "AI matchar ditt företag mot 100+ bidragsprogram och skriver ansökningsutkast automatiskt" },
-      { icon: FileText, text: "Generera EU-kompatibla DPP på minuter istället för månader" },
-      { icon: TrendingUp, text: "Pantolin-piloten: 89% CO2-reduktion, 18% premieprissättning – compliance lönar sig" },
+      { icon: Search, text: "Få betalt för omställningen – AI hittar och söker bidrag åt dig" },
+      { icon: FileText, text: "Generera EU-kompatibla produktpass på minuter istället för månader" },
+      { icon: Scale, text: "Garanti för regelefterlevnad utan att du behöver vara jurist" },
     ],
-    cta: "Hitta dina bidrag",
+    cta: "Starta din resa",
     href: "/bidrag",
     proof: "Pilotkund: Pantolin Smycken, Skaraborg",
   },
@@ -266,27 +249,28 @@ export default function Home() {
         <div className="container relative z-20 max-w-5xl mx-auto px-6 text-center">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-muted border border-border text-sm font-medium text-foreground mb-8 shadow-sm">
             <Sparkles className="w-4 h-4 text-primary" />
-            Välkommen till framtidens infrastruktur
+            Plattformen byggd för Mindre Företag (SMF)
           </div>
           
           <h1 className="text-5xl md:text-7xl font-semibold tracking-tighter text-foreground mb-8 leading-[1.1]">
-            EU Intelligence <br />
-            <span className="text-muted-foreground">för cirkulär ekonomi</span>
+            Din allt-i-ett plattform för <br />
+            <span className="text-muted-foreground">EU-Efterlevnad, Bidrag & DPP</span>
           </h1>
           
           <p className="text-lg md:text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed">
-            Automatisera din compliance, säkra dina EU-bidrag och skapa nya intäkter genom digitala produktpass och AI-agenter.
+            Vi bygger den snabbast växande infrastrukturen för att hjälpa små och medelstora företag 
+            automatisera byråkratin, säkra utvecklingskapital och skapa nya intäkter genom sin produktdata.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link href="/agenter">
+            <Link href="/bidrag">
               <Button size="lg" className="rounded-full h-14 px-8 text-base shadow-sm gap-2">
-                Utforska Agentmarknaden <ArrowRight className="w-5 h-5" />
+                Hitta dina bidrag <ArrowRight className="w-5 h-5" />
               </Button>
             </Link>
-            <Link href="/om-oss">
+            <Link href="/agenter">
               <Button size="lg" variant="outline" className="rounded-full h-14 px-8 text-base bg-background/50 backdrop-blur-sm gap-2">
-                Läs mer om Nexus-OS <ChevronRight className="w-5 h-5" />
+                Utforska AI-agenterna <ChevronRight className="w-5 h-5" />
               </Button>
             </Link>
           </div>
@@ -318,12 +302,15 @@ export default function Home() {
         <BlogCarousel />
       </section>
 
-      {/* Features Section */}
+      {/* Den Heliga Treenigheten - Features Section */}
       <section className="py-24 bg-background">
         <div className="container max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-semibold tracking-tight mb-4">Ett system, oändliga möjligheter</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">Våra kärnmoduler hjälper dig att navigera det nya europeiska landskapet med säkerhet och lönsamhet.</p>
+            <h2 className="text-4xl font-semibold tracking-tight mb-4">Den Heliga Treenigheten för SMF</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Att lyckas i EU:s nya landskap kräver tre saker: Du måste följa reglerna, du ska utnyttja finansieringen, 
+              och du ska paketera din data. Vi löser allt i en enda plattform.
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
