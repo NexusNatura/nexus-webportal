@@ -37,12 +37,14 @@ import CircularTools from "./pages/CircularTools";
 import SmartForms from "./pages/SmartForms";
 import WACoreLanding from "./pages/WACoreLanding";
 import SalesEngine from "./pages/SalesEngine";
+import CIRSCalculator from "./pages/CIRSCalculator";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/cirs" component={CIRSCalculator} />
       <Route path="/hitta-bidrag" component={Grants} />
       <Route path="/produktpass" component={ProductPassport} />
       <Route path="/symbios" component={Symbiosis} />

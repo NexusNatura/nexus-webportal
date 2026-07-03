@@ -263,14 +263,14 @@ export default function Home() {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Link href="/bidrag">
+            <Link href="/cirs">
               <Button size="lg" className="rounded-full h-14 px-8 text-base shadow-sm gap-2">
-                Hitta dina bidrag <ArrowRight className="w-5 h-5" />
+                Testa din EU-mognad (Gratis CIRS) <ArrowRight className="w-5 h-5" />
               </Button>
             </Link>
-            <Link href="/agenter">
+            <Link href="/bidrag">
               <Button size="lg" variant="outline" className="rounded-full h-14 px-8 text-base bg-background/50 backdrop-blur-sm gap-2">
-                Utforska AI-agenterna <ChevronRight className="w-5 h-5" />
+                Hitta bidrag <ChevronRight className="w-5 h-5" />
               </Button>
             </Link>
           </div>
